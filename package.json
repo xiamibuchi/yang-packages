@@ -16,7 +16,7 @@
     "pnpm": ">=7"
   },
   "volta": {
-    "node": "18.13.0"
+    "node": "18.16.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
