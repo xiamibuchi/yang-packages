@@ -19,11 +19,13 @@
     "node": "18.16.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.1.2",
-    "@commitlint/config-conventional": "^17.1.0",
+    "@commitlint/cli": "^17.6.1",
+    "@commitlint/config-conventional": "^17.6.1",
     "@syseven/eslint-config": "workspace:*",
-    "husky": "^8.0.0",
-    "turbo": "^1.6.1",
-    "typescript": "^4.8.4"
+    "@types/node": "^18.11.12",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "turbo": "^1.9.3",
+    "typescript": "^5.0.4"
   }
 }
