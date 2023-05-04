@@ -8,6 +8,11 @@
     "prepare": "husky install",
     "test": "echo \"Error: no test specified\""
   },
+  "lint-staged": {
+    "*.{ts,js,vue,tsx}": [
+      "eslint --fix -c .eslintrc.cjs"
+    ]
+  },
   "keywords": [],
   "author": "",
   "license": "Apache",
