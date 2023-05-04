@@ -10,4 +10,7 @@ module.exports = {
     // catches unused variables but not args.
     { varsIgnorePattern: '.*', args: 'none' },
   ],
+  'no-multi-spaces': 'error',
+  'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 1 }],
+  'no-trailing-spaces': 'error',
 };
