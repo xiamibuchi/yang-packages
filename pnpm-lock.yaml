@@ -7,6 +7,7 @@ importers:
       '@commitlint/cli': ^17.6.1
       '@commitlint/config-conventional': ^17.6.1
       '@syseven/eslint-config': workspace:*
+      '@syseven/utils': workspace:*
       '@types/node': ^18.11.12
       eslint: ^8.39.0
       husky: ^8.0.3
@@ -21,6 +22,7 @@ importers:
       '@commitlint/cli': 17.6.1
       '@commitlint/config-conventional': 17.6.1
       '@syseven/eslint-config': link:packages/eslint-config
+      '@syseven/utils': link:packages/utils
       '@types/node': 18.11.18
       eslint: 8.39.0
       husky: 8.0.3
