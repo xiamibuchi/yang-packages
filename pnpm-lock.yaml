@@ -9,6 +9,7 @@ importers:
       '@syseven/eslint-config': workspace:*
       '@syseven/utils': workspace:*
       '@types/node': ^18.11.12
+      '@vue/test-utils': ^2.2.6
       eslint: ^8.39.0
       husky: ^8.0.3
       lint-staged: ^13.2.2
@@ -24,6 +25,7 @@ importers:
       '@syseven/eslint-config': link:packages/eslint-config
       '@syseven/utils': link:packages/utils
       '@types/node': 18.11.18
+      '@vue/test-utils': 2.2.8_vue@3.2.47
       eslint: 8.39.0
       husky: 8.0.3
       lint-staged: 13.2.2
@@ -1865,6 +1867,16 @@ packages:
     dependencies:
       js-beautify: 1.14.6
       vue: 3.2.45
+    dev: true
+
+  /@vue/test-utils/2.2.8_vue@3.2.47:
+    resolution: {integrity: sha512-/R8DKzp41Ip/RqTt1jvOVi5gxby3EwNWiYHNYsG9FAjEvt0gzDvYN55lCKzX7IdnI5zVIOo5tHtts0SLT+JrWw==}
+    peerDependencies:
+      '@vue/compiler-dom': ^3.0.1
+      vue: ^3.0.1
+    dependencies:
+      js-beautify: 1.14.6
+      vue: 3.2.47
     dev: true
 
   /@vue/tsconfig/0.1.3_@types+node@18.11.18:

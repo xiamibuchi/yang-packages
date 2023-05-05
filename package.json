@@ -31,6 +31,7 @@
     "@syseven/eslint-config": "workspace:*",
     "@syseven/utils": "workspace:*",
     "@types/node": "^18.11.12",
+    "@vue/test-utils": "^2.2.6",
     "eslint": "^8.39.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
