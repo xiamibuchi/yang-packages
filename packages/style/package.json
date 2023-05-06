@@ -1,0 +1,8 @@
+{
+  "name": "@syseven/style",
+  "description": "style",
+  "style": "index.css",
+  "scripts": {},
+  "devDependencies": {
+  }
+}

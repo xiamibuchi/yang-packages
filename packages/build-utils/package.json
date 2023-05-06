@@ -1,0 +1,11 @@
+{
+  "name": "@syseven/build-utils",
+  "private": true,
+  "license": "MIT",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {}
+}
