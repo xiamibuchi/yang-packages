@@ -24,6 +24,10 @@ module.exports = defineConfig({
     },
   },
   plugins: ['@typescript-eslint', 'prettier', 'unicorn'],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    sourceType: 'module',
+  },
   overrides: [
     {
       files: ['*.json', '*.json5', '*.jsonc'],

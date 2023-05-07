@@ -2,7 +2,9 @@
   "name": "@syseven/style",
   "description": "style",
   "style": "index.css",
-  "scripts": {},
+  "scripts": {
+    "build": "gulp --require @esbuild-kit/cjs-loader"
+  },
   "devDependencies": {
   }
 }
