@@ -7,10 +7,10 @@ import autoprefixer from 'gulp-autoprefixer';
 import cleanCSS from 'gulp-clean-css';
 import rename from 'gulp-rename';
 import consola from 'consola';
-import { epOutput } from '@syseven/build-utils';
+import { vueComponentsOutput } from '@syseven/build-utils';
 
 const distFolder = path.resolve(__dirname, 'dist');
-const distBundle = path.resolve(epOutput, 'style');
+const distBundle = path.resolve(vueComponentsOutput, 'style');
 
 /**
  * compile style scss & minify

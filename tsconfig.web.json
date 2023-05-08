@@ -4,7 +4,7 @@
     "composite": true,
     "jsx": "preserve",
     "lib": [
-      "ES2022",
+      "ES2018",
       "DOM",
       "DOM.Iterable"
     ],
@@ -14,7 +14,7 @@
     "skipLibCheck": true
   },
   "include": [
-    "packages",
+    "packages/**/*",
     "typings/components.d.ts",
     "typings/env.d.ts"
   ],

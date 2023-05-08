@@ -10,6 +10,5 @@
     "dev": "pnpm run stub",
     "stub": "unbuild --stub"
   },
-  "dependencies": {},
   "devDependencies": {}
 }

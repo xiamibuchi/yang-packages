@@ -5,7 +5,7 @@ const { defineConfig } = require('eslint-define-config');
 module.exports = defineConfig({
   env: {
     browser: true,
-    es2021: true,
+    es2018: true,
     node: true,
   },
   extends: [
@@ -190,7 +190,7 @@ module.exports = defineConfig({
             position: 'before',
           },
           {
-            pattern: '@element-plus/**',
+            pattern: '@syseven/**',
             group: 'internal',
           },
         ],

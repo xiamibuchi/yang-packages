@@ -1,0 +1,14 @@
+{
+  "name": "@syseven/vue-components",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.ts",
+  "module": "index.ts",
+  "unpkg": "index.js",
+  "jsdelivr": "index.js",
+  "peerDependencies": {
+    "vue": "^3.2.47"
+  },
+  "types": "index.d.ts",
+  "sideEffects": false
+}

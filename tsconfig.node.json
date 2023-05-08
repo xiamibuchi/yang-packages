@@ -12,7 +12,8 @@
   },
   "include": [
     "scripts/**/*",
-    "packages/build-utils/**/*",
+    "internal/**/*",
+    "internal/**/*.json",
   ],
   "exclude": [
     "**/__tests__/**",

@@ -1,0 +1,3 @@
+// GlobalComponents for Volar
+
+export {};
