@@ -3,6 +3,7 @@
   "description": "style",
   "style": "index.css",
   "scripts": {
+    "clean": "rimraf dist",
     "build": "gulp --require @esbuild-kit/cjs-loader"
   },
   "devDependencies": {
