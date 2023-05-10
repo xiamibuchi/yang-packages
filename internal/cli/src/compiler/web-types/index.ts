@@ -1,0 +1,55 @@
+import { join } from 'node:path';
+import * as glob from 'fast-glob';
+import { outputFileSync, readFileSync } from 'fs-extra';
+import {
+  LIB_DIR,
+  SRC_DIR,
+  getPackageJson,
+  getSyConfig,
+} from '../../common/constant.js';
+import { mdParser } from './parser.js';
+import { formatter } from './formatter.js';
+import { genWebTypes } from './web-types.js';
+import { normalizePath } from './utils.js';
+import type { Options, VueTag } from './type.js';
+
+async function readMarkdown(options: Options) {
+  const mds = await glob(normalizePath(`${options.path}/**/*.md`));
+  return mds
+    .filter((md) => options.test.test(md))
+    .map((path) => readFileSync(path, 'utf-8'));
+}
+
+export async function parseAndWrite(options: Options) {
+  if (!options.outputDir) {
+    throw new Error('outputDir can not be empty.');
+  }
+
+  const mds = await readMarkdown(options);
+  const vueTags: VueTag[] = [];
+
+  mds.forEach((md) => {
+    const parsedMd = mdParser(md);
+    formatter(vueTags, parsedMd, options.tagPrefix);
+  });
+
+  const webTypes = genWebTypes(vueTags, options);
+  outputFileSync(
+    join(options.outputDir, 'web-types.json'),
+    JSON.stringify(webTypes)
+  );
+}
+
+export function genWebStormTypes(tagPrefix?: string) {
+  const pkgJson = getPackageJson();
+  const syConfig = getSyConfig();
+
+  parseAndWrite({
+    name: syConfig.name,
+    path: SRC_DIR,
+    test: /README\.md/,
+    version: pkgJson.version,
+    outputDir: LIB_DIR,
+    tagPrefix,
+  });
+}
