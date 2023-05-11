@@ -40,6 +40,7 @@
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@syseven/build-utils": "workspace:*",
     "@syseven/components": "workspace:*",
+    "@syseven/constants": "workspace:*",
     "@syseven/eslint-config": "workspace:*",
     "@syseven/locale": "workspace:*",
     "@syseven/utils": "workspace:*",

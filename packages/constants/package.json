@@ -1,0 +1,6 @@
+{
+  "name": "@syseven/constants",
+  "private": true,
+  "license": "MIT",
+  "main": "index.ts"
+}
