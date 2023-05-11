@@ -8,6 +8,8 @@
   "scripts": {
     "prepare": "husky install",
     "preinstall": "node ./scripts/preinstall.js",
+    "postinstall": "pnpm stub",
+    "stub": "pnpm run -r --parallel stub",
     "clean": "pnpm run clean:dist && pnpm run -r --parallel clean",
     "clean:dist": "rimraf dist",
     "build": "pnpm run -C internal/build start",
