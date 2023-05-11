@@ -5,7 +5,7 @@ export const PACKAGE_ROOT = resolve(PROJECT_ROOT, 'packages');
 
 export const SRC_DIR_NAME = 'src';
 export const STYLE_DIR_NAME = 'style';
-export const VUE_COMPONENTS_NAME = 'vue-components';
+export const VUE_COMPONENTS_NAME = 'xiami';
 
 /** `/packages` */
 export const LOCALE_ROOT = resolve(PACKAGE_ROOT, 'locale');

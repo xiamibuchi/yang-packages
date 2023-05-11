@@ -4,8 +4,8 @@ export const projRoot = resolve(__dirname, '..', '..', '..');
 export const pkgRoot = resolve(projRoot, 'packages');
 
 export const styleName = 'style';
-export const vueComponentsName = 'vue-components';
-export const vueComponentsLocalName = 'vue-components-local';
+export const vueComponentsName = 'xiami';
+export const vueComponentsLocalName = 'xiami-local';
 export const vueComponentsCamelcaseName = 'VueComponents';
 export const vueComponentsCamelcaseLocalName = 'VueComponents';
 export const buildRoot = resolve(projRoot, 'internal', 'build');

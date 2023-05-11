@@ -8,7 +8,7 @@ import esbuild from 'rollup-plugin-esbuild';
 import glob from 'fast-glob';
 import { excludeFiles, pkgRoot, vueComponentsRoot } from '@syseven/build-utils';
 import { generateExternal, writeBundles } from '../utils';
-import { ElementPlusAlias } from '../plugins/vue-components-alias-plugin';
+import { XiamiAlias } from '../plugins/xiami-alias-plugin';
 import { buildConfigEntries, target } from '../build-info';
 
 import type { OutputOptions } from 'rollup';
@@ -24,7 +24,7 @@ export const buildModules = async () => {
   const bundle = await rollup({
     input,
     plugins: [
-      ElementPlusAlias(),
+      XiamiAlias(),
       VueMacros({
         setupComponent: false,
         setupSFC: false,

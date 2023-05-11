@@ -6,10 +6,8 @@
 
 <script lang="ts" setup>
 import { textProps } from './text';
-
 defineOptions({
-  name: 'ElText',
+  name: 'SyText',
 });
-
 defineProps(textProps);
 </script>

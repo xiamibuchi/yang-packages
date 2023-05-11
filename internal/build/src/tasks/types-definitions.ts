@@ -27,7 +27,6 @@ export const generateTypesDefinitions = async () => {
     emitDeclarationOnly: true,
     outDir,
     baseUrl: projRoot,
-    preserveSymlinks: true,
     skipLibCheck: true,
     noImplicitAny: false,
   };
@@ -91,7 +90,7 @@ async function addSourceFiles(project: Project) {
 
   const globSourceFile = '**/*.{js?(x),ts?(x),vue}';
   const filePaths = excludeFiles(
-    await glob([globSourceFile, '!vue-components/**/*'], {
+    await glob([globSourceFile, '!xiami/**/*'], {
       cwd: pkgRoot,
       absolute: true,
       onlyFiles: true,

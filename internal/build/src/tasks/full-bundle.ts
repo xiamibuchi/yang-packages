@@ -16,7 +16,7 @@ import {
   vueComponentsOutput,
   vueComponentsRoot,
 } from '@syseven/build-utils';
-import { ElementPlusAlias } from '../plugins/vue-components-alias-plugin';
+import { XiamiAlias } from '../plugins/xiami-alias-plugin';
 import {
   formatBundleFilename,
   generateExternal,
@@ -26,11 +26,11 @@ import {
 import { target } from '../build-info';
 import type { Plugin } from 'rollup';
 
-const banner = `/*! sy-vue-componets */\n`;
+const banner = `/*! sy-xiami */\n`;
 
 async function buildFullEntry(minify: boolean) {
   const plugins: Plugin[] = [
-    ElementPlusAlias(),
+    XiamiAlias(),
     VueMacros({
       setupComponent: false,
       setupSFC: false,

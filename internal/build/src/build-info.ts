@@ -12,12 +12,12 @@ export interface BuildInfo {
   output: {
     /** e.g: `es` */
     name: string;
-    /** e.g: `dist/vue-components/es` */
+    /** e.g: `dist/xiami/es` */
     path: string;
   };
 
   bundle: {
-    /** e.g: `vue-components/es` */
+    /** e.g: `xiami/es` */
     path: string;
   };
 }
