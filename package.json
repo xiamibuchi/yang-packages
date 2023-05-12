@@ -13,7 +13,7 @@
     "clean": "pnpm run clean:dist && pnpm run -r --parallel clean",
     "clean:dist": "rimraf dist",
     "build": "pnpm run -C internal/build start",
-    "test": "echo \"Error: no test specified\""
+    "test": "vitest"
   },
   "lint-staged": {
     "*.{ts,js,vue,tsx,jsx,md}": [
@@ -42,6 +42,7 @@
     "@syseven/components": "workspace:*",
     "@syseven/constants": "workspace:*",
     "@syseven/eslint-config": "workspace:*",
+    "@syseven/hooks": "workspace:*",
     "@syseven/locale": "workspace:*",
     "@syseven/utils": "workspace:*",
     "@types/fs-extra": "^11.0.1",
@@ -78,6 +79,7 @@
     "less": "^4.1.3",
     "lint-staged": "^13.2.2",
     "lodash-es": "^4.17.21",
+    "resize-observer-polyfill": "^1.5.1",
     "rimraf": "^5.0.0",
     "rollup": "^3.21.5",
     "rollup-plugin-esbuild": "^4.9.1",
@@ -94,6 +96,6 @@
     "vue-tsc": "^1.0.12"
   },
   "dependencies": {
-    "vue": "^3.2.47"
+    "vue": "^3.3.1"
   }
 }

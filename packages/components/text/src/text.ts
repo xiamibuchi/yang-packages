@@ -1,25 +1,7 @@
+import type { ExtractPropTypes } from 'vue';
+import type Text from './text.vue';
+
 export const textProps = {
-  /**
-   * @description text type
-   */
-  type: {
-    type: String,
-    values: ['primary', 'success', 'info', 'warning', 'danger', ''],
-    default: '',
-  },
-  /**
-   * @description text size
-   */
-  size: {
-    type: String,
-    default: '',
-  },
-  /**
-   * @description render ellipsis
-   */
-  truncated: {
-    type: Boolean,
-  },
   /**
    * @description custom element tag
    */
@@ -28,3 +10,6 @@ export const textProps = {
     default: 'span',
   },
 } as const;
+
+export type TextProps = ExtractPropTypes<typeof textProps>;
+export type TextInstance = InstanceType<typeof Text>;

@@ -19,26 +19,6 @@ describe('Text.vue', () => {
     expect(wrapper.text()).toEqual(AXIOM);
   });
 
-  test('type', () => {
-    const wrapper = mount(() => <Text type="success" />);
-    const vm = wrapper.vm;
-    expect(vm.$el.classList.contains('sy-text--success')).toEqual(true);
-  });
-
-  test('size', () => {
-    const wrapper = mount(() => <Text size="large" />);
-    const vm = wrapper.vm;
-    expect(vm.$el.className.includes('sy-text--large')).toEqual(true);
-    expect(vm.$el.className.includes('sy-text--default')).toEqual(false);
-    expect(vm.$el.className.includes('sy-text--small')).toEqual(false);
-  });
-
-  test('truncated', () => {
-    const wrapper = mount(() => <Text truncated />);
-    const vm = wrapper.vm;
-    expect(vm.$el.className.includes('is-truncated')).toEqual(true);
-  });
-
   test('tag', () => {
     const wrapper = mount(() => <Text tag="del" />);
     const vm = wrapper.vm;
