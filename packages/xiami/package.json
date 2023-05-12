@@ -2,13 +2,33 @@
   "name": "@syseven/xiami",
   "version": "0.0.1",
   "description": "",
-  "main": "index.ts",
-  "module": "index.ts",
-  "unpkg": "index.js",
-  "jsdelivr": "index.js",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "module": "es/index.mjs",
+  "types": "es/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./es/index.d.ts",
+      "import": "./es/index.mjs",
+      "require": "./lib/index.js"
+    },
+    "./es": "./es/index.mjs",
+    "./lib": "./lib/index.js",
+    "./es/*.mjs": "./es/*.mjs",
+    "./es/*": "./es/*.mjs",
+    "./lib/*.js": "./lib/*.js",
+    "./lib/*": "./lib/*.js",
+    "./*": "./*"
+  },
+  "style": "dist/index.css",
   "peerDependencies": {
     "vue": "^3.2.47"
   },
-  "types": "index.d.ts",
-  "sideEffects": false
+  "sideEffects": [
+    "dist/*",
+    "style/**/*.css",
+    "style/src/**/*.scss",
+    "es/components/*/style/*",
+    "lib/components/*/style/*"
+  ]
 }

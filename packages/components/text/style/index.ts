@@ -1,1 +1,2 @@
-import '@syseven/style/src/base.scss';
+import '@syseven/components/base/style';
+import '@syseven/style/src/text.scss';

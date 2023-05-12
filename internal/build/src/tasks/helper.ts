@@ -36,7 +36,7 @@ const reComponentName: ReComponentName = (title) => {
 };
 
 const reDocUrl: ReDocUrl = (fileName, header) => {
-  const docs = 'https://element-plus.org/en-US/component/';
+  const docs = '';
   const _header = header
     ? removeTag(header).replaceAll(/\s+/g, '-').toLowerCase()
     : '';
