@@ -1,0 +1,13 @@
+{
+  "name": "@syseven/docs",
+  "private": true,
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "dependencies": {
+    "@syseven/xiami": "workspace:*"
+  },
+  "devDependencies": {}
+}

@@ -15,6 +15,7 @@
   },
   "include": [
     "packages/**/*",
+    "apps/**/*",
     "typings/components.d.ts",
     "typings/env.d.ts"
   ],
