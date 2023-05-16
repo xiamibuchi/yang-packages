@@ -47,7 +47,8 @@ export async function getClipboardText() {
   let text = '';
   try {
     text = await navigator.clipboard.readText();
-  } catch {
+  } catch {}
+  if (!text) {
     text = document?.getSelection?.()?.toString() ?? '';
   }
   return text;
