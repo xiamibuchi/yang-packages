@@ -47,6 +47,9 @@ importers:
       '@syseven/locale':
         specifier: workspace:*
         version: link:packages/locale
+      '@syseven/style':
+        specifier: workspace:*
+        version: link:packages/style
       '@syseven/utils':
         specifier: workspace:*
         version: link:packages/utils
@@ -290,7 +293,7 @@ importers:
   packages/components:
     dependencies:
       vue:
-        specifier: ^3.2.0
+        specifier: ^3.2.47
         version: 3.2.47
 
   packages/constants: {}

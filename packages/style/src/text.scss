@@ -1,5 +1,11 @@
 @use 'sass:map';
 
-span {
+@use './defination/function.scss' as *;
+
+@include b(text) {
   display: inline;
+
+  @include m(ellipsis-1) {
+    position: fixed;
+  }
 }

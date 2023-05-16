@@ -2,6 +2,7 @@
 import Xiami from '@syseven/xiami'
 import Layout from './Layout.vue'
 import './style.css'
+import '@syseven/style/src/index.scss';
 
 export default {
   Layout,

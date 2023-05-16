@@ -45,6 +45,7 @@
     "@syseven/eslint-config": "workspace:*",
     "@syseven/hooks": "workspace:*",
     "@syseven/locale": "workspace:*",
+    "@syseven/style": "workspace:*",
     "@syseven/utils": "workspace:*",
     "@types/fs-extra": "^11.0.1",
     "@types/gulp": "^4.0.10",
