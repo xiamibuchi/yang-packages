@@ -1,0 +1,9 @@
+{
+  "name": "@syseven/icons-svg",
+  "private": true,
+  "license": "MIT",
+  "files": [
+    "svg"
+  ],
+  "scripts": {}
+}
