@@ -105,7 +105,6 @@ dist-ssr
 
 # IDE files
 .DS_Store
-.vscode
 .vscode/*
 !.vscode/extensions.json
 .idea
