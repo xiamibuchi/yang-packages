@@ -6,7 +6,8 @@
     "lib": [
       "ES2020",
       "DOM",
-      "DOM.Iterable"
+      "DOM.Iterable",
+      "WebWorker"
     ],
     "types": [
       "unplugin-vue-macros/macros-global"

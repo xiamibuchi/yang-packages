@@ -10,8 +10,5 @@
     "**/vite.config.*",
     "**/vitest.config.*",
     "**/vite.init.*"
-  ],
-  "exclude": [
-    "docs"
   ]
 }

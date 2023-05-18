@@ -1,0 +1,8 @@
+- [禅道-众言科技项目管理系统](https://zentao.wenjuan.com/) yang.shen/wenjuan123
+- [蓝湖](https://lanhuapp.com/web/#/item/project/board?pid=cc2db97c-d366-40e8-90cb-475176199115&teamId=fb984eb9-ccc9-469c-918a-c2a47a24b41b)
+- [Jumpserver](https://jumpserver.wenjuan.com)
+- [线索收集测试环境](http://beta-dmp.wenjuan.link/survey_manage)
+- [mt测试环境-创意](http://beta-admin.wenjuan.link:88/s?z=mt_admin&c=1&op=1)
+- [广告平台文档](https://note.youdao.com/ynoteshare1/index.html?id=926c9c9253d692e826e8dfaf10b5ce2b&type=note)
+- [CEM近期产品to do](https://shimo.im/sheet/fiQSlV56cmwVe60f/Ojw8c)
+- 

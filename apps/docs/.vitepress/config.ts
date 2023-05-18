@@ -5,6 +5,7 @@ import {
 import path from 'path';
 import VueMacros from 'unplugin-vue-macros/vite';
 import vueJsx from '@vitejs/plugin-vue-jsx';
+import sidebar from './sidebar';
 
 import type { Alias } from 'vite'
 
@@ -30,8 +31,21 @@ if (process.env.DOC_ENV !== 'production') {
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "xiami components doc",
-  description: "xiami components doc",
+  base: '/docs/',
+  title: "羊圈",
+  description: "神羊的羊圈",
+  cleanUrls: true,
+  themeConfig: {
+    nav: [
+      { text: "部署", link: "/code/deploy/github" },
+      {
+        text: "about me",
+        link: "/about_me",
+      },
+    ],
+    sidebar: sidebar,
+    returnToTopLabel: '返回顶部',
+  },
   vite: {
     resolve: {
       alias,
