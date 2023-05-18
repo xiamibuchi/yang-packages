@@ -104,8 +104,10 @@ dist-ssr
 .tern-port
 
 # IDE files
-.DS_Store
 .vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
 !.vscode/extensions.json
 .idea
 *.suo
@@ -117,3 +119,6 @@ dist-ssr
 # Cypress
 **/cypress/videos/
 **/cypress/screenshots/
+
+# OS
+.DS_Store
