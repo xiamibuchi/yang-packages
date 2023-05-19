@@ -1,6 +1,5 @@
 {
   "name": "@syseven/icons-vue",
-  "private": "true",
   "description": "Vue components of Icons collection.",
   "type": "module",
   "license": "MIT",
@@ -33,7 +32,6 @@
   },
   "sideEffects": false,
   "scripts": {
-    "clean": "rimraf dist",
     "build": "pnpm run build:generate && pnpm run build:build && pnpm run build:types",
     "build:generate": "tsx build/generate.ts",
     "build:build": "tsx build/build.ts",

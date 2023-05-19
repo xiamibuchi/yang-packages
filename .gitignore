@@ -122,3 +122,6 @@ dist-ssr
 
 # OS
 .DS_Store
+
+# turbo
+.turbo
