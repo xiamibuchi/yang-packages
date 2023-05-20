@@ -5,7 +5,13 @@
 @include b(text) {
   display: inline;
 
-  @include m(ellipsis-1) {
-    position: fixed;
+  @include m(ellipsis) {
+    display: block;
+    @include ellipsis-limit-line(1)
+  }
+
+  @include m(ellipsis-mutiple) {
+    display: block;
+    @include ellipsis-limit-line(2)
   }
 }

@@ -107,3 +107,29 @@
   // @debug $name;
   @return $name;
 }
+
+// dark
+@mixin dark($block) {
+  html.dark {
+    @include b($block) {
+      @content;
+    }
+  }
+}
+
+// ellipsis
+@mixin ellipsis-limit-line($line: 1) {
+  @if $line == 1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  } @else {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+}

@@ -12,7 +12,7 @@ export const textProps = buildProps({
     default: '',
   },
   rows: {
-    type: [Number, String],
+    type: Number,
     default: 0,
   },
   /**
