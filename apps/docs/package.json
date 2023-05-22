@@ -9,9 +9,13 @@
   "dependencies": {
     "@syseven/xiami": "workspace:*",
     "element-plus": "^2.3.4",
-    "highlight.js": "^11.8.0"
+    "highlight.js": "^11.8.0",
+    "vue": "^3.2.47"
   },
   "volta": {
     "extends": "../../package.json"
+  },
+  "devDependencies": {
+    "vitepress": "1.0.0-beta.1"
   }
 }

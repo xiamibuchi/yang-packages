@@ -59,8 +59,6 @@ d.txt | 2 +-
 
 ## .gitignore
 
-> 在仓库中，有些文件是不想被 git 管理的，比如数据的配置密码、写代码的一些思路等、ide 配置文件。git 可以通过配置从而达到忽视掉一些文件，这样这些文件就可以不用提交了。
-
 - 在仓库的根目录创建一个`.gitignore`的文件，文件名是固定的。
 - 将不需要被 git 管理的文件路径添加到`.gitignore`中
 
@@ -104,30 +102,47 @@ git commit -m 'commit message'
 
 # 日志
 git log
-# 工作区状态
-git status
+# 显示最近的两个提交记录
+git log --pretty=oneline --max-count=2
+
+git log --pretty=oneline --since='5 minutes ago'
+
+git log --pretty=oneline --until='5 minutes ago'
+# 显示当前分支上所有的提交历史
+git log --pretty=oneline --all
+
+git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+# --pretty="..."  定义输出的格式。
+# %h :提交哈希值的缩写
+# %d :提交所在的分支或标签等引用的名称
+# %ad :提交的作者修订日期
+# %s :提交的说明
+# %an:作者姓名
+# --graph:通知 git 以 ASCII 图形布局显示提交树（前面的 *）
+# --date=short:设置为短日期格式（YYYY-MM-DD）
 
 # 回退
 git reset --hard 版本号
 git reset --hard head~1 # 回退到上一次提交
+git checkout xxx.txt # 恢复未暂存的文件
 
 # branch 分支实质上仅仅是一个指针，每次代码提交后，这个分支指针就会向后移动，保证一直指向最后一次提交的的版本
 # 创建分支
-git branch [分支名]
+git branch [branch]
 # 查看分支
 git branch
 # 切换分支
-git checkout [分支名]
+git checkout [branch|commit]
 # 创建并切换分支
-git checkout -b [分支名]
+git checkout -b [branch]
 # 创建并切换分支，分支已存在会直接切换
-git checkout -b [分支名]
+git checkout -b [branch]
 # 删除分支
-git branch -d [分支名]
+git branch -d [branch]
 # 强制删除分支
-git branch -D [分支名]
+git branch -D [branch]
 # 合并分支
-git merge [分支名]
+git merge [branch]
 # 删除指定分支
 git branch | grep ‘dev*’ | xargs git branch -d
 
@@ -141,7 +156,31 @@ git stash pop
 
 # tag
 git tag <tagname>
-git tag -d <tagname
+git tag -d <tagname>
+git tag -a <tagname> -m "message"
+```
+
+```bash
+git commit --amend                       对最新的一条commit进行修正
+git reset --hard HEAD^                   丢弃最新提交（未提交的内容会被擦掉）
+git reset --soft HEAD^                   丢弃最新提交（未提交的内容不会被擦掉）
+git revert HEAD^                         回到某个commit
+git revert <commit>
+git rebase 目标基础点                      重新设置基础点
+```
+
+### 配置别名
+
+对常用的一些命令进行别名配置，提升自己的工作效率
+
+```bash
+git config --global alias.hist "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
+git config --global alias.st status                 git status ==> git st
+git config --global alias.ci commit                 git commit ==> git ci
+git config --global alias.co checkout               git checkout ==> git co
+git config --global alias.br branch                 git barnch ==> git br
+git config --global alias.sh stash                  git stash ==> git sh
+git config --global alias.pop "stash pop"           git stash pop ==> git pop
 ```
 
 ### 远程仓库
@@ -253,29 +292,6 @@ npm install husky --save-dev
 npx husky install
 # Add git hook
 npx husky add .husky/commit-msg  'npx --no -- commitlint --edit ${1}'
-```
-
-## 其余常用命令
-
-```bash
-git commit --amend                       对最新的一条commit进行修正
-git reset --hard HEAD^                   丢弃最新提交（未提交的内容会被擦掉）
-git reset --soft HEAD^                   丢弃最新提交（未提交的内容不会被擦掉）
-git revert HEAD^                         回到某个commit
-git rebase 目标基础点                     重新设置基础点
-```
-
-## 配置别名
-
-对常用的一些命令进行别名配置，提升自己的工作效率
-
-```bash
-git config --global alias.st status                 git status ==> git st
-git config --global alias.ci commit                 git commit ==> git ci
-git config --global alias.co checkout               git checkout ==> git co
-git config --global alias.br branch                 git barnch ==> git br
-git config --global alias.sh stash                  git stash ==> git sh
-git config --global alias.pop "stash pop"           git stash pop ==> git pop
 ```
 
 ## git autocomplete commands
