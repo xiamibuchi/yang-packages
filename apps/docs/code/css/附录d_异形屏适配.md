@@ -11,6 +11,7 @@ iOS11 新增特性，苹果公司为了适配 iPhoneX 对现有 viewport meta �
 - auto：默认值，跟 contain 表现一致
 
 env() 和 constant()
+
 iOS11 新增特性，Webkit 的一个 CSS 函数，用于设定安全区域与边界的距离，有四个预定义的变量：
 
 safe-area-inset-left：安全区域距离左边边界距离
@@ -26,7 +27,14 @@ safe-area-inset-bottom：安全区域距离底部边界距离
 
 这就意味着，之前使用的 constant() 在 iOS11.2 之后就不能使用的，但我们还是需要做向后兼容，像这样：
 
-``padding-bottom: constant( safe-area-inset-bottom); /_ 兼容 iOS < 11.2 _/padding-bottom: env( safe-area-inset-bottom); /_ 兼容 iOS >= 11.2 _/
+```css
+div {
+  /* iOS < 11.2 */
+  margin-bottom: constant(safe-area-inset-bottom);
+  /* iOS >= 11.2 */
+  margin-bottom: env(safe-area-inset-bottom);
+}
+```
 
 ## @supports 隔离兼容样式
 

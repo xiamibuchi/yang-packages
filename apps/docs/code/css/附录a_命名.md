@@ -17,15 +17,13 @@ BEM 由块（block）、元素（element）、修饰符（modifier）组成
 
 ### 命名约定
 
-.block-name\_\_element--modifier
+`.block-name__element--modifier`
 
 1. 名称以小写字母书写
-2. 名称中的单词用连字符（-）分隔
-3. 元素由双下划线（\_\_）分隔
-4. 修饰符由双连字符（--）分隔
-5. 不嵌套 CSS，使用 .btn**price 而不是 .btn .btn**price 。
-
-即使是在 Sass 或 Less 也不该使用层级嵌套，但是可以使用 .btn**text 然后用 .btn--orange .btn**text 来覆盖应用了修饰符按钮的文本颜色
+2. 名称中的单词用连字符`-`分隔
+3. 元素由双下划线`__`分隔
+4. 修饰符由双连字符`--`分隔
+5. 不嵌套 CSS，使用`.btn__price`而不是`.btn .btn__price`
 
 ### SMACSS
 

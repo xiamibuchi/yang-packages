@@ -4,8 +4,8 @@
 
 元素的内在盒子是由 margin box、border box、padding box、content box 组成的，这四个盒子由外到内构成了盒模型。
 
-- IE 模型： box-sizing: border-box 此模式下，元素的宽度计算为 border+padding+content 的宽度总和。
-- w3c 标准模型）： box-sizing: content-box 此模式下，元素的宽度计算为 content 的宽度。
+- IE 模型：`box-sizing: border-box`。此模式下，元素的宽度计算为 `border` + `padding` + `content`
+- w3c 标准模型：`box-sizing: content-box`。此模式下，元素的宽度计算为 content 的宽度
 
 ## 媒体查询
 
@@ -27,27 +27,27 @@
 ### 优先级
 
 - !important
-- 内联样式 style=""
-- ID 选择器#id
-- 类选择器/属性选择器/伪类选择器.class.active[href=""]
-- 元素选择器/关系选择器/伪元素选择器 html+div>span::after
-- 通配符选择器\*
+- 内联样式：style=""
+- ID 选择器：#id
+- 类选择器/属性选择器/伪类选择器：.class.active[href=""]
+- 元素选择器/关系选择器/伪元素选择器： html+div>span::after
+- 通配符选择器：`\*`
 
 ### 兄弟选择器
 
-- > ：选择容器下的直接子代
-- +：选择紧临的下一个兄弟元素
-- ~：选择随后的所有兄弟元素
+- `>`：选择容器下的直接子代
+- `+`：选择紧临的下一个兄弟元素
+- `~`：选择随后的所有兄弟元素
 
 ### 属性选择器
 
-- [attr]：选择包含 attr 属性的所有元素，不论 attr 的值为何。
-- [attr=val]：仅 attr 属性被赋值为 val 的所有元素。
-- [attr^=val]：选择 attr 属性值为 val 开头的元素
-- [attr*=val]：选择 attr 属性值包含 val 的元素
-- [attr$=val]：选择 attr 属性值为 val 结尾的元素
-- [attr~=val]：选择 attr 以空格分割的属性值中包含 val 的元素
-- [attr|=val] : 选择 attr 属性的值是 `val` 或值以 `val-` 开头的元素（注意，这里的 “-” 不是一个错误，这是用来处理语言编码的）
+- [attr]：包含 attr 属性的所有元素
+- [attr=val]：仅 attr 属性被赋值为 val 的所有元素
+- [attr^=val]：attr 属性值为 val 开头的元素
+- [attr*=val]：attr 属性值包含 val 的元素
+- [attr$=val]：attr 属性值为 val 结尾的元素
+- [attr~=val]：attr 以空格分割的属性值中包含 val 的元素
+- [attr|=val]：attr 属性的值是 `val` 或值以 `val-` 开头的元素（注意，这里的 “-” 不是一个错误，这是用来处理语言编码的）
 
 ```css
 /* 伪正则写法 */
@@ -154,7 +154,7 @@ p {
   background-color: hsla(120, 100%, 75%, 0.3);
 }
 
-/* RGB */
+/* rgb/rgba */
 
 p {
   /* green */
@@ -162,7 +162,7 @@ p {
 }
 p {
   /* light green with opacity */
-  background-color: rgb(0, 250, 0, 0.3);
+  background-color: rgba(0, 250, 0, 0.3);
 }
 
 /* hexadecimal colror */
@@ -174,12 +174,6 @@ p {
   background-color: #0000ff80;
 } /* 带透明度的蓝色 */
 ```
-
-- rgb 和 rgba
-
-详细可以查看 [./color]
-
-### color
 
 ### filter
 
@@ -215,11 +209,11 @@ BFC（Block Formatting Context）格式化上下文，是 Web 页面中盒模型
 
 #### 特性
 
-- 内部的 Box 会在垂直方向上一个接一个的放置。
+- 内部的 Box 会在垂直方向上一个接一个的放置
 - 垂直方向上的距离由 margin 决定
-- bfc 的区域不会与 float 的元素区域重叠。
+- bfc 的区域不会与 float 的元素区域重叠
 - 计算 bfc 的高度时，浮动元素也参与计算
-- bfc 就是页面上的一个独立容器，容器里面的子元素不会影响外面元素。
+- bfc 就是页面上的一个独立容器，容器里面的子元素不会影响外面元素
 
 ### flex 布局
 
