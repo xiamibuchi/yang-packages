@@ -1,7 +1,15 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
+    "dev": {
+      "cache": false
+    },
     "stub": {
+      "dependsOn": ["^stub"],
+      "outputs": ["dist"]
+    },
+    "@syseven/icons-vue#build": {
+      "dependsOn": [],
       "outputs": ["dist"]
     }
   }
