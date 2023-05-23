@@ -29,7 +29,7 @@ brew install --cask temurin17
 
 ### linux
 
-```bash
+```shell
 sudo yum install java-17-openjdk
 java -version
 ```

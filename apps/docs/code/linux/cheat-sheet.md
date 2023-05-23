@@ -2,7 +2,7 @@
 
 ## working with commands
 
-```bash
+```shell
 # *********************************************************************************
 # There are four type commands:
 #   1. Executable program: like all those files in /usr/bin. Programs can be compiled binaries such as programs written in C and C++.
@@ -31,7 +31,7 @@ $ unalias <alias>
 
 ## navigation
 
-```bash
+```shell
 # print working directory
 $ pwd
 # jump to /usr/bin
@@ -48,7 +48,7 @@ $ cd ~<user_name>
 
 ## Looking Around
 
-```bash
+```shell
 # list contents of working directory
 $ ls
 # list contents of /bin directory
@@ -65,7 +65,7 @@ $ file <name_of_file>
 
 ## Manipulating Files
 
-```bash
+```shell
 # copy file1 to file2
 $ cp <file1> <file2>
 # copy multiple files to a different directory
@@ -98,7 +98,7 @@ $ cat <file...>
 
 ## redirection
 
-```bash
+```shell
 # More information with redirection: https://www.pengfeixc.com/blogs/developer-handbook/pipelines-in-shell
 # redirect standard output to test.txt
 $ echo Hello World > test.txt
@@ -118,7 +118,7 @@ $ command1 | command2
 
 ## filters
 
-```bash
+```shell
 # sort: sort lines
 $ ls /bin /usr/bin | sort
 # uniq: report or omit repeated lines
@@ -142,7 +142,7 @@ $ ls /usr/bin | tee ls.txt | grep zip
 
 ## expansion
 
-```bash
+```shell
 # the * character means match any characters in a filename
 $ echo *
 $ echo D*
@@ -173,7 +173,7 @@ $ ls -l $(which cp)
 
 ## quotes
 
-```bash
+```shell
 # double quotes: all the special characters used by the shell lose their special meaning and are treated as ordinary characters. The exceptions are $, \ (backslash), and ` (back-quote).
 $ ls -l two words.txt
 ls: cannot access two: No such file or directory
@@ -197,7 +197,7 @@ $ echo "The balance for user $USER is: \$5.00"
 
 ## tricks
 
-```bash
+```shell
 # *********************************************************************************
 # cursor movement:
 #   'Ctrl-a' Move cursor to the beginning of the line.
@@ -228,7 +228,7 @@ $ history
 
 ## permissions
 
-```bash
+```shell
 # *********************************************************************************
 # id – Display user identity
 # chmod – Change a file's mode
@@ -243,7 +243,7 @@ $ history
 
 ## processes
 
-```bash
+```shell
 # *********************************************************************************
 # job control reference: https://www.pengfeixc.com/blogs/developer-handbook/shell-job-control
 # ps – Report a snapshot of current processes
@@ -259,7 +259,7 @@ $ history
 
 ## search files
 
-```bash
+```shell
 # The locate program performs a rapid database search of pathnames
 $ locate <filename>
 # Update the database for `locate` command.Normally system will auto run updatedb once a day

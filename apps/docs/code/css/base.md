@@ -179,6 +179,21 @@ p {
 
 增加滤镜，可用于实现网页置灰等操作
 
+```css
+img {
+  filter: grayscale(1); /* 灰度 */
+  filter: blur(4px); /* 模糊 */
+  filter: opacity(20%); /* 透明度 */
+  filter: brightness(200%); /* 亮度 */
+  filter: drop-shadow(8px 8px 10px blue); /* 阴影 */
+  filter: contrast(200%); /* 对比度 */
+  filter: hue-rotate(90deg); /* 色相旋转 */
+  filter: invert(100%); /* 反转 */
+  filter: saturate(800%); /* 饱和度 */
+  filter: contrast(200%) brightness(150%); /* 多个滤镜空格分隔 */
+}
+```
+
 ## 布局
 
 ### static

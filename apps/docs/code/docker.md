@@ -8,7 +8,7 @@ Docker 项目的目标是实现轻量级的操作系统虚拟化解决方案。 
 
 ## 安装
 
-```bash
+```shell
 # zsh
 brew install podman && echo 'alias docker=podman' >> ~/.zshrc && source ~/.zshrc
 # bash
@@ -48,7 +48,7 @@ Docker 中的镜像是分层的，可复用的，而非简单的一堆文件迭�
 
 容器的存在离不开镜像的支持，他是镜像运行时的一个载体（类似于实例和类的关系）。依托 Docker 的虚拟化技术，给容器创建了独立的端口、进程、文件等“空间”，Container 就是一个与宿机隔离 “容器”。容器可宿主机之间可以进行 port、volumes、network 等的通信。
 
-```bash
+```shell
 # 启动 docker 服务
 service docker start
 

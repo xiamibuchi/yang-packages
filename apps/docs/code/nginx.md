@@ -12,7 +12,7 @@ NGINX[engine x] 是一个 HTTP 和 反向代理服务，同时也是一个通用
 
 ## command
 
-```bash
+```shell
 nginx -t # 校验配置。会返回配置路径，也可用来查看 config 地址
 ```
 

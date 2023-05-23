@@ -14,7 +14,7 @@ Redis 不使用表，他的数据库不会预定义或者强制去要求用户�
 
 [installation](https://redis.io/docs/getting-started/installation/)
 
-```bash
+```shell
 brew install redis
 
 # run

@@ -65,7 +65,7 @@ d.txt | 2 +-
 > 某些文件加入忽略规则但未生效，原因`.gitignore` 只能忽略没有被追踪的文件，如果某些文件已经被纳入了版本管理中，则修改 `.gitignore` 是无效的。
 > 解决方法：就是先把本地缓存删除（改变成未被追踪状态），再提交
 
-```bash
+```shell
 git rm -r --cached .
 git add .
 git commit -m 'update .gitignore'
@@ -73,7 +73,7 @@ git commit -m 'update .gitignore'
 
 ## 常用命令
 
-```bash
+```shell
 git config user.name [username]
 git config user.email [email]
 
@@ -160,7 +160,7 @@ git tag -d <tagname>
 git tag -a <tagname> -m "message"
 ```
 
-```bash
+```shell
 git commit --amend                       对最新的一条commit进行修正
 git reset --hard HEAD^                   丢弃最新提交（未提交的内容会被擦掉）
 git reset --soft HEAD^                   丢弃最新提交（未提交的内容不会被擦掉）
@@ -173,7 +173,7 @@ git rebase 目标基础点                      重新设置基础点
 
 对常用的一些命令进行别名配置，提升自己的工作效率
 
-```bash
+```shell
 git config --global alias.hist "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 git config --global alias.st status                 git status ==> git st
 git config --global alias.ci commit                 git commit ==> git ci
@@ -185,7 +185,7 @@ git config --global alias.pop "stash pop"           git stash pop ==> git pop
 
 ### 远程仓库
 
-```bash
+```shell
 git clone [远程仓库地址]
 git clone [远程仓库地址] [本地项目名]
 git clone http://userName:password@远程仓库地址
@@ -280,7 +280,7 @@ commit 影响的范围, 比如: route, component, utils, build...
 
 用于规范 commit message
 
-```bash
+```shell
 # install
 npm install --save-dev @commitlint/config-conventional @commitlint/cli
 # Configure commitlint to use conventional config
@@ -311,7 +311,7 @@ Download the necessary script to your Mac by using the following curl command:
 
 Add the following line to the ~/.bash_profile file:
 
-```bash
+```shell
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi

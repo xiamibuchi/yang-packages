@@ -153,6 +153,7 @@ export default class AutoplayStrategy {
   raw-controls
   controls
   x-webkit-airplay
+  playsinline
   webkit-playsinline
   x5-playsinline
   x5-video-player-type="h5-page"

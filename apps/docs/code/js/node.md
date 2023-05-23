@@ -10,7 +10,7 @@
 
 [volta](https://volta.sh/)
 
-```bash
+```shell
 curl https://get.volta.sh | bash
 # install Node
 volta install node
@@ -40,6 +40,18 @@ chromedriver_cdnurl=https://npmmirror.com/mirrors/chromedriver
 puppeteer_download_host=https://npmmirror.com/mirrors
 ```
 
+## corepack
+
+用于切换 package managers
+
+```shell
+corepack enable
+
+corepack prepare pnpm@7.30.1 --activate
+```
+
+> 如果使用 nvm 或 volta 安装的 node 可能无 corepack 命令，可以用 `npm install -g corepack`
+
 ## 加密
 
 - 数学上的加密： https://nodejs.org/api/crypto.html
@@ -50,7 +62,7 @@ puppeteer_download_host=https://npmmirror.com/mirrors
 
 ### npm
 
-```bash
+```shell
 # why package installed
 npm why [package_name]
 ```
@@ -133,7 +145,7 @@ module.exports = {
 };
 ```
 
-```bash
+```shell
 # Start applications in development env
 pm2 start ecosystem.config.js
 # Start applications in production env
@@ -158,7 +170,7 @@ pm2 delete ecosystem.config.js
 2. 没有找到的话再从全局里查找是否有安装对应的模块
 3. 全局也没有就会自动下载对应的模块，用完即删
 
-```bash
+```shell
 # 调用项目内部安装的模块
 npx vitepress
 
@@ -224,7 +236,7 @@ If you are on Ubuntu, you can install with:
   - which chromium
 - Skip future Chromium installs
 
-```bash
+```shell
 # ~/.zshrc
 export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 export PUPPETEER_EXECUTABLE_PATH=`which chromium`

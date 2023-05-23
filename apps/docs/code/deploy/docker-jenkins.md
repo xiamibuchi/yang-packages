@@ -44,7 +44,7 @@ EXPOSE 80
 
 完成了 Dockerfile，要根据 Dockerfile 生成镜像。
 
-```bash
+```shell
 # 生成镜像
 docker build -t $DOCKER_IMAGE_NAME .
 # 根据镜像生成容器在后台运行
@@ -78,7 +78,7 @@ Jenkins 是一款以插件化的方式实现 CI/CD 的软件。
 
 安装 jenkins 依赖 jdk，所以安装流程如下：
 
-```bash
+```shell
 sudo apt update
 # 安装 jdk
 sudo apt install default-jdk
@@ -100,7 +100,7 @@ jenkins 默认端口为 8080，访问 IP:8080 按提示操作即可。
 
 新建 jenkins 任务，在“构建部分”添加“执行 shell”，填入需要执行的脚本即可。
 
-```bash
+```shell
 # 如果没有项目则重新拉取
 if [ ! -d "./$PROJ_DIR" ]; then
   git clone https://github.com/xiamibuchi/blog.git $PROJ_DIR
