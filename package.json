@@ -104,6 +104,7 @@
     "vue-tsc": "^1.0.12"
   },
   "dependencies": {
+    "@changesets/cli": "^2.26.1",
     "vue": "^3.2.47"
   }
 }

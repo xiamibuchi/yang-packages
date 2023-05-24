@@ -103,24 +103,33 @@ dist-ssr
 # TernJS port file
 .tern-port
 
-# IDE files
+# IntelliJ IDEA project files; if you want to commit IntelliJ settings, this recipe may be helpful:
+# https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+.idea/
+*.iml
+
+# VSCode project files
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-.idea
+
+# IDE files
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
 
+# Heft temporary files
+.heft
+
 # Cypress
 **/cypress/videos/
 **/cypress/screenshots/
 
-# OS
+# OS X temporary files
 .DS_Store
 
 # turbo
