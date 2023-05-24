@@ -4,4 +4,12 @@ const txt = 'Hello World';
 
 <template>
   <div>{{ txt }}</div>
+  <img class="demo-svg" src="@/demo.svg" alt="" />
 </template>
+
+<style lang="scss">
+.demo-svg {
+  width: 50px;
+  height: 50px;
+}
+</style>
