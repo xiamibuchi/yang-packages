@@ -1,0 +1,5 @@
+{
+  "root": true,
+  "extends": "../../tsconfig.web.json",
+  "include": ["global.d.ts", "src/**/*"],
+}
