@@ -2,6 +2,8 @@ import { fileURLToPath } from 'node:url';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { VueLoaderPlugin } from 'vue-loader';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import webpack from 'webpack';
 
 import {
   ASSETS_FILE_NAME,
@@ -9,8 +11,10 @@ import {
   SRC_DIR,
   SVG_ICON_DIR,
 } from './config.mjs';
+const { DefinePlugin, ProvidePlugin } = webpack;
 const __filename = fileURLToPath(import.meta.url);
 const isProduction = process.env.NODE_ENV == 'production';
+const isAnalyze = process.argv.includes('--analyze');
 
 const stylesHandler = (options) => {
   const styleLoaders = [
@@ -55,8 +59,18 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html',
+      title: 'webpack5-demo',
     }),
     new VueLoaderPlugin(),
+    new DefinePlugin({
+      __VUE_PROD_DEVTOOLS__: false,
+      __VUE_OPTIONS_API__: false,
+    }),
+    // https://webpack.js.org/plugins/provide-plugin/
+    new ProvidePlugin({
+      // _: 'lodash',
+      // $: 'jquery',
+    }),
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],
@@ -181,14 +195,22 @@ const config = {
     alias: {
       '@': SRC_DIR,
     },
-    extensions: ['.tsx', '.ts', '.jsx', '.js', '.vue', '.json', '...'],
+    extensions: ['.tsx', '.ts'],
   },
 };
 
 export default () => {
   if (isProduction) {
     config.mode = 'production';
-    config.plugins.push(new MiniCssExtractPlugin());
+    config.plugins.push(
+      // https://github.com/webpack-contrib/mini-css-extract-plugin
+      new MiniCssExtractPlugin({
+        filename: 'assets/[name].[contenthash:8].css',
+      })
+    );
+    if (isAnalyze) {
+      config.plugins.push(new BundleAnalyzerPlugin());
+    }
     config.output = {
       path: OUTPUT_DIR,
       clean: true,
@@ -196,6 +218,30 @@ export default () => {
       chunkFilename: 'assets/[name].[contenthash:8].chunk.js',
     };
     config.devtool = 'source-map';
+    config.optimization = {
+      minimize: true,
+      moduleIds: 'deterministic',
+      runtimeChunk: 'single',
+      splitChunks: {
+        chunks: 'all',
+        minSize: 20000,
+        cacheGroups: {
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            priority: -10,
+            chunks: 'initial',
+            reuseExistingChunk: true,
+            name: 'vendors',
+          },
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true,
+            name: 'common',
+          },
+        },
+      },
+    };
   } else {
     config.mode = 'development';
     config.devServer = {
@@ -213,6 +259,10 @@ export default () => {
       },
     };
     config.devtool = 'inline-source-map';
+    config.optimization = {
+      usedExports: true,
+      runtimeChunk: 'single',
+    };
   }
   return config;
 };
