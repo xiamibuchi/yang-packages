@@ -5,12 +5,15 @@ import { version } from './version';
 import type { App, Plugin } from 'vue';
 import type { ConfigProviderContext } from '@syseven/components/config-provider';
 
+type CustomApp = App & { [INSTALLED_KEY]?: boolean };
+
+/**
+ * @param Components
+ */
 export const makeInstaller = (components: Plugin[] = []) => {
-  const install = (app: App, options?: ConfigProviderContext) => {
-    // @ts-ignore
+  const install = (app: CustomApp, options?: ConfigProviderContext) => {
     if (app[INSTALLED_KEY]) return;
 
-    // @ts-ignore
     app[INSTALLED_KEY] = true;
     components.forEach((c) => app.use(c));
 
