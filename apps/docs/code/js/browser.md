@@ -993,3 +993,9 @@ observer.disconnect();
 ### IntersectionObserver
 
 提供了一种异步观察目标元素与其祖先元素或顶级文档视窗(viewport)交叉状态的方法。祖先元素与视窗(viewport)被称为根(root)。
+
+### Web Components
+
+#### Shadow DOM
+
+是游离在 DOM 树之外的节点树，如 video

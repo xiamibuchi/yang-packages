@@ -106,7 +106,7 @@ exports.start = start;
 
 ### pm2
 
-PM2 是 node 进程管理工具，可以利用它来简化很多 node 应用管理的繁琐任务，如性能监控、自动重启、负载均衡等
+PM2 是 node 进程管理工具，可以利用它来简化很多 node 应用管理的繁琐任务，如性能监控、自动重启、负载均衡、日志管理等
 
 - 启用一个应用：`pm2 start app.js`
 - 查看应用详情：`pm2 show app_name|app_id`
