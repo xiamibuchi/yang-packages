@@ -504,6 +504,8 @@ window.addEventListener('beforeunload', (e) => {
 
 Global 对象。表示一个包含 DOM 文档的窗口，其 document 属性指向窗口中载入的 DOM 文档。使用 document.defaultView 属性可以获取指定文档所在窗口。
 
+如果希望代码能兼容 node 和 browser，可使用 globalThis
+
 ```js
 document.defaultView === window; // true
 ```
@@ -518,6 +520,15 @@ document.defaultView === window; // true
 
 - window.onload()
 - window.open(URL, name, specs, replace)
+
+### iframe
+
+防止网页被 iframe 内嵌
+
+- `window.self !== window.top`：当顶层窗口不是自己，则被嵌入 iframe
+- X-Frame-Options header
+
+iframe 的[postMessage](./http#postMessage)
 
 ### 原生方法被覆盖
 
