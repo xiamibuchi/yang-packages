@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { copyText, getClipboardText } from '../..';
+import { copyText, getClipboardText } from '../../src';
 import { clipboard } from '../../__mock__';
 
 describe('dom clipboard', () => {

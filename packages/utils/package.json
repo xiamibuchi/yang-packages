@@ -2,8 +2,17 @@
   "name": "@syseven/utils",
   "private": true,
   "license": "MIT",
-  "main": "index.ts",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "pnpm run depcruise",
+    "depcruise": "depcruise src --config .dependency-cruiser.js"
+  },
   "peerDependencies": {
+    "@vue/shared": "^3.2.47",
+    "lodash-es": "^4.17.21",
     "vue": "^3.2.47"
+  },
+  "devDependencies": {
+    "dependency-cruiser": "^13.0.2"
   }
 }
