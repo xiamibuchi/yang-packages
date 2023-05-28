@@ -58,7 +58,6 @@
     "@types/lodash-es": "^4.17.7",
     "@types/node": "^20.1.0",
     "@types/prettier": "^2.7.2",
-    "@types/sass": "^1.45.0",
     "@vitejs/plugin-vue": "^4.2.1",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
     "@vitest/coverage-c8": "^0.31.1",

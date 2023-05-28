@@ -284,3 +284,8 @@ getComputedStyle(element).getPropertyValue('--my-var');
 // 在行内样式中设置变量
 element.style.setProperty('--my-var', jsVar + 4);
 ```
+
+## 伪类
+
+- `focus`
+- `:focus-within`：子元素 focus 也触发
