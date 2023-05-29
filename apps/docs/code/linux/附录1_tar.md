@@ -1,4 +1,4 @@
-tar
+# tar
 
 -c: 建立压缩档案
 -x：解压
@@ -85,3 +85,12 @@ unzip file.zip //解压 zip
 8、\*.rar 用 unrar e 解压
 
 9、\*.zip 用 unzip 解压
+
+```shell
+# 压缩
+tar -jcv -f filename.tar.bz2 要被处理的文件或目录名称
+# 查询
+tar -jtv -f filename.tar.bz2
+# 解压
+tar -jxv -f filename.tar.bz2 -C 欲解压缩的目录
+```
