@@ -100,8 +100,14 @@ content 的参数有 all,none,index,noindex,follow,nofollow。默认是 all。
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!-- 禁止用户缩放页面，调整窗口至设备宽度 -->
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"
+    />
     <!-- iOS -->
     <meta name="apple-mobile-web-app-title" content="标题" />
+    <!-- 网站添加到主屏幕快速启动方式，可隐藏地址栏 -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <!-- 工具栏颜色 -->
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />

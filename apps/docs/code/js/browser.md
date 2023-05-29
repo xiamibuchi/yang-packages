@@ -1040,3 +1040,13 @@ function notifyMe() {
   // want to be respectful there is no need to bother them anymore.
 }
 ```
+
+### [devicemotion](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicemotion_event)
+
+设备运动传感器数据
+
+```js
+addEventListener("devicemotion", (event) => {});
+
+ondevicemotion = (event) => {};
+```
