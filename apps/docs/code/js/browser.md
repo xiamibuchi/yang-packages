@@ -75,6 +75,8 @@ http://dev-test.nemikor.com/web-storage/support-test/
 
 IndexedDb 提供了一个结构化的、事务型的、高性能的 NoSQL 类型的数据库，包含了一组同步/异步 API
 
+[详情](./indexed-db)
+
 #### PWA(Service Worker)
 
 作为一个独立的线程，是一段在后台运行的脚本，可使 web app 也具有类似原生 App 的离线使用、消息推送、后台自动更新等能力
@@ -1010,3 +1012,41 @@ observer.disconnect();
 #### Shadow DOM
 
 是游离在 DOM 树之外的节点树，如 video
+
+### [Notification](https://developer.mozilla.org/en-US/docs/Web/API/notification)
+
+```js
+function notifyMe() {
+  if (!('Notification' in window)) {
+    // Check if the browser supports notifications
+    alert('This browser does not support desktop notification');
+  } else if (Notification.permission === 'granted') {
+    // Check whether notification permissions have already been granted;
+    // if so, create a notification
+    const notification = new Notification('Hi there!');
+    // …
+  } else if (Notification.permission !== 'denied') {
+    // We need to ask the user for permission
+    Notification.requestPermission().then((permission) => {
+      // If the user accepts, let's create a notification
+      if (permission === 'granted') {
+        const notification = new Notification('Hi there!');
+        // …
+      }
+    });
+  }
+
+  // At last, if the user has denied notifications, and you
+  // want to be respectful there is no need to bother them anymore.
+}
+```
+
+### [devicemotion](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicemotion_event)
+
+设备运动传感器数据
+
+```js
+addEventListener("devicemotion", (event) => {});
+
+ondevicemotion = (event) => {};
+```

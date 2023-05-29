@@ -1,18 +1,21 @@
 import { fileURLToPath } from 'node:url';
+import { join, resolve } from 'node:path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { VueLoaderPlugin } from 'vue-loader';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import webpack from 'webpack';
 
 import {
-  ASSETS_FILE_NAME,
   OUTPUT_DIR,
+  PUBLIC_DIR,
   SRC_DIR,
   SVG_ICON_DIR,
+  __dirname,
+  __filename,
 } from './config.mjs';
 const { DefinePlugin, ProvidePlugin } = webpack;
-const __filename = fileURLToPath(import.meta.url);
 const isProduction = process.env.NODE_ENV == 'production';
 const isAnalyze = process.argv.includes('--analyze');
 
@@ -75,12 +78,15 @@ const config = {
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],
   module: {
+    // https://webpack.js.org/configuration/module/#modulenoparse
+    noParse: /^(vue|jquery)$/,
     generator: {},
     parser: {},
     rules: [
       {
         test: /\.(tsx)$/i,
         use: [
+          'babel-loader',
           {
             loader: 'ts-loader',
             options: {
@@ -92,7 +98,7 @@ const config = {
         exclude: ['/node_modules/'],
       },
       {
-        test: /\.(js|mjs|ts)$/i,
+        test: /\.(js|mjs|ts|jsx|m?jsx)$/i,
         use: ['babel-loader'],
         include: [SRC_DIR],
         exclude: [],
@@ -138,7 +144,7 @@ const config = {
         // https://webpack.js.org/guides/asset-modules/
         type: 'asset',
         generator: {
-          filename: ASSETS_FILE_NAME,
+          filename: 'img/[name].[hash:8][ext]',
         },
       },
       /* svg */
@@ -147,7 +153,7 @@ const config = {
         exclude: [SVG_ICON_DIR],
         type: 'asset/resource',
         generator: {
-          filename: ASSETS_FILE_NAME,
+          filename: 'img/[name].[hash:8][ext]',
         },
       },
       /* 点九图 */
@@ -155,23 +161,23 @@ const config = {
         test: /\.9\.png$/,
         type: 'asset/resource',
         generator: {
-          filename: ASSETS_FILE_NAME,
+          filename: 'img/[name].[hash:8][ext]',
         },
       },
       /* media */
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-        type: 'asset/resource',
+        type: 'asset',
         generator: {
-          filename: ASSETS_FILE_NAME,
+          filename: 'media/[name].[hash:8][ext]',
         },
       },
       /* fonts */
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
-        type: 'asset/resource',
+        type: 'asset',
         generator: {
-          filename: ASSETS_FILE_NAME,
+          filename: 'fonts/[name].[hash:8][ext]',
         },
       },
       /* less */
@@ -195,7 +201,7 @@ const config = {
     alias: {
       '@': SRC_DIR,
     },
-    extensions: ['.tsx', '.ts'],
+    extensions: ['.tsx', '.ts', '.mjs', '.js', '.jsx', '.vue', '.json'],
   },
 };
 
@@ -205,7 +211,23 @@ export default () => {
     config.plugins.push(
       // https://github.com/webpack-contrib/mini-css-extract-plugin
       new MiniCssExtractPlugin({
-        filename: 'assets/[name].[contenthash:8].css',
+        filename: 'css/[name].[contenthash:8].css',
+      }),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: PUBLIC_DIR,
+            to: OUTPUT_DIR,
+            toType: 'dir',
+            noErrorOnMissing: true,
+            globOptions: {
+              ignore: ['**/.DS_Store', resolve(PUBLIC_DIR, 'index.html')],
+            },
+            info: {
+              minimized: true,
+            },
+          },
+        ],
       })
     );
     if (isAnalyze) {
@@ -214,8 +236,8 @@ export default () => {
     config.output = {
       path: OUTPUT_DIR,
       clean: true,
-      filename: 'assets/[name].[contenthash:8].js',
-      chunkFilename: 'assets/[name].[contenthash:8].chunk.js',
+      filename: 'js/[name].[contenthash:8].js',
+      chunkFilename: 'js/[name].[contenthash:8].chunk.js',
     };
     config.devtool = 'source-map';
     config.optimization = {
@@ -245,7 +267,19 @@ export default () => {
   } else {
     config.mode = 'development';
     config.devServer = {
-      host: 'localhost',
+      allowedHosts: 'all',
+      compress: true,
+      client: {
+        overlay: {
+          errors: true,
+          warnings: false,
+          runtimeErrors: true,
+        },
+        progress: true,
+      },
+      static: {
+        directory: PUBLIC_DIR,
+      },
     };
     config.output = {
       path: OUTPUT_DIR,

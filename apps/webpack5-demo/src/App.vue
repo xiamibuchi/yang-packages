@@ -4,6 +4,7 @@ const txt = 'Hello World';
 
 <template>
   <div>{{ txt }}</div>
+  <img class="demo-svg" src="logo.svg" alt="" />
   <img class="demo-svg" src="@/demo.svg" alt="" />
 </template>
 

@@ -50,6 +50,7 @@ input.addEventListener('click', () => {
 button.addEventListener('click', () => {
   input.click();
 });
+// 单词事件循环中都可以正常触发 focus
 ```
 
 ## iOS 12 跨域 iframe 无法使用 IndexedDB

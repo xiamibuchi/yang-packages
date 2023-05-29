@@ -125,6 +125,14 @@ a:not([href]):not([target]):not([rel]) {
 
 > 浏览器自带的 `title` 属性延迟响应是添加一层防抖保护，避免频繁触发，这里也可以通过对伪元素添加一个 100 毫秒级的 `transition-delay` 实现延迟展示。
 
+### 选择器例子
+
+```css
+#💉💧🐂🍺 {
+  color: blue;
+}
+```
+
 ## color
 
 ```css

@@ -252,6 +252,9 @@ importers:
       '@babel/runtime':
         specifier: ^7.22.0
         version: 7.22.0
+      '@babel/runtime-corejs3':
+        specifier: ^7.22.3
+        version: 7.22.3
       '@vue/compiler-sfc':
         specifier: ^3.3.4
         version: 3.3.4
@@ -261,6 +264,9 @@ importers:
       babel-loader:
         specifier: ^9.1.2
         version: 9.1.2(@babel/core@7.22.1)(webpack@5.84.1)
+      copy-webpack-plugin:
+        specifier: ^11.0.0
+        version: 11.0.0(webpack@5.84.1)
       core-js:
         specifier: ^3.30.2
         version: 3.30.2
@@ -1916,6 +1922,14 @@ packages:
 
   /@babel/regjsgen@0.8.0:
     resolution: {integrity: sha512-x/rqGMdzj+fWZvCOYForTghzbtqPDZ5gPwaoNGHdgDfF2QA/XZbCBp4Moo5scrkAMPhB7z26XM/AaHuIJdgauA==}
+    dev: true
+
+  /@babel/runtime-corejs3@7.22.3:
+    resolution: {integrity: sha512-6bdmknScYKmt8I9VjsJuKKGr+TwUb555FTf6tT1P/ANlCjTHCiYLhiQ4X/O7J731w5NOqu8c1aYHEVuOwPz7jA==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      core-js-pure: 3.30.2
+      regenerator-runtime: 0.13.11
     dev: true
 
   /@babel/runtime@7.22.0:
@@ -6242,10 +6256,30 @@ packages:
       is-plain-object: 5.0.0
     dev: true
 
+  /copy-webpack-plugin@11.0.0(webpack@5.84.1):
+    resolution: {integrity: sha512-fX2MWpamkW0hZxMEg0+mYnA40LTosOSa5TqZ9GYIBzyJa9C3QUaMPSE2xAi/buNr8u89SfD9wHSQVBzrRa/SOQ==}
+    engines: {node: '>= 14.15.0'}
+    peerDependencies:
+      webpack: ^5.1.0
+    dependencies:
+      fast-glob: 3.2.12
+      glob-parent: 6.0.2
+      globby: 13.1.4
+      normalize-path: 3.0.0
+      schema-utils: 4.0.1
+      serialize-javascript: 6.0.1
+      webpack: 5.84.1(esbuild@0.17.18)(webpack-cli@5.1.1)
+    dev: true
+
   /core-js-compat@3.30.2:
     resolution: {integrity: sha512-nriW1nuJjUgvkEjIot1Spwakz52V9YkYHZAQG6A1eCgC8AA1p0zngrQEP9R0+V6hji5XilWKG1Bd0YRppmGimA==}
     dependencies:
       browserslist: 4.21.5
+    dev: true
+
+  /core-js-pure@3.30.2:
+    resolution: {integrity: sha512-p/npFUJXXBkCCTIlEGBdghofn00jWG6ZOtdoIXSJmAu2QBvN0IqpZXWweOytcwE6cfx8ZvVUy1vw8zxhe4Y2vg==}
+    requiresBuild: true
     dev: true
 
   /core-js@3.30.2:

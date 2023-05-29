@@ -1,35 +1,41 @@
 @use 'defination/var.scss' as *;
 
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
     'Heiti SC', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
   font-weight: 400;
   font-size: 14px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
 }
 
-a {
-  color: $color-primary;
-  text-decoration: none;
-}
-
+body,
 h1,
 h2,
 h3,
 h4,
-h5,
-h6 {
-  font-weight: inherit;
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
 
-  &:first-child {
-    margin-top: 0;
-  }
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
 
-  &:last-child {
-    margin-bottom: 0;
-  }
+a {
+  color: $color-primary;
+  text-decoration: none;
 }
 
 h1 {
@@ -53,12 +59,27 @@ p {
 
 p {
   line-height: 1.8;
+}
 
-  &:first-child {
-    margin-top: 0;
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
   }
 
-  &:last-child {
-    margin-bottom: 0;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
