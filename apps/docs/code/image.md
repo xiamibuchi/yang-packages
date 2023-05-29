@@ -45,3 +45,14 @@ images.forEach((item) => observer.observe(item));
   <img src="small.png" />
 </picture>
 ```
+
+## 错误处理
+
+- 监听 onerror 事件替换兜底图
+- 设置 error 样式
+
+```css
+img.error::after {
+  content: attr(alt);
+}
+```

@@ -15,7 +15,6 @@ const handleMouseMove = (e) => {
 
 <style lang="scss">
 .hover-background {
-  margin: 0 auto;
   width: 200px;
   padding: 10px 20px;
   text-align: center;

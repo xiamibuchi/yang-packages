@@ -1,42 +1,45 @@
 <template>
-  <div class="hover-border">
-    <div class="hover-border__content">hover to change</div>
-  </div>
+  <div class="hover-border" />
 </template>
 
 <style lang="scss">
+$height: 60px;
+$color: #00adb5;
 .hover-border {
+  --hover-border-color: #{$color};
+
   width: 200px;
-  height: 60px;
+  height: $height;
   position: relative;
-  background: #fff;
-  margin: 0 auto;
   box-sizing: border-box;
   cursor: pointer;
   text-align: center;
-  line-height: 60px;
+  border: 1px solid var(--hover-border-color);
+
   &::before,
   &::after {
     content: '';
-    width: 0;
-    height: 0;
-    background: #00adb5;
     position: absolute;
-    z-index: 0;
+    width: 20px;
+    height: 20px;
     transition: width 0.5s, height 0.5s;
   }
   &::before {
-    top: -1px;
-    right: -1px;
+    top: -5px;
+    left: -5px;
+    border-top: 1px solid var(--hover-border-color);
+    border-left: 1px solid var(--hover-border-color);
   }
   &::after {
-    bottom: -1px;
-    left: -1px;
+    right: -5px;
+    bottom: -5px;
+    border-bottom: 1px solid var(--hover-border-color);
+    border-right: 1px solid var(--hover-border-color);
   }
   &:hover::before,
   &:hover::after {
-    width: calc(100% + 2px);
-    height: calc(100% + 2px);
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
   }
 }
 
