@@ -1,17 +1,17 @@
 <script setup lang="ts">
-// 下载图片
-const downloadImage = () => {
-  const LINK = document.createElement('a') as HTMLAnchorElement | null;
-  if (!LINK) {
-    return;
-  }
-  LINK.href = '/docs/images/beian.png';
-  LINK.download = 'beian.png';
-  LINK.click();
-  LINK.remove();
+import { downloadBlob, downloadImage } from '@syseven/utils';
+const download = () => {
+  downloadImage('/docs/images/logo.png', 'shen.png');
+};
+
+const downloadSvg = () => {
+  downloadBlob('/docs/images/logo.svg', 'shen.svg');
 };
 </script>
 
 <template>
-  <el-button type="primary" @click="downloadImage">下载图片</el-button>
+  <div>
+    <el-button type="primary" @click="download">下载图片</el-button>
+    <el-button type="primary" @click="downloadSvg">下载 svg</el-button>
+  </div>
 </template>

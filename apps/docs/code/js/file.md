@@ -11,8 +11,6 @@ import FileImage from './components/FileImage.vue'
 
 Blob (binary large object)，对象表示一个不可变、原始数据的类文件对象。
 
-### 创建 Blob 对象
-
 - Blob 支持结构化克隆算法（structured clone algorithm），所以可以通过消息事件从另外一个窗口或线程中获取 blob 对象
 - 调用 Blob 构造函数。`new Blob(blobParts[, options]);`
 - 使用 Blob 对象上的 slice()方法切出另一个 Blob 对象
@@ -26,12 +24,10 @@ Blob 对象有两个只读属性：
 
 在 Ajax 操作中，如果 xhr.responseType 设为 blob，接收的就是二进制数据。
 
-### 作用
+- 通过`window.URL.createObjectURL(blob)`生成 Blob URL 实现下载
+- 文件分片上传。通过`Blob.slice(start, end)`可以分割大 Blob 为多个小 Blob
 
-- 通过 window.URL.createObjectURL(blob) 生成 Blob URL 实现下载
-- 文件分片上传。通过 Blob.slice(start,end)可以分割大 Blob 为多个小 Blob
-
-## URL 对象
+## URL
 
 URL 对象用于生成指向 File 对象或 Blob 对象的 URL。
 
@@ -51,28 +47,17 @@ const OBJECT_URL = window.URL.createObjectURL(file);
 window.URL.revokeObjectURL(OBJECT_URL);
 ```
 
-```js
-const myURL = new URL('https://example.org');
-myURL.pathname = '/a/b/c';
-myURL.search = 'd=e&f=g';
-myURL.hash = '#hig';
-
-const myURL = url.parse(myURL.href);
-```
-
 ## FileReader
 
-对象允许 Web 应用程序异步读取存储在用户计算机上的文件（或原始数据缓冲区）的内容，使用 File 或 Blob 对象指定要读取的文件或数据。
+允许 Web 应用程序异步读取存储在用户计算机上的文件（或原始数据缓冲区）的内容，使用 File 或 Blob 对象指定要读取的文件或数据。
 
-> FileReader 仅用于以安全的方式从用户（远程）系统读取文件内容 它不能用于从文件系统中按路径名简单地读取文件。 要在 JavaScript 中按路径名读取文件，应使用标准 Ajax 解决方案进行服务器端文件读取，如果读取跨域，则使用 CORS 权限。
+> FileReader 仅用于以安全的方式从用户（远程）系统读取文件内容 它不能用于从文件系统中按路径名简单地读取文件。 要在 JavaScript 中按路径名读取文件，应使用标准 Ajax 解决方案进行服务器端文件读取。
 
 ### DataURI 对象
 
 "data:image/png;base64,xxxxxxxxxxxxx"这种形式的字符串叫做 DataURI 对象，允许将一个小文件进行编码后嵌入到另外一个文档里，格式为：
 
 `data:[<MIME type>][;charset=<charset>][;base64],<encoded data>`
-
-整体可以视为三部分，即声明：参数+数据，逗号左边的是各种参数，右边的是数据。
 
 URL 是 uniform resource locator 的缩写，在 web 中的每一个可访问资源都有一个 URL 地址，例如图片，HTML 文件，js 文件以及 style sheet 文件，我们可以通过这个地址去 download 这个资源。其实 URL 是 URI 的子集，URI 是 uniform resource identifier 的缩写。URI 是用于获取资源，包括其附加的信息的一种协议。附加信息可能是地址，也可能不是地址，如果是地址，那么这时 URI 就变成 URL 了。注意的是 data URI 不是 URL，因为它并不包含资源的公共地址。
 
@@ -89,11 +74,7 @@ reader.readAsDataURL(file);
 有时候我们需要将 DataURI 对象转 blob 对象：
 
 ```js
-/**
- * dataURI 转 blob
- * @param {Object} dataURI
- */
-function dataURItoBlob(dataURI) {
+const dataURItoBlob = (dataURI) => {
   const arr = dataURI.split(","),
     mime = arr[0].match(/:(.*?);/)[1],
     bstr = atob(arr[1]),
@@ -106,21 +87,19 @@ function dataURItoBlob(dataURI) {
 }
 ```
 
-### FileReader API 详解
-
-#### 状态常量
+### 状态常量
 
 - **EMPTY**：值为 0，还没有加载任何数据;
 - **LOADING**：值为 1，数据正在被加载;
 - **DONE**：值为 2，已完成全部的读取请求。
 
-#### 属性
+### 属性
 
 - `error`：在读取文件时发生的错误， 只读;
 - `readyState`：表明 FileReader 对象的当前状态，值为 State constants 中的一个，只读；
 - `result`：取到的文件内容，这个属性只在读取操作完成之后才有效,并且数据的格式取决于读取操作是由哪个方法发起的，只读。
 
-#### 方法
+### 方法
 
 - `abort()`：中止该读取操作.在返回时,readyState 属性的值为 DONE.
 - `readAsArrayBuffer()`：开始读取指定的 Blob 对象或 File 对象中的内容. 当读取操作完成时,readyState 属性的值会成为 DONE,如果设置了 onloadend 事件处理程序,则调用之.同时,result 属性中将包含一个 ArrayBuffer 对象以表示所读取文件的内容.
@@ -128,7 +107,7 @@ function dataURItoBlob(dataURI) {
 - `readAsDataURL()`：开始读取指定的 Blob 对象或 File 对象中的内容. 当读取操作完成时,readyState 属性的值会成为 DONE,如果设置了 onloadend 事件处理程序,则调用之.同时,result 属性中将包含一个 data: URL 格式的字符串以表示所读取文件的内容.
 - `readAsText()`：开始读取指定的 Blob 对象或 File 对象中的内容. 当读取操作完成时,readyState 属性的值会成为 DONE,如果设置了 onloadend 事件处理程序,则调用之.同时,result 属性中将包含一个字符串以表示所读取的文件内容.
 
-#### 事件处理
+### 事件处理
 
 - `onabort`：当读取操作被中止时调用.
 - `onerror`：当读取操作发生错误时调用.
@@ -243,7 +222,8 @@ File API 提供 File 对象，它是 FileList 对象的成员，包含了文件�
 
 <FileDownloadAnchor />
 
-> 对于图片文件等这种可以被浏览器打开的文件不会被下载，浏览器会直接打开文件
+- 对于图片文件等这种可以被浏览器打开的文件不会被下载，浏览器会直接打开文件
+- 动态创建 a 标签下载图片，如果图片跨域，则浏览器也会新标签下载图片
 
 ### DataUrl 和 BlobUrl
 
@@ -277,6 +257,10 @@ image.onload = function () {
 ### 特殊格式的处理
 
 ### 图片
+
+- 位图格式的图片可以用 canvas 绘制后通过`canvas.toDataURL`转为 base64 地址
+- 如果是`gif`或`svg`，可以通过`XMLHttpRequest`或`fetch`获取图片数据后用`URL.createObjectURL`
+- 图片地址注意跨域问题
 
 <FileImage />
 

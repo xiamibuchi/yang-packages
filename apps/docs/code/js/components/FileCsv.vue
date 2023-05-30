@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { read, utils, writeFile } from 'xlsx';
+import { downloadAnchor } from '@syseven/utils';
 
 type DataItem = {
   number: number;
@@ -19,6 +19,7 @@ const downloadCsv = () => {
   const CSV_HEADER = `${HEADERS.join(',')}\n`;
   const CSV_BODY = data.value.reduce((result, ele) => {
     const line = HEADERS.reduce((str, key, i) => {
+      // @ts-ignore
       str += ele?.[key] || '';
       if (i < HEADERS.length - 1) {
         str += ',\t';
@@ -31,15 +32,8 @@ const downloadCsv = () => {
   const CSV_STR = `${CSV_HEADER}${CSV_BODY}`;
   const BLOB = new Blob([CSV_STR], { type: 'text/csv;charset=utf-8' });
   const URL = window.URL.createObjectURL(BLOB);
-  let LINK = document.createElement('a') as HTMLAnchorElement | null;
-  if (!LINK) {
-    return;
-  }
-  LINK.href = URL;
-  LINK.download = 'res.csv';
-  LINK.click();
+  downloadAnchor(URL, 'res.csv');
   window.URL.revokeObjectURL(URL);
-  LINK = null;
 };
 </script>
 
