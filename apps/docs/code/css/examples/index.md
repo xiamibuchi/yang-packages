@@ -4,6 +4,7 @@
 - [loading](./loading)
 - [mix-blend-mode](./mix-blend-mode)
 - [battery](./battery)
+- [网页置灰](./网页置灰)
 
 ## 字体
 
@@ -38,4 +39,3 @@ div {
   font-size: vw(16px);
 }
 ```
-- [网页置灰](./网页置灰)

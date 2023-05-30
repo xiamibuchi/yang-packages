@@ -1,4 +1,11 @@
-# 文件
+<script setup>
+import FileDownloadAnchor from './components/FileDownloadAnchor.vue'
+import FileExcel from './components/FileExcel.vue'
+import FileCsv from './components/FileCsv.vue'
+import FileImage from './components/FileImage.vue'
+</script>
+
+# file
 
 ## Blob
 
@@ -134,10 +141,9 @@ function dataURItoBlob(dataURI) {
 
 文件上传的几种方式：
 
-- 传统 flash 上传
 - 隐藏 iframe 框上传
 - 表单数据提交
-- HTML5 的新工具——File API
+- File API
 
 ### form 表单上传
 
@@ -147,9 +153,6 @@ function dataURItoBlob(dataURI) {
   <input type="submit" value="上传" />
 </form>
 ```
-
-- `action` 请求的后端方法
-- `enctype="multipart/form-data` 在使用包含文件上传控件的表单时，必须使用该值。
 
 ### FormData 上传
 
@@ -164,23 +167,23 @@ form 表单提交会导致页面刷新，不希望页面被刷新，可以用 aj
 </form>
 
 <script>
-  function upload(){
-    let url="upload";
+  const upload = () => {
+    let url = 'upload';
     // 获取文件
     let pic = document.getElementById('pic').files[0];
-  // 初始化一个 XMLHttpRequest 对象
     const xhr = new XMLHttpRequest();
-    // 初始化一个 FormData 对象
+    // 初始化 FormData
     const form = new FormData();
     // 携带文件
-    form.append("pic", pic);
-    //开始上传
-    xhr.open("POST", url, true);
+    form.append('pic', pic);
+    // 上传
+    xhr.open('POST', url, true);
     //在readystatechange事件上绑定一个事件处理函数
-    xhr.onreadystatechange=() => {
+    xhr.onreadystatechange = () => {
       // do something
     };
     xhr.send(form);
+  };
 </script>
 ```
 
@@ -230,34 +233,17 @@ fileInput.addEventListener(
 File API 提供 File 对象，它是 FileList 对象的成员，包含了文件的一些元信息，比如文件名、上次改动时间、文件大小和文件类型。下图可以 File 对象的属性：
 
 - lastModifiedDate：文件对象最后修改的日期
-- name：文件名,只读字符串,不包含任何路径信息.
-- size：文件大小,单位为字节,只读的 64 位整数.
-- type：MIME 类型,只读字符串,如果类型未知,则返回空字符串.
-
-例如：我们可以根据 size 换算出我们习惯的文件大小表达方式：
-
-```js
-/**
- * 读文件大小
- * @param {Object} file
- */
-function readFileSize(file) {
-  let size = file.size / 1024;
-  const aMultiples = ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-
-  let fileSizeString = '';
-  for (let i = 0; size > 1; size /= 1024, i++) {
-    fileSizeString = `${size.toFixed(2)} ${aMultiples[i]}`;
-  }
-  return fileSizeString;
-}
-```
+- name：文件名,只读字符串,不包含任何路径信息
+- size：文件大小,单位为字节,只读的 64 位整数
+- type：MIME 类型,只读字符串,如果类型未知,则返回空字符串
 
 ## 下载
 
 ### a 标签下载
 
-对于图片文件和文本文件这种可以被浏览器打开的文件不会被下载
+<FileDownloadAnchor />
+
+> 对于图片文件等这种可以被浏览器打开的文件不会被下载，浏览器会直接打开文件
 
 ### DataUrl 和 BlobUrl
 
@@ -288,40 +274,20 @@ image.onload = function () {
 };
 ```
 
+### 特殊格式的处理
+
+### 图片
+
+<FileImage />
+
 ### csv
 
-csv 结构简单，实际是导入有格式的文本
+csv 结构简单，实际是导入特殊格式的文本
 
-```js
-const values = [
-  {
-    id: 1,
-    name: '1',
-  },
-  {
-    id: 2,
-    name: '2',
-  },
-];
-const HEADERS = ['header1', 'header2'];
-const CSV_STR = `${HEADERS.join(',')}\n${values.reduce((result, ele) => {
-  result += `${Object.values(ele).join(',\t')}\n`; // 如需保证csv顺序，按照字段顺序排列
-  return result;
-}, '')}`;
+<FileCsv />
 
-const blob = new Blob([CSV_STR], {
-  type: '.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel',
-});
+### excel
 
-const URI = window.URL.createObjectURL(blob);
-const FILE_NAME = '文件流下载' + '.csv';
-let anchor = document.createElement('a');
-anchor.href = URI;
-anchor.setAttribute('download', FILE_NAME);
-anchor.click();
-anchor = null;
-```
+[xlsx](https://www.npmjs.com/package/xlsx)
 
-## xlsx
-
-借助 xlsx 插件，前端可以生成 .xlsx 文件进行导出
+<FileExcel />

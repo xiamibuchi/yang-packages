@@ -81,6 +81,25 @@ iOS：
 
 [捷径社区](https://sharecuts.cn/app/414478124)
 
+## 折叠屏
+
+[Device Posture API](https://w3c.github.io/device-posture/)
+
+```scss
+// 屏幕水平，布局视图跨越单个折叠（两个屏幕）且折叠姿势是垂直
+@media (spanning: single-fold-vertical) {
+}
+// 屏幕垂直，布局视图跨越单个折叠（两个屏幕）并且折叠姿势是水平时（分上下）
+@media (spanning: single-fold-horizontal) {
+}
+
+@media (screen-fold-posture: laptop) {
+}
+// 最大折叠角度
+@media (max-screen-fold-angle: 120deg) {
+}
+```
+
 ## 常用
 
 ### 阻止虚拟键盘弹出

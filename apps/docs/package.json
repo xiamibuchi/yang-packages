@@ -10,7 +10,8 @@
     "@syseven/xiami": "workspace:*",
     "element-plus": "^2.3.4",
     "highlight.js": "^11.8.0",
-    "vue": "^3.2.47"
+    "vue": "^3.2.47",
+    "xlsx": "^0.18.5"
   },
   "volta": {
     "extends": "../../package.json"

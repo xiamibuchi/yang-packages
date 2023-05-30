@@ -1,0 +1,8 @@
+#app {
+  .el-table__header,
+  .el-table__body {
+    margin: 0;
+    table-layout: fixed;
+    border-collapse: separate;
+  }
+}
