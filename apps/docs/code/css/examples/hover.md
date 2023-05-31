@@ -4,6 +4,7 @@ import HoverBorder from '../components/hover/HoverBorder.vue'
 import HoverTip from '../components/hover/HoverTip.vue'
 import HoverDash from '../components/hover/HoverDash.vue'
 import HoverText from '../components/hover/HoverText.vue'
+import HoverCollection from '../components/hover/HoverCollection.vue'
 </script>
 
 # hover
@@ -57,6 +58,10 @@ import HoverText from '../components/hover/HoverText.vue'
 <<< @/code/css/components/hover/HoverText.vue
 
 :::
+
+## 常用
+
+<HoverCollection />
 
 ## 参考链接
 

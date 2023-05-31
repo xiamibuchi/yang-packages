@@ -1,60 +1,43 @@
 <template>
-  <div class="load-container">
-    <div class="load load1" />
-    <div class="load load2" />
-    <div class="load" />
-  </div>
+  <div />
 </template>
 
 <style scoped lang="scss">
-.load-container {
-  margin: 50px auto;
-  width: 150px;
-  text-align: center;
-  .load {
-    width: 20px;
-    height: 20px;
-    background-color: #00adb5;
-
-    border-radius: 100%;
-    display: inline-block;
-    -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
-    animation: bouncedelay 1.4s infinite ease-in-out;
-    /* Prevent first frame from flickering when animation starts */
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-  }
-  .load1 {
-    -webkit-animation-delay: -0.32s;
-    animation-delay: -0.32s;
-  }
-  .load2 {
-    -webkit-animation-delay: -0.16s;
-    animation-delay: -0.16s;
+$size: 50px;
+div {
+  width: $size;
+  height: $size;
+  position: relative;
+  border: 5px solid #409eff;
+  overflow: hidden;
+  animation: rotate 3s ease infinite;
+  &::before {
+    content: '';
+    width: $size;
+    height: $size;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(#409eff, 0.75);
+    transform-origin: center bottom;
+    transform: scaleY(1);
+    animation: fill 3s linear infinite;
   }
 }
-
-@-webkit-keyframes bouncedelay {
-  0%,
-  80%,
+@keyframes rotate {
+  50%,
   100% {
-    -webkit-transform: scale(0);
-  }
-  40% {
-    -webkit-transform: scale(1);
+    transform: rotate(1turn);
   }
 }
-
-@keyframes bouncedelay {
-  0%,
-  80%,
-  100% {
-    transform: scale(0);
-    -webkit-transform: scale(0);
+@keyframes fill {
+  25%,
+  50% {
+    transform: scaleY(0);
   }
-  40% {
-    transform: scale(1);
-    -webkit-transform: scale(1);
+
+  to {
+    transform: scaleY(1);
   }
 }
 </style>

@@ -1,47 +1,35 @@
 <template>
-  <div class="loading-box-container">
-    <div class="loading-box" />
-  </div>
+  <div />
 </template>
 
-<style lang="scss">
-.loading-box-container {
+<style scoped lang="scss">
+$color: #409eff;
+div {
+  width: 50px;
+  height: 50px;
   position: relative;
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
-  .loading-box {
+  &:before {
+    content: '';
+    width: 50px;
+    height: 5px;
+    background: #000;
+    opacity: 0.1;
+    position: absolute;
+    top: 59px;
+    left: 0;
+    border-radius: 50%;
+    animation: loading-box-shadow 0.5s linear infinite;
+  }
+  &:after {
+    content: '';
     width: 50px;
     height: 50px;
-    margin: auto;
+    background: $color;
+    animation: loading-box-animate 0.5s linear infinite;
     position: absolute;
-    left: 0;
-    right: 0;
     top: 0;
-    bottom: 0;
-    &:before {
-      content: '';
-      width: 50px;
-      height: 5px;
-      background: #000;
-      opacity: 0.1;
-      position: absolute;
-      top: 59px;
-      left: 0;
-      border-radius: 50%;
-      animation: loading-box-shadow 0.5s linear infinite;
-    }
-    &:after {
-      content: '';
-      width: 50px;
-      height: 50px;
-      background: #00adb5;
-      animation: loading-box-animate 0.5s linear infinite;
-      position: absolute;
-      top: 0;
-      left: 0;
-      border-radius: 3px;
-    }
+    left: 0;
+    border-radius: 3px;
   }
 }
 

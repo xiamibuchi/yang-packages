@@ -34,6 +34,7 @@ export default defineConfig({
   base: '/docs/',
   title: "羊圈",
   description: "神羊的羊圈",
+  favicon: "/favicon.ico",
   cleanUrls: true,
   themeConfig: {
     nav: [

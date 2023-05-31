@@ -53,7 +53,7 @@
   z-index: 3;
   background: rgba(255, 255, 255, 0.9);
   animation: redHeight 2s ease-out infinite;
-  -webkit-filter: contrast(200%);
+  filter: contrast(200%);
   mix-blend-mode: hard-light;
 }
 
