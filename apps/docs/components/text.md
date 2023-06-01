@@ -4,8 +4,16 @@ Used for text.
 
 ## Basic
 
-:::demo Use the `type` attribute to define Text's type.
+::: demo Use the `type` attribute to define Text's type.
 
-<sy-text :rows="1">111</sy-text>
+<sy-text :rows="2">测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出</sy-text>
+
+:::
+
+## ellipsis
+
+::: demo Use the `type` attribute to define Text's type.
+
+<sy-text :rows="2" expand-text="展开" collapse-text="收回" content="测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出"></sy-text>
 
 :::

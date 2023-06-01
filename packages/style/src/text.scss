@@ -3,8 +3,6 @@
 @use './defination/function.scss' as *;
 
 @include b(text) {
-  display: inline;
-
   @include m(ellipsis) {
     display: block;
     @include ellipsis-limit-line(1)

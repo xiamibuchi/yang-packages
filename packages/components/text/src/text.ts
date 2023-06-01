@@ -29,6 +29,9 @@ export const textProps = buildProps({
     type: String,
     default: 'span',
   },
+  content: {
+    type: String,
+  },
 } as const);
 
 export type TextProps = ExtractPropTypes<typeof textProps>;
