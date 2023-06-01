@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, onUnmounted, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useNamespace } from '@syseven/hooks';
 import { textProps } from './text';
 
@@ -115,7 +115,6 @@ const calcEllipsised = () => {
     if (!content) {
       return '';
     }
-    console.log(expandText);
 
     let left = 0;
     let right = content.length;
@@ -154,6 +153,15 @@ const calcEllipsised = () => {
 
   document.body.removeChild(container);
 };
+
+watch(
+  () => props.content,
+  () => {
+    if (isScriptCollapse.value) {
+      calcEllipsised();
+    }
+  }
+);
 
 onMounted(() => {
   calcEllipsised();
