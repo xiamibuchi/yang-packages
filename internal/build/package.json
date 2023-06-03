@@ -10,7 +10,7 @@
     "stub": "unbuild --stub"
   },
   "peerDependencies": {
-    "vue": "^3.2.47"
+    "vue": "^3.3.4"
   },
   "dependencies": {},
   "devDependencies": {}

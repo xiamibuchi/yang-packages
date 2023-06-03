@@ -38,11 +38,11 @@
     "build:types": "vue-tsc --declaration --emitDeclarationOnly"
   },
   "peerDependencies": {
-    "vue": "^3.2.47"
+    "vue": "^3.3.4"
   },
   "devDependencies": {
-    "@pnpm/find-workspace-dir": "^6.0.0",
+    "@pnpm/find-workspace-dir": "^6.0.1",
     "@syseven/icons-svg": "workspace:*",
-    "unplugin-vue": "^4.0.2"
+    "unplugin-vue": "^4.2.0"
   }
 }

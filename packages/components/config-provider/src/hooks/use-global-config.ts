@@ -63,10 +63,14 @@ export const provideGlobalConfig = (
 
   const context = computed(() => {
     const cfg = unref(config);
-    if (!oldConfig?.value) return cfg;
+    if (!oldConfig?.value) {
+      return cfg;
+    }
     return mergeConfig(oldConfig.value, cfg);
   });
+  // @ts-ignore
   provideFn(configProviderContextKey, context);
+  // @ts-ignore
   provideFn(
     namespaceContextKey,
     computed(() => context.value.namespace)

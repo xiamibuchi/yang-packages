@@ -5,7 +5,7 @@ import { version } from './version';
 import type { App, Plugin } from 'vue';
 import type { ConfigProviderContext } from '@syseven/components/config-provider';
 
-type CustomApp = App & { [INSTALLED_KEY]?: boolean };
+export type CustomApp = App & { [INSTALLED_KEY]?: boolean };
 
 /**
  * @param Components
