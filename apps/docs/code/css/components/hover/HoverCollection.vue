@@ -5,7 +5,7 @@ import hover3 from './hover3.vue';
 import hover4 from './hover4.vue';
 import hover5 from './hover5.vue';
 import hover6 from './hover6.vue';
-// import hover7 from './hover7.vue';
+import hover7 from './hover7.vue';
 </script>
 
 <template>

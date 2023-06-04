@@ -238,21 +238,6 @@ BFC（Block Formatting Context）格式化上下文，是 Web 页面中盒模型
 - 计算 bfc 的高度时，浮动元素也参与计算
 - bfc 就是页面上的一个独立容器，容器里面的子元素不会影响外面元素
 
-### flex 布局
-
-在使用 flex 的元素中，默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）
-主轴开始的位置称为 `main start`，主轴结束的位置称为 `main end`。
-同理，交叉轴开始的位置称为 `cross start`，交叉轴结束的位置称为 `cross end`。
-在使用 flex 的子元素中，占据的主轴空间叫做 `main size`，占据的交叉轴空间叫做 `cross size`。
-
-### grid 网格布局
-
-flex 布局虽然强大，但是只能是一维布局，如果要进行二维布局，那么我们还需要使用 grid。
-
-grid 布局又称为“网格布局”，可以实现二维布局方式，和之前的 表格`table`布局差不多，然而，这是使用 CSS 控制的，不是使用 HTML 控制的，同时还可以依赖于媒体查询根据不同的上下文得新定义布局。
-
-[grid.layoutit](https://grid.layoutit.com/)
-
 ### 变量
 
 自定义属性（有时可以称为 CSS 变量或者层叠 variables）是由 CSS 作者定义的实体，这些实体在一个 document 内可以被重用。一般按照自定义属性的符号设置（比如，--main-color: black；）然后使用 var()函数使用。（例如 color: var(--main-color)）
