@@ -1,121 +1,116 @@
+<script setup>
+import CanvasDemo from './components/CanvasDemo.vue'
+</script>
+
 # canvas
 
-## 什么是 Canvas
-
-canvas 是 HTML5 提供的一个用于展示绘图效果的标签
+[标准](https://html.spec.whatwg.org/multipage/canvas.html)
 
 canvas 提供了一个空白的图形区域，可以使用特定的 JavaScript API 来绘画图形（canvas 2D 或 WebGL）
 
-首先由 Apple 引入的，用于 OS X 的仪表盘和 Safari 浏览器中的一些效果
+## api
 
-### 关于 Canvas 的一些说明
+- getContext：获取渲染上下文
 
-- canvas 是一个矩形区域的画布，可以用 JS 在上面绘画。
-- canvas 标签使用 JS 在网页上绘制图像，本身不具备绘图功能。
-- canvas 拥有多种绘制路径、矩形、圆形、文字以及添加图像的方法。
-- canvas 的标准：
-  - [标准](https://www.w3.org/TR/2dcontext/)
-  - 目前来说，标准还在完善中。
+### 直线
 
-### canvas 主要应用的领域（了解）
+- moveTo(x, y)：移动画笔
+- lineTo(x, y)：直线
+- stroke()：描边，根据路径绘制线
 
-- 1、游戏：canvas 在基于 Web 的图像显示方面比 Flash 更加立体、更加精巧，canvas 游戏在流畅度和跨平台方面更牛。
-- 2、**可视化数据**（数据图表化），比如: [百度的 ECharts](http://echarts.baidu.com/)、[d3.js](https://d3js.org/)、[three.js](http://threejs.org/)、highcharts
-- 3、**banner 广告**：Flash 曾经辉煌的时代，智能手机还未曾出现。现在以及未来的智能机时代，HTML5 技术能够在 banner 广告上发挥巨大作用，用 Canvas 实现动态的广告效果再合适不过。
-- 4、未来
-  - 模拟器：无论从视觉效果还是核心功能方面来说，模拟器产品可以完全由 JavaScript 来实现。
-  - 图形编辑器：Photoshop 图形编辑器将能够 100%基于 Web 实现。
+### 矩形
 
-## Canvas 标签介绍
+- strokeRect(x, y, width, height) 绘制一个矩形的边框
+- fillRect(x, y, width, height) 绘制一个填充的矩形
+- clearRect(x, y, width, height) 清除指定矩形区域，让清除部分完全透明
 
-- 作用：展示绘图的内容，但不能进行绘图
+### 圆弧
 
-```html
-<canvas width="600" height="400"></canvas>
-```
+arc(x, y, radius, startAngle, endAngle, anticlockwise)：x 和 Y 为圆心的坐标，radius 为半径，startAngle 为圆弧或圆的开始位置，endAngle 为圆弧或圆的结束位置，anticlockwise 是绘制的方向（不写默认为 false，从顺时针方向）
 
-### canvas 的兼容性
+### 椭圆
 
-由于浏览器对 HTML5 标准支持不一致，所以，通常在`<canvas>`内部添加一些说明性 HTML 代码，如果浏览器支持 Canvas，它将忽略`<canvas`>`内部的HTML，如果浏览器不支持Canvas，它将显示`<canvas></canvas>`内部的 HTML：
+ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise)
 
-```html
-<canvas width="600" height="400">
-  IE9及其以上版本的浏览器，才支持canvas标签
-  提示：您的浏览器不支持canvas，请升级浏览器
-</canvas>
-```
+- x、y：椭圆的圆心位置
+- radiusX、radiusY：x 轴和 y 轴的半径
+- rotation：椭圆的旋转角度，以弧度表示
+- startAngle：开始绘制点
+- endAngle：结束绘制点
+- anticlockwise：绘制的方向（默认顺时针），可选参数
 
-在使用 Canvas 前，用 canvas.getContext 来测试浏览器是否支持 Canvas：
+### 贝塞尔曲线
 
-```html
-<!-- HTML代码 -->
-<canvas id="test-canvas" width="200" heigth="100">
-  <p>你的浏览器不支持Canvas</p>
-</canvas>
-```
+quadraticCurveTo(cp1x, cp1y, x, y)，其中 cp1x 和 cp1y 为一个控制点，x 和 y 为结束点
 
-```js
-'use strict';
+### 样式
 
-const canvas = document.getElementById('test-canvas');
-if (canvas.getContext) {
-  alert('你的浏览器支持Canvas!');
-} else {
-  alert('你的浏览器不支持Canvas!');
-}
-```
-
-`getContext('2d')`方法让我们拿到一个 CanvasRenderingContext2D 对象，所有的绘图操作都需要通过这个对象完成。
-
-```js
-const ctx = canvas.getContent('2d');
-```
-
-如果需要绘制 3D 怎么办？HTML5 还有一个 WebGL 规范，允许在 Canvas 中绘制 3D 图形：
-`gl canvas.getContext("webgl");`
+- lineWidth：当前绘线的粗细。属性值必须为正数。默认值是 1.0
+- lineCap：线段端点显示的样子。可选值为：butt，round 和 square。默认是 butt
+- lineJoin：两线段连接处所显示的样子。可选值为：round, bevel 和 miter。默认是 miter
 
 ### 设置宽高注意点
 
-- 1 可以使用 html 属性/DOM 属性 `width` 和 `height`来设置
-- 2 _不要：使用 CSS 样式来设置宽高_
+可以使用 html 属性 `width` 和 `height`来设置，不要使用 CSS 样式来设置宽高
 
 使用 属性设置宽高，实际上相当于增加了 canvas 画布的像素
 默认宽高： 300\*150，表示：水平方向有 300 个像素，垂直方向有 150 个像素
 使用属性设置宽高，是增加或减少了 canvas 画布的像素；
-而使用 css 样式，不会增加像素点，只是将每个像素点扩大了！
+而使用 css 样式，不会增加像素点，只是将每个像素点扩大了。
 
-### 绘图
+### 画布 demo
 
-- 使用 JavaScript 中提供的绘图 API 来绘制
-
-#### 绘图的基本步骤
-
-- 1 拿到 canvas 画布
-- 2 通过 canvas 拿到绘图上下文（一系列的 API 集合）
-- 3 使用 API 绘制需要的图形
+<CanvasDemo />
 
 ```js
-// 1 找到canvas
-const cas = document.getElementById('canvasId');
-// 2 拿到canvas绘图上下文
-const ctx = cas.getContext('2d');
-// 3 使用上下文中的API绘制图形
-ctx.moveTo(100, 100); // 将画笔移动到 100,100 的位置
-ctx.lineTo(200, 100); // 从 100,100 到 200,100 画一条线段
-ctx.stroke(); // 描边
-```
+/* <canvas id="canvas" width="200" height="200">
+  当前浏览器不支持canvas元素，请升级或更换浏览器！
+</canvas> */
+const canvas = document.getElementById('canvas');
+// CanvasRenderingContext2D 二维渲染上下文
+const ctx = canvas?.getContext('2d');
+// WebGLRenderingContext 三维渲染上下文对象
+const ctx = canvas?.getContext('webgl');
+// WebGL2RenderingContext 三维渲染上下文对象。只在实现 WebGL 版本2 (OpenGL ES 3.0)的浏览器上可用
+const ctx = canvas?.getContext('webgl2');
 
-- 注意点：
+// 直线
+ctx.lineWidth = 3;
+ctx.lineCap = 'round';
+ctx.moveTo(50, 50); // 移动画笔至 50, 50
+ctx.lineTo(200, 200); // 画一条线段至 200, 200
+ctx.lineTo(200, 50);
+ctx.lineTo(50, 50);
+ctx.stroke(); // 描边：根据路径绘制线
 
-```
-getContext("2d"), 参数`2d`是指获取到绘制平面图形的上下文;
-如果想绘制立体图形，需要传入参数："webgl"
+ctx.lineWidth = 1;
+ctx.lineCap = 'butt';
 
-2d上下文类型：CanvasRenderingContext2D
+// 矩形
+ctx.strokeRect(50, 50, 200, 100);
 
-获得 webgl 上下文：（了解, 部分浏览器默认不支持）
-var cas = document.createElement("canvas");
-console.log(cas.getContext("webgl"));
+// 实心矩形
+ctx.fillRect(0, 0, 50, 50);
+
+// 清空区域
+// clearRect(x, y, width, height);
+ctx.clearRect(10, 10, 25, 25);
+
+// 圆弧
+// arc(x, y, radius, startAngle, endAngle, anticlockwise);
+ctx.arc(60, 60, 60, 0, Math.PI * 2, false);
+ctx.stroke();
+
+// 椭圆
+// ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise);
+ctx.ellipse(50, 250, 50, 100, 0, 0, 2 * Math.PI);
+ctx.stroke();
+
+// 二次贝塞尔曲线
+// quadraticCurveTo(cp1x, cp1y, x, y);
+ctx.moveTo(0, 0);
+ctx.quadraticCurveTo(150, 150, 350, 50);
+ctx.stroke();
 ```
 
 ## canvas 的基本使用
@@ -615,3 +610,8 @@ function checkWebp() {
 
 console.log(checkWebp()); // true or false
 ```
+
+## 参考
+
+- [案例+图解带你一文读懂 Canvas](https://juejin.cn/post/7119495608938790942)
+- [Canvas 从入门到劝朋友放弃](https://juejin.cn/post/7116784455561248775)
