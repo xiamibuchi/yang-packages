@@ -251,6 +251,8 @@ flex 布局虽然强大，但是只能是一维布局，如果要进行二维布
 
 grid 布局又称为“网格布局”，可以实现二维布局方式，和之前的 表格`table`布局差不多，然而，这是使用 CSS 控制的，不是使用 HTML 控制的，同时还可以依赖于媒体查询根据不同的上下文得新定义布局。
 
+[grid.layoutit](https://grid.layoutit.com/)
+
 ### 变量
 
 自定义属性（有时可以称为 CSS 变量或者层叠 variables）是由 CSS 作者定义的实体，这些实体在一个 document 内可以被重用。一般按照自定义属性的符号设置（比如，--main-color: black；）然后使用 var()函数使用。（例如 color: var(--main-color)）
