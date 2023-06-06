@@ -1,5 +1,4 @@
-import { fileURLToPath } from 'node:url';
-import { join, resolve } from 'node:path';
+import { resolve } from 'node:path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { VueLoaderPlugin } from 'vue-loader';
@@ -12,7 +11,6 @@ import {
   PUBLIC_DIR,
   SRC_DIR,
   SVG_ICON_DIR,
-  __dirname,
   __filename,
 } from './config.mjs';
 const { DefinePlugin, ProvidePlugin } = webpack;
