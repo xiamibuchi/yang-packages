@@ -9,9 +9,7 @@
       "DOM.Iterable",
       "WebWorker"
     ],
-    "types": [
-      "unplugin-vue-macros/macros-global"
-    ],
+    "types": [],
     "skipLibCheck": true
   },
   "include": [

@@ -13,6 +13,13 @@ import { buildConfig, run, runTask, withTaskName } from './src';
 import type { TaskFunction } from 'gulp';
 import type { Module } from './src';
 
+// @ts-ignore
+if (!globalThis.__name) {
+  // @ts-ignore
+  globalThis.__name = (target, value) =>
+    Object.defineProperty(target, 'name', { value, configurable: true });
+}
+
 export const copyFiles = () =>
   Promise.all([
     copyFile(
@@ -33,7 +40,7 @@ export const copyTypesDefinitions: TaskFunction = (done) => {
   const src = path.resolve(buildOutput, 'types', 'packages');
   const copyTypes = (module: Module) =>
     withTaskName(`copyTypes:${module}`, () =>
-      copy(src, buildConfig[module].output.path, { recursive: true })
+      copy(src, buildConfig[module].output.path)
     );
 
   return parallel(copyTypes('esm'), copyTypes('cjs'))(done);
@@ -47,7 +54,7 @@ export const copyFullStyle = async () => {
   );
 };
 
-export default series(
+const taskSeries: any = series(
   withTaskName('clean', () => run('pnpm run clean')),
   withTaskName('createOutput', () =>
     mkdir(vueComponentsOutput, { recursive: true })
@@ -68,5 +75,7 @@ export default series(
 
   parallel(copyTypesDefinitions, copyFiles)
 );
+
+export default taskSeries;
 
 export * from './src';

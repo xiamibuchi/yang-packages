@@ -1,7 +1,6 @@
 import { rollup } from 'rollup';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import VueMacros from 'unplugin-vue-macros/rollup';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import esbuild from 'rollup-plugin-esbuild';
@@ -25,16 +24,10 @@ export const buildModules = async () => {
     input,
     plugins: [
       XiamiAlias(),
-      VueMacros({
-        setupComponent: false,
-        setupSFC: false,
-        plugins: {
-          vue: vue({
-            isProduction: false,
-          }),
-          vueJsx: vueJsx(),
-        },
+      vue({
+        isProduction: false,
       }),
+      vueJsx(),
       nodeResolve({
         extensions: ['.mjs', '.js', '.json', '.ts'],
       }),

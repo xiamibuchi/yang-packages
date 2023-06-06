@@ -8,7 +8,7 @@
     "depcruise": "depcruise src --config .dependency-cruiser.js"
   },
   "peerDependencies": {
-    "@vue/shared": "^3.2.47",
+    "@vue/shared": "^3.3.4",
     "lodash-es": "^4.17.21",
     "vue": "^3.3.4"
   },

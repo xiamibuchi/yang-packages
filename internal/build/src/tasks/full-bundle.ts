@@ -3,7 +3,6 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import { rollup } from 'rollup';
 import commonjs from '@rollup/plugin-commonjs';
 import vue from '@vitejs/plugin-vue';
-import VueMacros from 'unplugin-vue-macros/rollup';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import esbuild, { minify as minifyPlugin } from 'rollup-plugin-esbuild';
 import { parallel } from 'gulp';
@@ -31,16 +30,10 @@ const banner = `/*! sy-xiami */\n`;
 async function buildFullEntry(minify: boolean) {
   const plugins: Plugin[] = [
     XiamiAlias(),
-    VueMacros({
-      setupComponent: false,
-      setupSFC: false,
-      plugins: {
-        vue: vue({
-          isProduction: true,
-        }),
-        vueJsx: vueJsx(),
-      },
+    vue({
+      isProduction: true,
     }),
+    vueJsx(),
     nodeResolve({
       extensions: ['.mjs', '.js', '.json', '.ts'],
     }),

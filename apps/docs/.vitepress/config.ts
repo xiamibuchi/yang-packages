@@ -3,8 +3,6 @@ import {
   projRoot,
 } from '@syseven/build-utils'
 import path from 'path';
-import VueMacros from 'unplugin-vue-macros/vite';
-import vueJsx from '@vitejs/plugin-vue-jsx';
 import sidebar from './sidebar';
 
 import type { Alias } from 'vite'
@@ -51,14 +49,5 @@ export default defineConfig({
     resolve: {
       alias,
     },
-    plugins: [
-      VueMacros({
-        setupComponent: false,
-        setupSFC: false,
-        plugins: {
-          vueJsx: vueJsx(),
-        },
-      }),
-    ],
   }
 })

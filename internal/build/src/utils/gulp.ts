@@ -1,9 +1,7 @@
 import { buildRoot } from '@syseven/build-utils';
 import { run } from './process';
 
-import type { TaskFunction } from 'gulp';
-
-export const withTaskName = <T extends TaskFunction>(name: string, fn: T) =>
+export const withTaskName = (name: string, fn: any) =>
   Object.assign(fn, { displayName: name });
 
 export const runTask = (name: string) =>
