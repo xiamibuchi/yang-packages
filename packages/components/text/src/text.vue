@@ -2,7 +2,7 @@
   <component
     :is="tag"
     v-if="!isScriptCollapse"
-    :ref="root"
+    ref="root"
     :class="textKls"
     :style="textStyle"
   >
