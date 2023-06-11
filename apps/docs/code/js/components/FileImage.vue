@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { downloadBlob, downloadImage } from '@syseven/utils';
 const download = () => {
-  downloadImage('/docs/images/logo.png', 'shen.png');
+  downloadImage('/docs/logo.png', 'shen.png');
 };
 
 const downloadSvg = () => {
-  downloadBlob('/docs/images/logo.svg', 'shen.svg');
+  downloadBlob('/docs/logo.svg', 'shen.svg');
 };
 </script>
 
