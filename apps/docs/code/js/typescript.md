@@ -352,10 +352,88 @@ function firstElement<Type>(arr: Type[]): Type | undefined {
 }
 ```
 
-## HTML TYPES
+### 关键字
 
-- HTMLElement
-  - HTMLCanvasElement
+- keyof：得到这个类型的所有属性名构成的联合类型
+- typeof：将得到这个实例的类型
+- extends：在类型运算中的作用，不是继承或者扩展，而是判断一个类型是否可以被赋值给另一个类型。如上面的类型 TB，是一个函数，因此这个类型是可以赋值给类型 Function
+- infer：类型提取
+
+```ts
+type User = {
+  name: string;
+  age: number;
+};
+
+type TA = keyof User;
+// 'name' | 'age'
+
+const fn = () => ({ name: 'blasius', age: 18 });
+type TB = typeof fn;
+// () => {name: string, age: number}
+
+function logLength<T>(arg: T) {
+  console.log(arg.length);
+  // Property 'length' does not exist on type 'T'.
+}
+// 定义一个类型ILengthy
+interface ILengthy {
+  length: number;
+}
+function logLength2<T extends ILengthy>(arg: T) {
+  console.log(arg.length);
+}
+
+type UserPromise = Promise<User>;
+type UnPromisify<T> = T extends Promise<infer V> ? V : never;
+type InferedUser = UnPromisify<UserPromise>;
+// { name: number; age: string; }
+```
+
+## 方法
+
+### ReturnType
+
+```ts
+const timer: ReturnType<typeof setTimeout> = setTimeout(() => {
+  // ...
+}, 2000);
+
+const timer: number | undefined = window.setTimeout(() => {
+  // ...
+}, 2000);
+```
+
+### Partial、Required、Readonly、Mutable
+
+```ts
+type MyPartial<T> = {
+  [K in keyof T]?: T[K];
+};
+type PartialUser = MyPartial<User>;
+// { name?: string, age?: number }
+type TUserKeys = keyof User;
+// 'name' | 'age'
+type TName = User['name'];
+// string
+type TAge = User['age'];
+// number
+type TUserValue = User[TUserKeys];
+// string | number
+```
+
+### Record<K, T>、Pick<T, K>
+
+```ts
+type MyRecord<K extends keyof any, T> = {
+  [P in K]: T;
+};
+type TKeyofAny = keyof any;
+// string | number | symbol
+type TKeys = 'a' | 'b' | 0;
+type TKeysUser = MyRecord<TKeys, User>;
+// {a: User, b: User, 0: User}
+```
 
 ## 项目中使用 ts
 
