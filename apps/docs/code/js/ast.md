@@ -1,5 +1,7 @@
 # AST
 
+[在线调试](https://astexplorer.net/)
+
 ## AST 基本结构
 
 AST 由很多 node 组成，每个 node 的结构类似：
@@ -10,7 +12,7 @@ node = {
   id: Object,
   params,
   body,
-}
+};
 ```
 
 node 的公共 interface：
@@ -74,14 +76,14 @@ babel 的 AST node 会多一些描述源码位置的额外属性（start、end�
 const MyVisitor = {
   Identifier: {
     enter() {
-      console.log("Called!");
+      console.log('Called!');
     },
   },
 };
 // 可简写成：
 const MyVisitorSimple = {
   Identifier() {
-    console.log("Called!");
+    console.log('Called!');
   },
 };
 ```
@@ -92,10 +94,10 @@ const MyVisitorSimple = {
 const MyVisitor = {
   Identifier: {
     enter() {
-      console.log("Entered!");
+      console.log('Entered!');
     },
     exit() {
-      console.log("Exited!");
+      console.log('Exited!');
     },
   },
 };
@@ -105,7 +107,7 @@ const MyVisitor = {
 
 ```js
 const MyVisitor = {
-  "ExportNamedDeclaration|Flow": function(path) {
+  'ExportNamedDeclaration|Flow': function (path) {
     // do ...
   },
 };
@@ -122,7 +124,7 @@ path 代表节点间的纽带
 ```js
 const MyVisitor = {
   Identifier(path) {
-    console.log(`Visiting: ${  path.node.name}`);
+    console.log(`Visiting: ${path.node.name}`);
   },
 };
 ```
@@ -132,14 +134,14 @@ const MyVisitor = {
 ```js
 const updateParamNameVisitor = {
   Identifier(path) {
-    if (path.node.name === this.paramsName) path.node.name = "x";
+    if (path.node.name === this.paramsName) path.node.name = 'x';
   },
 };
 const visitor = {
   FunctionDeclaration(path) {
     const param = path.node.params[0];
     const paramName = param.name;
-    param.name = "x";
+    param.name = 'x';
 
     path.traverse(updateParamNameVisitor, { paramName });
   },
@@ -158,8 +160,8 @@ const scope = {
   block: path.node,
   parentBlock: path.parent,
   parent: parentScope,
-  bindings: []
-}
+  bindings: [],
+};
 ```
 
 #### Bindings
@@ -180,8 +182,8 @@ const Bindings = {
   referencePaths: [path, path, path],
 
   constant: false,
-  constantViolations: [path]
-}
+  constantViolations: [path],
+};
 ```
 
 ### Generate
@@ -197,7 +199,7 @@ const Bindings = {
 ```js
 // npm install --save @babel/parser
 
-import parser from "@babel/parser";
+import parser from '@babel/parser';
 
 const code = `function square(n) {
   return n * n;
@@ -219,8 +221,8 @@ parser.parse(code);
 
 ```js
 parser.parse(code, {
-  sourceType: "module", // default: "script"  "module" or "script"   "module" will parse in strict mode and allow module declarations, "script" will not.
-  plugins: ["jsx"], // default: [] 暂时不支持第三方扩展
+  sourceType: 'module', // default: "script"  "module" or "script"   "module" will parse in strict mode and allow module declarations, "script" will not.
+  plugins: ['jsx'], // default: [] 暂时不支持第三方扩展
 });
 ```
 
@@ -228,8 +230,8 @@ parser.parse(code, {
 
 ```js
 // npm install --save @babel/traverse
-import parser from "@babel/parser";
-import traverse from "@babel/traverse";
+import parser from '@babel/parser';
+import traverse from '@babel/traverse';
 
 const code = `function square(n) {
   return n * n;
@@ -239,8 +241,8 @@ const ast = parser.parse(code);
 
 traverse(ast, {
   enter(path) {
-    if (path.node.type === "Identifier" && path.node.name === "n") {
-      path.node.name = "x";
+    if (path.node.type === 'Identifier' && path.node.name === 'n') {
+      path.node.name = 'x';
     }
   },
 });
@@ -252,13 +254,13 @@ lodash 式的 AST node 方法库，包含了构建、校验、转换
 
 ```js
 // npm install --save @babel/types
-import traverse from "@babel/traverse";
-import types from "@babel/types";
+import traverse from '@babel/traverse';
+import types from '@babel/types';
 
 traverse(ast, {
   enter(path) {
-    if (types.isIdentifier(path.node, { name: "n" })) {
-      path.node.name = "x";
+    if (types.isIdentifier(path.node, { name: 'n' })) {
+      path.node.name = 'x';
     }
   },
 });
@@ -269,21 +271,21 @@ traverse(ast, {
 单个节点类型定义类似：
 
 ```js
-defineType("BinaryExpression", {
-  builder: ["operator", "left", "right"],
+defineType('BinaryExpression', {
+  builder: ['operator', 'left', 'right'],
   fields: {
     operator: {
-      validate: assertValueType("string"),
+      validate: assertValueType('string'),
     },
     left: {
-      validate: assertNodeType("Expression"),
+      validate: assertNodeType('Expression'),
     },
     right: {
-      validate: assertNodeType("Expression"),
+      validate: assertNodeType('Expression'),
     },
   },
-  visitor: ["left", "right"],
-  aliases: ["Binary", "Expression"],
+  visitor: ['left', 'right'],
+  aliases: ['Binary', 'Expression'],
 });
 ```
 
@@ -294,21 +296,21 @@ BinaryExpression 定义拥有 builder
 ```js
 // builder: ["operator", "left", "right"]
 
-t.binaryExpression("*", t.identifier("a"), t.identifier("b"));
+t.binaryExpression('*', t.identifier('a'), t.identifier('b'));
 
 // 会生成一下 AST
 const Builders = {
-  type: "BinaryExpression",
-  operator: "*",
+  type: 'BinaryExpression',
+  operator: '*',
   left: {
-    type: "Identifier",
-    name: "a"
+    type: 'Identifier',
+    name: 'a',
   },
   right: {
-    type: "Identifier",
-    name: "b"
-  }
-}
+    type: 'Identifier',
+    name: 'b',
+  },
+};
 ```
 
 #### 校验
@@ -316,15 +318,15 @@ const Builders = {
 ```js
 fields = {
   operator: {
-    validate: assertValueType("string")
+    validate: assertValueType('string'),
   },
   left: {
-    validate: assertNodeType("Expression")
+    validate: assertNodeType('Expression'),
   },
   right: {
-    validate: assertNodeType("Expression")
-  }
-}
+    validate: assertNodeType('Expression'),
+  },
+};
 ```
 
 #### 构建节点
@@ -334,17 +336,17 @@ fields = {
 类型声明类似：
 
 ```js
-defineType("MemberExpression", {
-  builder: ["object", "property", "computed"], // 需要的参数
-  visitor: ["object", "property"],
-  aliases: ["Expression", "LVal"],
+defineType('MemberExpression', {
+  builder: ['object', 'property', 'computed'], // 需要的参数
+  visitor: ['object', 'property'],
+  aliases: ['Expression', 'LVal'],
   fields: {
     object: {
-      validate: assertNodeType("Expression"),
+      validate: assertNodeType('Expression'),
     },
     property: {
       validate(node, key, val) {
-        const expectedType = node.computed ? "Expression" : "Identifier";
+        const expectedType = node.computed ? 'Expression' : 'Identifier';
         assertNodeType(expectedType)(node, key, val);
       },
     },
@@ -570,8 +572,8 @@ Program(path) {
 
 ```js
 // npm install --save @babel/generator
-import parser from "@babel/parser";
-import generator from "@babel/generator";
+import parser from '@babel/parser';
+import generator from '@babel/generator';
 
 const code = `function square(n) {
   return n * n;
