@@ -58,6 +58,59 @@ corepack prepare pnpm@7.30.1 --activate
 - 压缩文件： https://nodejs.org/api/zlib.html
 - 文件系统交互： https://nodejs.org/api/fs.html
 
+## eventloop
+
+- Process.nextTick 的执行时机即是在同步任务执行完毕后，即将将 micro-task 推入栈中时优先会将 Process.nextTick 推入栈中进行执行。会在本次 EventLoop 中的所有 micro 之前执行进行优先执行。
+
+顺序：
+
+- setTimeout() 和 setInterval() 的调度回调函数
+- poll 轮询阶段，它主要会检测新的 I/O 相关的回调，需要注意的是这一阶段会存在阻塞（也就意味着这之后的阶段可能不会被执行）
+- check 阶段会检测 setImmediate() 回调函数在这个阶段进行执行
+- close callbacks 执行一系列关闭的回调函数，比如如：socket.on('close', ...)
+
+```js
+function timer() {
+  console.log('timer');
+}
+
+function immediate() {
+  console.log('immediate');
+}
+
+setTimeout(() => {
+  timer();
+}, 0);
+
+setImmediate(() => {
+  immediate();
+});
+// node 中(18.16.0)：
+// immediate
+// timer
+```
+
+> 也可能 timer 先出现，这是由于 setTimeout 的最小执行时间受到机器性能影响，若性能若则 setTimeout 可能执行的慢。
+
+```js
+function timer() {
+  console.log('timer');
+}
+
+function immediate() {
+  console.log('immediate');
+}
+for (let i = 0; i < 100; i++) {
+  setTimeout(() => {
+    timer();
+  }, 0);
+
+  setImmediate(() => {
+    immediate();
+  });
+}
+```
+
 ## 常用
 
 ### npm
