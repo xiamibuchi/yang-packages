@@ -1,36 +1,28 @@
 # 动态加载 js
 
-import 已经支持动态倒入 js。除此之外，可以动态插入 script 标签加载 js。
+## import
 
-需要注意：
+```js
+import('remote_js_href');
+```
+
+## 动态插入 script 标签
 
 1. 防止 js 重复加载
 2. 判断 js 是否加载成功
 
 ```js
-function bindListener(script, callback) {
-  if (script.addEventListener) {
-    script.addEventListener(
-      "load",
-      () => {
-        script.setAttribute("loaded", true);
-        callback && callback();
-      },
-      false
-    );
-  } else if (script.attachEvent) {
-    script.attachEvent("onreadystatechange", () => {
-      const target = window.event.srcElement;
-      if (target.readyState === "loaded") {
-        script.setAttribute("loaded", true);
-        callback && callback();
-      }
-    });
-  }
-}
+const bindListener = (script, callback) => {
+  const onLoaded = () => {
+    script.setAttribute('loaded', true);
+    script.removeEventListener('load', onLoaded);
+    callback && callback();
+  };
+  script.addEventListener('load', onLoaded, false);
+};
 
-export const loadScript = (src, callback) => {
-  // 业务内的 js path 前缀可能有其他约定
+export const loadScript = (src) => {
+  // 业务内的 js path 前缀可能不同
   const origin = window.location.origin;
   if (!src.startsWith(origin)) {
     src = origin + src;
@@ -39,17 +31,16 @@ export const loadScript = (src, callback) => {
   return new Promise((resolve) => {
     const targetScript = document.querySelector(`script[src="${src}"]`);
     if (targetScript) {
-      if (targetScript.getAttribute("loaded")) {
-        // 已载入便不再加载
+      if (targetScript.getAttribute('loaded')) {
+        // 防止重复加载
         resolve();
       } else {
         bindListener(targetScript, resolve);
       }
     } else {
-      const script = document.createElement("script");
-      const head = document.getElementsByTagName("head")[0];
-      script.type = "text/javascript";
-      script.charset = "UTF-8";
+      const script = document.createElement('script');
+      const head = document.getElementsByTagName('head')[0];
+      script.type = 'text/javascript';
       script.src = src;
       bindListener(script, resolve);
       head.appendChild(script);
