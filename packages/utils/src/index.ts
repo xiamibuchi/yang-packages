@@ -1,3 +1,4 @@
+export * from './browser';
 export * from './i18n';
 export * from './vue';
 export * from './arrays';
