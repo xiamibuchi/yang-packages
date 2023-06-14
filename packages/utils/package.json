@@ -4,7 +4,7 @@
   "license": "MIT",
   "main": "src/index.ts",
   "scripts": {
-    "test": "pnpm run depcruise",
+    "unit:test": "pnpm run depcruise",
     "depcruise": "depcruise src --config .dependency-cruiser.js"
   },
   "peerDependencies": {

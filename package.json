@@ -14,7 +14,7 @@
     "clean:dist": "rimraf dist",
     "build": "pnpm run -C internal/build start",
     "build:icons": "turbo @syseven/icons-vue#build",
-    "test": "vitest",
+    "test": "pnpm run -r unit:test && vitest",
     "test:coverage": "vitest --coverage"
   },
   "lint-staged": {
