@@ -1046,7 +1046,110 @@ function notifyMe() {
 设备运动传感器数据
 
 ```js
-addEventListener("devicemotion", (event) => {});
+addEventListener('devicemotion', (event) => {});
 
 ondevicemotion = (event) => {};
+```
+
+### service worker
+
+- 无法访问 DOM
+- 通过 postMessage 通信
+- 代码不会阻塞
+- 设置缓存
+
+> 出于安全问题的考虑，Service Worker 只能被使用在 https 或者本地环境下。
+
+```js
+navigator.serviceWorker
+  .register('/sw.js')
+  .then((registration) => {
+    // 注册成功
+    console.log('Service Worker 注册成功，作用域是: ', registration.scope);
+  })
+  .catch((err) => {
+    // 注册失败
+    console.log('Service Worker 注册失败: ', err);
+  });
+```
+
+```js
+// sw.js
+// 打开缓存 sw_cache，添加文件
+this.addEventListener('install', (event) => {
+  console.log('install');
+  // event.waitUntil 让 Service Worker 等待我们的缓存操作完成
+  event.waitUntil(
+    caches.open('sw_cache').then((cache) => {
+      return cache.addAll(['/**.css', '/**.jpg', './**.js']).catch((error) => {
+        console.log('资源缓存失败:', error);
+      });
+    })
+  );
+});
+
+// 拦截请求并缓存
+this.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      // 缓存中有对应的资源，直接返回
+      if (response) {
+        return response;
+      } // 缓存中没有对应的资源，从网络获取
+      return fetch(event.request).catch(() => {
+        // 网络获取失败，返回离线页面
+        return caches.match('/offline.html');
+      });
+    })
+  );
+});
+```
+
+当 Service Worker 文件有了改动，浏览器就会认为 Service Worker 有更新，然后就会开始更新整个缓存流程：
+
+- 重新安装 Service Worker，然后在新的 Service Worker
+- 激活
+
+```js
+this.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.filter((cacheName) => {
+          // 如果这个缓存不是我们新创建的缓存，那么就把它删除
+          return cacheName !== 'my-new-cache';
+        })
+      );
+    })
+  );
+});
+```
+
+即使 Service Worker 已经更新了，用户看到的可能仍然是旧的页面内容。
+这是因为，虽然新的 Service Worker 已经激活，但是旧的 Service Worker 控制的页面（也就是用户当前打开的页面）在用户关闭浏览器或者刷新页面之前，仍然会被旧的 Service Worker 控制。所以，如果你想让用户立即看到最新的内容，这里就需要处理一下。
+常见的处理方法有两种：立即获取控制权，静默更新站点内容；页面上提示用户手动刷新以更新网站缓存。
+这两种方式各有优缺点，你需要根据你的用户群体和你网站的特性来决定用哪种方案。下面我会简单介绍一下这两种方案，你可以根据需要自行选择。
+
+```js
+// 立即获取控制权
+this.addEventListener('activate', (event) => {
+  event.waitUntil(self.clients.claim());
+});
+
+const self = this;
+
+// 提示用户手动刷新页面
+this.addEventListener('install', (event) => {
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    self.clients.matchAll().then((clients) => {
+      clients.forEach((client) => {
+        client.postMessage({ type: 'SW_UPDATED' });
+      });
+    })
+  );
+});
 ```
