@@ -8,6 +8,8 @@
 
 ## install
 
+[release](https://nodejs.org/download/release/)
+
 [volta](https://volta.sh/)
 
 ```shell
