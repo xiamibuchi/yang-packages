@@ -870,6 +870,7 @@ fileInput.addEventListener('change', () => {
 - error
 - online / offline
 - click
+- contextmenu
 - mouseover
 - dblclick
 - selectstart
