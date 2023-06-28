@@ -47,6 +47,21 @@ bookmark_border](https://developers.google.com/search/blog/2019/07/repp-oss?hl=z
 
 通过 HTTP header 告知 robot
 
+## canonical + alternate
+
+canonical 用于指示页面地址重复但内容相同的页面：
+
+- `https://www.shenyang.com`
+- `https://www.shenyang.com?abc=1`
+- `https://www.shenyang.com/home-page?abc=1`
+
+以上三个地址实际都指向首页，可以用 `<link rel="canonical" href="https://www.shenyang.com" />` 告知爬虫其他的页面只是首页的变体。
+
+alternate 用来告诉爬虫当前页的变体，如多语言、桌面和移动端:
+
+- `<link rel="alternate" hreflang="en-US" href="https://www.shenyang.com?lang=en-US" />`
+- `<link rel="alternate" hreflang="zh-CN" href="https://www.shenyang.com?lang=zh-CN" />`
+
 ## 使用 schema.org + microdata 在 Google+ 上提供丰富的摘要
 
 ```html
@@ -93,12 +108,20 @@ bookmark_border](https://developers.google.com/search/blog/2019/07/repp-oss?hl=z
 
 https://developers.google.com/search/docs/beginner/get-started
 
-## Google Search
+## 搜索平台
 
-### Search Console
+### Google Search
 
 [Search Console](https://developers.google.com/search/docs/monitor-debug/search-console-start?hl=zh-cn)
 
 Google 推出的一款工具，可以帮助任何拥有网站的用户了解其网站在 Google 搜索中的表现，以及如何改进网站在 Google 搜索上的呈现效果，使网站获得更相关的流量。
 
 Search Console 提供了与 Google 如何抓取网站、将网站编入索引和呈现网站相关的信息。这有助于网站所有者监控和优化其网站在 Google 搜索上的表现。
+
+### 百度搜索资源平台
+
+https://ziyuan.baidu.com/linksubmit
+
+### bing
+
+https://www.bing.com/webmasters/home
