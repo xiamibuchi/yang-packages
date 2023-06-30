@@ -11,8 +11,6 @@
     "serve": "webpack serve --config webpack.config.mjs"
   },
   "keywords": [],
-  "author": "",
-  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.22.1",
     "@babel/plugin-transform-runtime": "^7.22.2",
