@@ -1131,40 +1131,40 @@ function* fib(max) {
 
 #### 柯里化
 
-柯里化[Currying]，将接受多个参数的函数变换成接受部分参数的函数，并且返回接受余下的参数而且返回结果的新函数的技术。
-
-函数的柯里化能够让你重新组合你的应用,把你的复杂功能拆分成一个一个的小部分,每一个小的部分都是简单的,便于理解的,而且是容易测试的
+柯里化[Currying]，将接受多个参数的函数变换成接受部分参数的函数，并且返回接受余下的参数而且返回结果的新函数的技术，使应用易于组合、测试。
 
 ```js
-function currying(fn) {
-  let allArgs = [];
+const curryingAdd = function () {
+  const allArgs = [];
+  const next = (...args) => {
+    allArgs.push(...args);
+    return curryedFn;
+  };
 
-  function next(...rest) {
-    const args = Array.prototype.slice.call(rest);
-    allArgs = allArgs.concat(args);
-    return next;
-  }
-  // 字符类型
   next.toString = function () {
-    return Number(...allArgs);
+    const total = allArgs.reduce((total, num) => total + num, 0);
+    return total;
   };
-  // 数值类型
+
   next.valueOf = function () {
-    return Number(null, allArgs);
+    const total = allArgs.reduce((total, num) => total + num, 0);
+    return total;
   };
-
   return next;
-}
+};
+const add = curryingAdd();
+`${add(1)(2)}`; // '3'
 
-function curry(fn, ...args) {
-  return (..._arg) => {
-    return fn(...args, ..._arg);
+const currying = (fn) => {
+  const judge = (...args) => {
+    if (args.length === fn.length) {
+      return fn(...args);
+    } else {
+      return (...arg) => judge(...args, ...arg);
+    }
   };
-}
-
-const betterShowMsg = betterCurryingHelper(showMsg);
-betterShowMsg('dreamapple', 22, 'apple'); // My name is dreamapple, I'm 22 years old,  and I like eat apple
-betterShowMsg('dreamapple', 22)('apple'); // My name is dreamapple, I'm 22 years old,  and I like eat apple
+  return judge;
+};
 ```
 
 #### 函数的四种调用模式
