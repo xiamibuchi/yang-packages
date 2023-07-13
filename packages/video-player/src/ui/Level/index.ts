@@ -46,7 +46,6 @@ export default class Level {
     if (!current) {
       this.el.classList.add('hide');
     }
-    this.player.setPlayerSrc();
   }
   private _initLevelList() {
     const player = this.player;

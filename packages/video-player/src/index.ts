@@ -81,24 +81,27 @@ export class VideoPlayer extends Core {
     this.root = this.options.el;
 
     const { autoplayMuted } = _options;
-    // 播放器容器
-    this.playerBox = createElement('div', 'sy-player');
-    // video
-    this.video = createElement('video', 'sy-player__video') as HTMLVideoElement;
-    this.playerBox.appendChild(this.video);
-
-    this._initBaseDomEvents();
-    this._initDom();
-    this._initEvents();
-
-    this._render();
-
     this.autoplayStrategy = this.install(AutoplayStrategy, {
       autoplayMuted,
     });
-
+    // 播放器容器
+    this._initEvents();
+    this.playerBox = createElement('div', 'sy-player');
+    // video
+    this._initDom();
+    this.root.appendChild(this.playerBox);
+    this.emit(UiEvents.UI_RENDERED);
+    this.video = createElement('video', 'sy-player__video') as HTMLVideoElement;
     this.attachMedia(this.video);
+    if (this.options.fit) {
+      this.setFit(this.options.fit);
+    }
+    this._initBaseDomEvents();
+
+    this.playerBox.appendChild(this.video);
     this._setPlayerOptions(_options);
+
+    this.setPlayerSrc();
   }
 
   getLang(key: string) {
@@ -190,7 +193,7 @@ export class VideoPlayer extends Core {
 
     this.currentLevelName = level.uri;
 
-    this.once(this.Events.CANPLAY, () => {
+    this.once(VideoEvents.CANPLAY, () => {
       if (record.currentTime) {
         this.currentTime = record.currentTime;
       }
@@ -231,11 +234,6 @@ export class VideoPlayer extends Core {
     }
     this.plugins[pluginName] = plugin;
     return plugin;
-  }
-
-  private _render() {
-    this.root.appendChild(this.playerBox);
-    this.emit(UiEvents.UI_RENDERED);
   }
   private _initBaseDomEvents() {
     const { root } = this;
@@ -282,18 +280,11 @@ export class VideoPlayer extends Core {
     }
   }
   private _initDom() {
-    if (this.options.fit) {
-      this.setFit(this.options.fit);
-    }
     this.uiStart = new UiStart(this);
     this.uiLoading = new UiLoading(this);
     this.uiPoster = new UiPoster(this);
     this.uiMark = new UiMark(this);
     this.controls = new Controls(this);
-
-    if (!this.playerBox) {
-      return;
-    }
   }
   private _initEvents() {
     this.on(PlayerEvents.OPTIONS_CHANGE, () => {
