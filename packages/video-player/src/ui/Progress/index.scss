@@ -1,0 +1,74 @@
+@use '../_var.scss' as *;
+
+$padding: 15px;
+
+.sy-player__progress {
+  position: absolute;
+  top: 0;
+  left: $padding;
+  width: calc(100% - #{$padding * 2});
+  height: 2px;
+  margin: 1px 0;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  touch-action: none;
+  &:hover {
+    height: 4px;
+    margin: 0;
+    .sy-player__progress-dot {
+      display: block;
+    }
+  }
+}
+
+.sy-player__progress-played {
+  position: relative;
+  width: 0;
+  height: 100%;
+  background: #14b9c8;
+  z-index: $zIndex-controls;
+}
+
+.sy-player__progress-dot {
+  display: none;
+  position: absolute;
+  right: -3px;
+  top: -3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background-color: #78e1eb;
+  border: 2px solid #14b9c8;
+  box-sizing: border-box;
+  &.active {
+    box-shadow: 0 0 0 10px rgba(120, 225, 235, 0.3);
+    display: block;
+  }
+}
+
+.sy-player__progress-buffered {
+  position: absolute;
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.sy-player__progress-mouse {
+  position: absolute;
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+@media #{$mobileLayout} {
+  .sy-player__progress {
+    position: relative;
+    top: 0;
+    left: 0;
+    flex: 1;
+  }
+}

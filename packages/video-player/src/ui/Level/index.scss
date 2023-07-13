@@ -1,0 +1,68 @@
+@use '../_var.scss' as *;
+
+.sy-player__level-wrap {
+  position: relative;
+  margin-left: $controls-item-margin;
+}
+
+.sy-player__level-result {
+  cursor: pointer;
+  color: $color-text;
+  font-weight: 600;
+  @media #{$mobileLayout} {
+    font-weight: 400;
+  }
+}
+
+.sy-player__level-image {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+
+.sy-player__level-menu {
+  color: $color-text;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+  bottom: calc(100% + 25px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 0;
+}
+
+.sy-player__level-menu-item {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 8px 15px;
+  &:hover {
+    color: #14b9c8;
+    background-color: rgba(20, 20, 20, 0.5);
+  }
+}
+
+.sy-player__level-menu-item.is-active {
+  color: #14b9c8;
+  opacity: 1;
+  font-weight: 600;
+  @media #{$mobileLayout} {
+    font-weight: 400;
+  }
+}
+
+@media #{$mobileLayout} {
+  .sy-player__level-menu {
+    bottom: calc(100% + 15px);
+  }
+  .sy-player__level-menu {
+    padding: 3px 0;
+  }
+  .sy-player__level-menu-item {
+    padding: 5px 6px;
+  }
+}

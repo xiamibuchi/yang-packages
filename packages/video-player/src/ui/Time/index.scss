@@ -1,0 +1,8 @@
+@use '../_var.scss' as *;
+
+.sy-player__time {
+  color: $color-text;
+  display: flex;
+  align-items: center;
+  margin-right: $controls-item-margin;
+}

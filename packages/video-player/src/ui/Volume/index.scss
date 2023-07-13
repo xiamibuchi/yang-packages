@@ -1,0 +1,53 @@
+@use '../_var.scss' as *;
+
+.sy-player__volume {
+  position: relative;
+  cursor: pointer;
+  margin-left: $controls-item-margin;
+}
+
+.sy-player__volume-bar-wrap {
+  position: absolute;
+  padding: 12px 15px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+  bottom: calc(100% + 25px);
+  left: -8px;
+}
+
+@media #{$mobileLayout} {
+  .sy-player__volume-bar-wrap {
+    bottom: calc(100% + 15px);
+  }
+}
+
+.sy-player__volume-bar {
+  position: relative;
+  width: 4px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.sy-player__volume-bar-active {
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  width: 4px;
+  background: #14b9c8;
+}
+
+.sy-player__volume-bar-dot {
+  position: absolute;
+  right: -3px;
+  top: -6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background-color: #78e1eb;
+  border: 2px solid #14b9c8;
+  box-sizing: border-box;
+}
+
+.sy-player__volume-muted-box {
+  color: $color-text;
+}

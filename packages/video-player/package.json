@@ -1,0 +1,27 @@
+{
+  "name": "@syseven/video-player",
+  "version": "0.0.1",
+  "description": "video player based on hls.js",
+  "main": "/dist/player.es.js",
+  "module": "/dist/player.es.js",
+  "types": "./dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": "./dist/player.es.js",
+    "./dist/*": "./dist/*"
+  },
+  "scripts": {
+    "stub": "vite build && pnpm run build:types",
+    "build": "pnpm run opt:icons && vite build && pnpm run build:types",
+    "opt:icons": "svgo ./src/icons/*.svg",
+    "build:types": "vue-tsc --declaration --emitDeclarationOnly",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "eventemitter3": "^5.0.1",
+    "hls.js": "^1.4.8"
+  }
+}

@@ -1,0 +1,27 @@
+@use '../_var.scss' as *;
+
+.sy-player__play--big,
+.sy-player__pause--big {
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  margin: auto;
+  z-index: $zIndex-controls;
+  font-size: 40px;
+  width: 1em;
+  height: 1em;
+  color: $color-text;
+  .svg-icon {
+    filter: drop-shadow(2px 2px 10px rgba(0, 0, 0, 0.5));
+  }
+}
+
+@media #{$mobileLayout} {
+  .sy-player__play--big,
+  .sy-player__pause--big {
+    font-size: 30px;
+  }
+}

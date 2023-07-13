@@ -1,0 +1,55 @@
+@use './_var.scss' as *;
+
+.sy-player__play-pause {
+  order: 0;
+}
+.sy-player__time {
+  order: 1;
+}
+.sy-player__placeholder {
+  flex: 1;
+  order: 3;
+}
+.sy-player__progress {
+  order: 4;
+}
+.sy-player__volume {
+  order: 5;
+}
+.sy-player__level-wrap {
+  order: 6;
+}
+.sy-player__fullscreen-box {
+  order: 7;
+}
+
+.sy-player {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  word-break: initial;
+  line-height: 1em;
+  user-select: none;
+  .hide {
+    display: none;
+  }
+  .svg-icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: top;
+    fill: currentColor;
+    overflow: hidden;
+  }
+}
+
+.sy-player__video {
+  width: 100%;
+  height: 100%;
+}
+
+@media #{$mobileLayout} {
+  .sy-player__placeholder {
+    display: none;
+  }
+}

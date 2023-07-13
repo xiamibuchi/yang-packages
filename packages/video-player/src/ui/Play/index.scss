@@ -1,0 +1,11 @@
+@use '../_var.scss' as *;
+
+.sy-player__play-pause {
+  position: relative;
+  margin-right: $controls-item-margin;
+  color: $color-text;
+  cursor: pointer;
+  @media #{$mobileLayout} {
+    display: none;
+  }
+}
