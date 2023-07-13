@@ -11,7 +11,7 @@ const levels = [
     loudness: '-16.543',
   },
   {
-    uri: 'https://d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4',
+    uri: 'https://vjs.zencdn.net/v/oceans.mp4',
     name: '360p',
     loudness: '-16.552',
   },
@@ -22,11 +22,11 @@ onMounted(() => {
   }
   new VideoPlayer({
     el: root.value,
-    autoplay: false,
+    autoplay: true,
     autoplayMuted: true,
-    src: 'https://d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4',
+    src: 'https://vjs.zencdn.net/v/oceans.mp4',
     levels,
-    muted: false,
+    muted: true,
     preload: 'none',
   });
 });
