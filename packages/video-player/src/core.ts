@@ -21,13 +21,15 @@ interface CoreConfig {
   muted: boolean;
   playsinline: boolean;
   preload: PlayerOptions['preload'];
+  playbackRate: HTMLVideoElement['playbackRate'];
 }
 
 const DEFAULT_CONFIG: CoreConfig = {
   autoplay: true,
   muted: true,
   playsinline: true,
-  preload: 'auto' as CoreConfig['preload'],
+  preload: 'auto',
+  playbackRate: 1,
 };
 
 const normalizeConfig = (config: CoreConfig) => {
@@ -42,7 +44,6 @@ export class Core extends EventEmitter {
   config: CoreConfig;
   video: HTMLVideoElement | undefined;
   hls?: Hls;
-  Events: Record<string, string>;
   _videoEvents?: Array<() => void>;
   _windowEvents?: Array<() => void>;
   _canvas?: HTMLCanvasElement;
@@ -52,11 +53,6 @@ export class Core extends EventEmitter {
     super();
     this.plugins = {};
     this.config = normalizeConfig(config);
-    this.Events = {
-      ...VideoEvents,
-      ...PlayerEvents,
-      ...WindowEvents,
-    };
     this._removeListenerList = [];
   }
   _initVideoEvents() {
@@ -165,7 +161,7 @@ export class Core extends EventEmitter {
     const { video } = this;
 
     if (!video) {
-      this.once(this.Events.CANPLAY, () => {
+      this.once(VideoEvents.CANPLAY, () => {
         this.currentTime = currentTime;
       });
       return;
@@ -315,15 +311,41 @@ export class Core extends EventEmitter {
   get fullscreen() {
     return Boolean(document.fullscreen || document.fullscreenElement?.nodeName);
   }
+  // playbackRate
+  get playbackRate() {
+    return this.video?.playbackRate || 1;
+  }
+  set playbackRate(playbackRate: number) {
+    if (this.playbackRate === playbackRate) {
+      return;
+    }
+    if (typeof playbackRate !== 'number') {
+      return;
+    }
+    if (playbackRate < 0) {
+      return;
+    }
+    if (playbackRate === Number.POSITIVE_INFINITY) {
+      return;
+    }
+    if (!this.video) {
+      this.once(PlayerEvents.VIDEO_ATTACHED, () => {
+        this.playbackRate = playbackRate;
+      });
+      return;
+    }
+    this.video.defaultPlaybackRate = playbackRate;
+    this.video.playbackRate = playbackRate;
+  }
 
   attachMedia(video: HTMLVideoElement) {
+    this._initVideoEvents();
+    this._initWindowEvent();
     this.video = video;
     this.emit(PlayerEvents.VIDEO_ATTACHED);
     this.muted = this.config.muted;
     this.playsinline = this.config.playsinline;
     this.preload = this.config.preload;
-    this._initVideoEvents();
-    this._initWindowEvent();
     if (this.config.autoplay) {
       this.play();
     }

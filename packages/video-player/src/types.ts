@@ -46,4 +46,5 @@ export interface PlayerOptions {
   levels: VideoLevel[];
   currentTime: number;
   lang: string;
+  playbackRate: HTMLVideoElement['playbackRate'];
 }
