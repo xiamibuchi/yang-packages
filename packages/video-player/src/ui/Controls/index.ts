@@ -12,6 +12,7 @@ import UiProgress from '../Progress';
 import UiVolume from '../Volume';
 import UiPlaybackRate from '../PlaybackRate';
 import UiLevel from '../Level';
+import UiCssFullscreen from '../CssFullscreen';
 import UiFullscreen from '../Fullscreen';
 // types
 import type { VideoPlayer } from '../../index';
@@ -25,6 +26,7 @@ export default class Controls {
   uiVolume?: UiVolume;
   UiPlaybackRate?: UiPlaybackRate;
   uiLevel?: UiLevel;
+  uiCssFullscreen?: UiCssFullscreen;
   uiFullscreen?: UiFullscreen;
 
   private _timer: number | null;
@@ -45,6 +47,7 @@ export default class Controls {
     this.UiPlaybackRate = new UiPlaybackRate(this.player);
     this.uiLevel = new UiLevel(this.player);
     this.uiVolume = new UiVolume(this.player);
+    this.uiCssFullscreen = new UiCssFullscreen(this.player);
     this.uiFullscreen = new UiFullscreen(this.player);
 
     this.el.appendChild(placeholder);
@@ -54,6 +57,7 @@ export default class Controls {
     this.el.appendChild(this.uiVolume.el);
     this.el.appendChild(this.UiPlaybackRate.el);
     this.el.appendChild(this.uiLevel.el);
+    this.el.appendChild(this.uiCssFullscreen.el);
     this.el.appendChild(this.uiFullscreen.el);
 
     this.player.appendChild(this.el);
