@@ -385,4 +385,6 @@ export class VideoPlayer extends Core {
   }
 }
 
+export { PlayerEvents, UiEvents, VideoEvents, WindowEvents } from './constants';
+
 export default VideoPlayer;
