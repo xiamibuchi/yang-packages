@@ -48,4 +48,5 @@ export interface PlayerOptions {
   currentTime: number;
   lang: string;
   playbackRate: HTMLVideoElement['playbackRate'];
+  loop: HTMLMediaElement['loop'];
 }

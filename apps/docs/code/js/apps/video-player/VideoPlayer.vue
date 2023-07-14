@@ -23,9 +23,10 @@ onMounted(() => {
   new VideoPlayer({
     el: root.value,
     fillMode: 'auto',
+    loop: true,
     autoplay: false,
     autoplayMuted: true,
-    src: levels[0].uri,
+    src: levels[1].uri,
     levels,
     muted: true,
     preload: 'none',

@@ -16,12 +16,13 @@ interface EventListener {
 
 interface CoreConfig {
   /** video element */
-  video?: HTMLVideoElement;
+  video?: HTMLMediaElement;
   autoplay: boolean;
   muted: boolean;
   playsinline: boolean;
   preload: PlayerOptions['preload'];
-  playbackRate: HTMLVideoElement['playbackRate'];
+  playbackRate: HTMLMediaElement['playbackRate'];
+  loop: HTMLMediaElement['loop'];
 }
 
 const DEFAULT_CONFIG: CoreConfig = {
@@ -30,6 +31,7 @@ const DEFAULT_CONFIG: CoreConfig = {
   playsinline: true,
   preload: 'auto',
   playbackRate: 1,
+  loop: false,
 };
 
 const normalizeConfig = (config: CoreConfig) => {
@@ -336,6 +338,22 @@ export class Core extends EventEmitter {
     }
     this.video.defaultPlaybackRate = playbackRate;
     this.video.playbackRate = playbackRate;
+  }
+  // loop
+  get loop() {
+    return this.video?.loop || false;
+  }
+  set loop(loop: CoreConfig['loop']) {
+    if (typeof loop !== 'boolean') {
+      return;
+    }
+    if (!this.video) {
+      this.once(PlayerEvents.VIDEO_ATTACHED, () => {
+        this.loop = loop;
+      });
+      return;
+    }
+    this.video.loop = loop;
   }
 
   attachMedia(video: HTMLVideoElement) {

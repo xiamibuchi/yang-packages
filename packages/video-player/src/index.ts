@@ -379,6 +379,9 @@ export class VideoPlayer extends Core {
         this.currentTime = options.currentTime;
       }
     }
+    if (typeof options.loop === 'boolean') {
+      this.loop = options.loop;
+    }
   }
 }
 
