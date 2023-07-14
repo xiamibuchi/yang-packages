@@ -36,6 +36,7 @@ export interface PlayerOptions {
   playsinline: boolean;
   preload: HTMLVideoElement['preload'] | boolean;
   fit: ObjectFit;
+  fillMode?: 'auto';
   poster: string;
   posterFit: ObjectFit;
   controls: boolean;

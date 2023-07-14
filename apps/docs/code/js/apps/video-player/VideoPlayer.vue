@@ -22,9 +22,10 @@ onMounted(() => {
   }
   new VideoPlayer({
     el: root.value,
-    autoplay: true,
+    fillMode: 'auto',
+    autoplay: false,
     autoplayMuted: true,
-    src: 'https://vjs.zencdn.net/v/oceans.mp4',
+    src: levels[0].uri,
     levels,
     muted: true,
     preload: 'none',

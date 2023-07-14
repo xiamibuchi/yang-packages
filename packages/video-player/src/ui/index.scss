@@ -34,6 +34,16 @@
   word-break: initial;
   line-height: 1em;
   user-select: none;
+  &.sy-player--fill-auto {
+    height: 0;
+    .sy-player__video {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
   .hide {
     display: none;
   }

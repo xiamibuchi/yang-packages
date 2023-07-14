@@ -38,6 +38,9 @@ const DEFAULT_OPTIONS = {
 };
 
 export class VideoPlayer extends Core {
+  _resizeTimer: number | null = null;
+  _lastRatio = 0;
+
   options: PlayerOptions;
   autoplayStrategy?: AutoplayStrategy;
 
@@ -206,6 +209,43 @@ export class VideoPlayer extends Core {
     this.emit(PlayerEvents.AFTER_SET_LEVEL);
   }
 
+  resize() {
+    if (!this.playerBox) {
+      return;
+    }
+    if (!this.video) {
+      return;
+    }
+    if (this._resizeTimer) {
+      clearTimeout(this._resizeTimer);
+      this._resizeTimer = null;
+    }
+    this._resizeTimer = window.setTimeout(() => {
+      if (this.options.fillMode === 'auto') {
+        const width = this.video.videoWidth;
+        const height = this.video.videoHeight;
+        if (!width || typeof width !== 'number') {
+          return;
+        }
+        if (!height || typeof height !== 'number') {
+          return;
+        }
+        if (width < 10 || height < 10) {
+          return;
+        }
+        const ratio = height / width;
+        if (ratio === this._lastRatio) {
+          return;
+        }
+        this.playerBox.classList.add('sy-player--fill-auto');
+        this.playerBox.style.paddingBottom = `${ratio * 100}%`;
+      } else {
+        this.playerBox.classList.remove('sy-player--fill-auto');
+        this.playerBox.style.paddingBottom = '';
+      }
+    }, 100);
+  }
+
   setOptions(options: Partial<PlayerOptions>) {
     this.options = {
       ...this.options,
@@ -292,12 +332,14 @@ export class VideoPlayer extends Core {
       if (typeof config.fit === 'string') {
         this.setFit(config.fit);
       }
+      this.resize();
     });
     this.on(PlayerEvents.BEFORE_SET_SRC, () => {
       this.isStopUpdateCurrentTimeUi = true;
     });
     this.on(PlayerEvents.AFTER_SET_SRC, () => {
       this.isStopUpdateCurrentTimeUi = false;
+      this.resize();
     });
     this.once(PlayerEvents.LOAD_SOURCE, () => {
       this.volume = this.options.volume;
@@ -306,6 +348,9 @@ export class VideoPlayer extends Core {
     });
     this.on(VideoEvents.VOLUME_CHANGE, () => {
       this.emit(UiEvents.UI_VOLUME_UPDATE);
+    });
+    this.on(VideoEvents.CANPLAY, () => {
+      this.resize();
     });
     this.on(PlayerEvents.BEFORE_DESTROY, this.destroy);
     this.on(UiEvents.UI_USER_PLAY, () => {
