@@ -322,7 +322,7 @@ export class Core extends EventEmitter {
     if (typeof playbackRate !== 'number') {
       return;
     }
-    if (playbackRate < 0) {
+    if (playbackRate <= 0) {
       return;
     }
     if (playbackRate === Number.POSITIVE_INFINITY) {
