@@ -16,11 +16,14 @@
 .sy-player__volume {
   order: 5;
 }
-.sy-player__level-wrap {
+.sy-player__playbackrate-wrap {
   order: 6;
 }
-.sy-player__fullscreen-box {
+.sy-player__level-wrap {
   order: 7;
+}
+.sy-player__fullscreen-box {
+  order: 8;
 }
 
 .sy-player {

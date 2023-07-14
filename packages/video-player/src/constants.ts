@@ -6,6 +6,7 @@ export enum VideoEvents {
   DURATION_CHANGE = 'durationchange',
   TIMEUPDATE = 'timeupdate',
   PROGRESS = 'progress',
+  RATE_CHANGE = 'ratechange',
   VOLUME_CHANGE = 'volumechange',
   LOAD_START = 'loadstart',
   WAITING = 'waiting',

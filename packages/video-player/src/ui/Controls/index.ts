@@ -10,6 +10,7 @@ import UiPlay from '../Play';
 import UiTime from '../Time';
 import UiProgress from '../Progress';
 import UiVolume from '../Volume';
+import UiPlaybackRate from '../PlaybackRate';
 import UiLevel from '../Level';
 import UiFullscreen from '../Fullscreen';
 // types
@@ -21,8 +22,9 @@ export default class Controls {
   uiPlay?: UiPlay;
   uiTime?: UiTime;
   uiProgress?: UiProgress;
-  uiLevel?: UiLevel;
   uiVolume?: UiVolume;
+  UiPlaybackRate?: UiPlaybackRate;
+  uiLevel?: UiLevel;
   uiFullscreen?: UiFullscreen;
 
   private _timer: number | null;
@@ -40,15 +42,17 @@ export default class Controls {
     this.uiPlay = new UiPlay(this.player);
     this.uiTime = new UiTime(this.player);
     this.uiProgress = new UiProgress(this.player);
+    this.UiPlaybackRate = new UiPlaybackRate(this.player);
     this.uiLevel = new UiLevel(this.player);
-    this.uiFullscreen = new UiFullscreen(this.player);
     this.uiVolume = new UiVolume(this.player);
+    this.uiFullscreen = new UiFullscreen(this.player);
 
     this.el.appendChild(placeholder);
     this.el.appendChild(this.uiPlay.el);
     this.el.appendChild(this.uiTime.el);
     this.el.appendChild(this.uiProgress.el);
     this.el.appendChild(this.uiVolume.el);
+    this.el.appendChild(this.UiPlaybackRate.el);
     this.el.appendChild(this.uiLevel.el);
     this.el.appendChild(this.uiFullscreen.el);
 
