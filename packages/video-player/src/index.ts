@@ -107,6 +107,16 @@ export class VideoPlayer extends Core {
     this.setPlayerSrc();
   }
 
+  get isLive() {
+    if (this.options.isLive === true) {
+      return true;
+    }
+    if (this.duration === Number.POSITIVE_INFINITY) {
+      return true;
+    }
+    return false;
+  }
+
   getLang(key: string) {
     return getLang(this.options.lang, key);
   }
@@ -311,6 +321,9 @@ export class VideoPlayer extends Core {
         this.emit(UiEvents.UI_FOUCS);
       });
       this.addEventListener(this.video, 'click', () => {
+        if (this.isLive) {
+          return;
+        }
         if (this.paused) {
           this.emit(UiEvents.UI_USER_PLAY);
         } else {

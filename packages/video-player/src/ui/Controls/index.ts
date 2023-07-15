@@ -53,7 +53,9 @@ export default class Controls {
     this.el.appendChild(placeholder);
     this.el.appendChild(this.uiPlay.el);
     this.el.appendChild(this.uiTime.el);
-    this.el.appendChild(this.uiProgress.el);
+    if (!this.player.isLive) {
+      this.el.appendChild(this.uiProgress.el);
+    }
     this.el.appendChild(this.uiVolume.el);
     this.el.appendChild(this.UiPlaybackRate.el);
     this.el.appendChild(this.uiLevel.el);

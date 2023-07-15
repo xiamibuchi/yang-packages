@@ -22,6 +22,7 @@ onMounted(() => {
   }
   new VideoPlayer({
     el: root.value,
+    isLive: true,
     fillMode: 'auto',
     loop: true,
     autoplay: false,

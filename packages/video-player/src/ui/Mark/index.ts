@@ -83,6 +83,9 @@ export default class Mark {
   }
   private _replay() {
     const player = this.player;
+    if (player.isLive) {
+      return;
+    }
     player.play();
   }
   private _show() {

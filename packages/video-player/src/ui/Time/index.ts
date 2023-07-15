@@ -7,24 +7,29 @@ export default class TotalTime {
   player: VideoPlayer;
   el: HTMLElement;
   currentTimeText: HTMLElement;
-  totalTimeText: HTMLElement;
+  totalTimeText?: HTMLElement;
   constructor(player: VideoPlayer) {
     this.player = player;
     this.el = createElement('div', 'sy-player__time');
     this.currentTimeText = createElement('span', 'sy-player__current-time');
-    const divideEl = document.createTextNode('/');
-    this.totalTimeText = createElement('span');
     this.el.appendChild(this.currentTimeText);
-    this.el.appendChild(divideEl);
-    this.el.appendChild(this.totalTimeText);
+    if (!this.player.isLive) {
+      const divideEl = document.createTextNode('/');
+      this.totalTimeText = createElement('span');
+      this.el.appendChild(divideEl);
+      this.el.appendChild(this.totalTimeText);
+      this.totalTimeText.innerText = timeTranslate(0);
+    }
     this.currentTimeText.innerText = timeTranslate(0);
-    this.totalTimeText.innerText = timeTranslate(0);
 
     this._initEvents();
   }
   private _initEvents() {
     const player = this.player;
     player.on(VideoEvents.DURATION_CHANGE, () => {
+      if (!this.totalTimeText) {
+        return;
+      }
       this.totalTimeText.innerText = timeTranslate(player.duration);
     });
     player.on(VideoEvents.TIMEUPDATE, () => {

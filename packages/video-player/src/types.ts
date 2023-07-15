@@ -26,6 +26,9 @@ type ObjectFit = 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
  * @property {VideoLevel[]} levels 清晰度列表
  * @property {number} currentTime 当前播放时间
  * @property {string} lang 语言
+ * @property {HTMLVideoElement['playbackRate']} playbackRate 播放速率
+ * @property {HTMLMediaElement['loop']} loop 是否循环播放
+ * @property {boolean} isLive 是否直播
  */
 export interface PlayerOptions {
   el: HTMLElement;
@@ -49,4 +52,5 @@ export interface PlayerOptions {
   lang: string;
   playbackRate: HTMLVideoElement['playbackRate'];
   loop: HTMLMediaElement['loop'];
+  isLive: boolean;
 }
