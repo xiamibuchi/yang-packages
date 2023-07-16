@@ -22,11 +22,14 @@
 .sy-player__level-wrap {
   order: 7;
 }
-.sy-player__css-fullscreen-box {
+.sy-player__css-pip-box {
   order: 8;
 }
-.sy-player__fullscreen-box {
+.sy-player__css-fullscreen-box {
   order: 9;
+}
+.sy-player__fullscreen-box {
+  order: 10;
 }
 
 .sy-player {

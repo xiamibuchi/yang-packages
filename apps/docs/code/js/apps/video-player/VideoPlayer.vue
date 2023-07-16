@@ -6,7 +6,7 @@ import '@syseven/video-player/dist/index.css';
 const root = ref<HTMLElement | null>(null);
 const levels = [
   {
-    uri: 'https://taggy-test.b-cdn.net/test/reolink-original/output.m3u8',
+    uri: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8',
     name: '540p',
     loudness: '-16.543',
   },
@@ -27,7 +27,7 @@ onMounted(() => {
     loop: true,
     autoplay: false,
     autoplayMuted: true,
-    src: levels[1].uri,
+    src: levels[0].uri,
     levels,
     muted: true,
     preload: 'none',

@@ -56,6 +56,11 @@ export class VideoPlayer extends Core {
   video: HTMLVideoElement & {
     /* https://developer.apple.com/documentation/webkitjs/htmlvideoelement/1633500-webkitenterfullscreen */
     webkitEnterFullscreen?: () => void;
+    // https://developer.apple.com/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls
+    webkitSupportsPresentationMode?: (mode: string) => boolean;
+    webkitSetPresentationMode?: (mode: string) => void;
+    // https://developer.apple.com/documentation/webkitjs/htmlvideoelement/1631913-webkitpresentationmode
+    webkitPresentationMode?: 'inline' | 'picture-in-picture' | 'fullscreen';
   };
 
   controls?: Controls;
@@ -217,6 +222,64 @@ export class VideoPlayer extends Core {
 
     this.src = level.uri;
     this.emit(PlayerEvents.AFTER_SET_LEVEL);
+  }
+
+  get isInPip() {
+    if (!this.video) {
+      return false;
+    }
+    if (this.isWebkitPIPAvailable()) {
+      return this.video.webkitPresentationMode === 'picture-in-picture';
+    }
+    if (this.isPIPAvailable()) {
+      return (
+        document.pictureInPictureElement &&
+        document.pictureInPictureElement === this.video
+      );
+    }
+    return false;
+  }
+  isPIPAvailable() {
+    const video = this.video;
+    const _isEnabled =
+      typeof document.pictureInPictureEnabled === 'boolean'
+        ? document.pictureInPictureEnabled
+        : true;
+    const isVideoEnabled =
+      typeof video.disablePictureInPicture === 'boolean'
+        ? !video.disablePictureInPicture
+        : true;
+    return _isEnabled && isVideoEnabled;
+  }
+  isWebkitPIPAvailable() {
+    const video = this.video;
+    return (
+      video.webkitSupportsPresentationMode &&
+      video.webkitSupportsPresentationMode('picture-in-picture') &&
+      typeof video.webkitSetPresentationMode === 'function'
+    );
+  }
+  requestPictureInPicture() {
+    if (this.isInPip) {
+      return;
+    }
+    if (this.isWebkitPIPAvailable()) {
+      this.video.webkitSetPresentationMode &&
+        this.video.webkitSetPresentationMode('picture-in-picture');
+    } else if (this.isPIPAvailable()) {
+      this.video.requestPictureInPicture();
+    }
+  }
+  exitPictureInPicture() {
+    if (!this.isInPip) {
+      return;
+    }
+    if (this.isWebkitPIPAvailable()) {
+      this.video.webkitSetPresentationMode &&
+        this.video.webkitSetPresentationMode('inline');
+    } else if (this.isPIPAvailable()) {
+      document.exitPictureInPicture();
+    }
   }
 
   resize() {
