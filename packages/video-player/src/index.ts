@@ -247,6 +247,7 @@ export class VideoPlayer extends Core {
         if (ratio === this._lastRatio) {
           return;
         }
+        this._lastRatio = ratio;
         this.playerBox.classList.add('sy-player--fill-auto');
         this.playerBox.style.paddingBottom = `${ratio * 100}%`;
       } else {
