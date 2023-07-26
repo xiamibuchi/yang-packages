@@ -325,7 +325,7 @@ export class VideoPlayer extends Core {
   sendDanmaku(dan: {
     text: string;
     color: string;
-    time: VideoPlayer['currentTime'];
+    time?: VideoPlayer['currentTime'];
   }) {
     if (this.uiDanmaku) {
       this.uiDanmaku.send(dan);

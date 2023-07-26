@@ -6,7 +6,7 @@ import './index.scss';
 interface DanmakuParam {
   text: string;
   color: string;
-  time: VideoPlayer['currentTime'];
+  time?: VideoPlayer['currentTime'];
 }
 
 const DEAULT_OPACITY = 0.87;
@@ -92,7 +92,7 @@ export default class Danmaku {
 
   send(dan: DanmakuParam) {
     const danmaku = {
-      time: this.getCurrentTime(),
+      time: typeof dan.time === 'number' ? dan.time : this.getCurrentTime(),
       text: htmlEncode(dan.text),
       color: dan.color,
     };
@@ -246,7 +246,11 @@ export default class Danmaku {
   seek() {
     this.clear();
     for (let i = 0; i < this.dan.length; i++) {
-      if (this.dan[i].time >= this.getCurrentTime()) {
+      const time = this.dan[i]?.time;
+      if (typeof time !== 'number') {
+        continue;
+      }
+      if (time >= this.getCurrentTime()) {
         this.danIndex = i;
         break;
       }
