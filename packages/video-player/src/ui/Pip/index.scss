@@ -1,0 +1,9 @@
+@use '../_var.scss' as *;
+
+.sy-player__css-pip-box {
+  position: relative;
+  margin-left: $controls-item-margin;
+  color: $color-text;
+  cursor: pointer;
+  font-size: 20px;
+}

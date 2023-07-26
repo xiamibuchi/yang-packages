@@ -8,17 +8,18 @@ import {
   VideoEvents,
   WindowEvents,
 } from './constants';
-// utils
+// util
 import { createElement } from './utils';
-// plugins
+// plugin
 import AutoplayStrategy from './plugins/AutoplayStrategy';
 // ui
 import UiStart from './ui/Start';
 import UiLoading from './ui/Loading';
 import UiPoster from './ui/Poster';
 import UiMark from './ui/Mark';
+import UiDanmaku from './ui/Danmaku';
 import Controls from './ui/Controls';
-// types
+// type
 import type { PlayerOptions, VideoLevel } from './types';
 
 const DEFAULT_OPTIONS = {
@@ -38,6 +39,9 @@ const DEFAULT_OPTIONS = {
 };
 
 export class VideoPlayer extends Core {
+  _resizeTimer: number | null = null;
+  _lastRatio = 0;
+
   options: PlayerOptions;
   autoplayStrategy?: AutoplayStrategy;
 
@@ -53,6 +57,11 @@ export class VideoPlayer extends Core {
   video: HTMLVideoElement & {
     /* https://developer.apple.com/documentation/webkitjs/htmlvideoelement/1633500-webkitenterfullscreen */
     webkitEnterFullscreen?: () => void;
+    // https://developer.apple.com/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls
+    webkitSupportsPresentationMode?: (mode: string) => boolean;
+    webkitSetPresentationMode?: (mode: string) => void;
+    // https://developer.apple.com/documentation/webkitjs/htmlvideoelement/1631913-webkitpresentationmode
+    webkitPresentationMode?: 'inline' | 'picture-in-picture' | 'fullscreen';
   };
 
   controls?: Controls;
@@ -60,6 +69,7 @@ export class VideoPlayer extends Core {
   uiStart?: UiStart;
   uiPoster?: UiPoster;
   uiMark?: UiMark;
+  uiDanmaku?: UiDanmaku;
   constructor(options: Partial<PlayerOptions>) {
     if (!options.el) {
       throw new Error('el is required');
@@ -102,6 +112,16 @@ export class VideoPlayer extends Core {
     this._setPlayerOptions(_options);
 
     this.setPlayerSrc();
+  }
+
+  get isLive() {
+    if (this.options.isLive === true) {
+      return true;
+    }
+    if (this.duration === Number.POSITIVE_INFINITY) {
+      return true;
+    }
+    return false;
   }
 
   getLang(key: string) {
@@ -206,6 +226,112 @@ export class VideoPlayer extends Core {
     this.emit(PlayerEvents.AFTER_SET_LEVEL);
   }
 
+  get isInPip() {
+    if (!this.video) {
+      return false;
+    }
+    if (this.isWebkitPIPAvailable()) {
+      return this.video.webkitPresentationMode === 'picture-in-picture';
+    }
+    if (this.isPIPAvailable()) {
+      return (
+        document.pictureInPictureElement &&
+        document.pictureInPictureElement === this.video
+      );
+    }
+    return false;
+  }
+  isPIPAvailable() {
+    const video = this.video;
+    const _isEnabled =
+      typeof document.pictureInPictureEnabled === 'boolean'
+        ? document.pictureInPictureEnabled
+        : true;
+    const isVideoEnabled =
+      typeof video.disablePictureInPicture === 'boolean'
+        ? !video.disablePictureInPicture
+        : true;
+    return _isEnabled && isVideoEnabled;
+  }
+  isWebkitPIPAvailable() {
+    const video = this.video;
+    return (
+      video.webkitSupportsPresentationMode &&
+      video.webkitSupportsPresentationMode('picture-in-picture') &&
+      typeof video.webkitSetPresentationMode === 'function'
+    );
+  }
+  requestPictureInPicture() {
+    if (this.isInPip) {
+      return;
+    }
+    if (this.isWebkitPIPAvailable()) {
+      this.video.webkitSetPresentationMode &&
+        this.video.webkitSetPresentationMode('picture-in-picture');
+    } else if (this.isPIPAvailable()) {
+      this.video.requestPictureInPicture();
+    }
+  }
+  exitPictureInPicture() {
+    if (!this.isInPip) {
+      return;
+    }
+    if (this.isWebkitPIPAvailable()) {
+      this.video.webkitSetPresentationMode &&
+        this.video.webkitSetPresentationMode('inline');
+    } else if (this.isPIPAvailable()) {
+      document.exitPictureInPicture();
+    }
+  }
+
+  resize() {
+    if (!this.playerBox) {
+      return;
+    }
+    if (!this.video) {
+      return;
+    }
+    if (this._resizeTimer) {
+      clearTimeout(this._resizeTimer);
+      this._resizeTimer = null;
+    }
+    this._resizeTimer = window.setTimeout(() => {
+      if (this.options.fillMode === 'auto') {
+        const width = this.video.videoWidth;
+        const height = this.video.videoHeight;
+        if (!width || typeof width !== 'number') {
+          return;
+        }
+        if (!height || typeof height !== 'number') {
+          return;
+        }
+        if (width < 10 || height < 10) {
+          return;
+        }
+        const ratio = height / width;
+        if (ratio === this._lastRatio) {
+          return;
+        }
+        this._lastRatio = ratio;
+        this.playerBox.classList.add('sy-player--fill-auto');
+        this.playerBox.style.paddingBottom = `${ratio * 100}%`;
+      } else {
+        this.playerBox.classList.remove('sy-player--fill-auto');
+        this.playerBox.style.paddingBottom = '';
+      }
+    }, 100);
+  }
+
+  sendDanmaku(dan: {
+    text: string;
+    color: string;
+    time: VideoPlayer['currentTime'];
+  }) {
+    if (this.uiDanmaku) {
+      this.uiDanmaku.send(dan);
+    }
+  }
+
   setOptions(options: Partial<PlayerOptions>) {
     this.options = {
       ...this.options,
@@ -271,6 +397,9 @@ export class VideoPlayer extends Core {
         this.emit(UiEvents.UI_FOUCS);
       });
       this.addEventListener(this.video, 'click', () => {
+        if (this.isLive) {
+          return;
+        }
         if (this.paused) {
           this.emit(UiEvents.UI_USER_PLAY);
         } else {
@@ -284,6 +413,7 @@ export class VideoPlayer extends Core {
     this.uiLoading = new UiLoading(this);
     this.uiPoster = new UiPoster(this);
     this.uiMark = new UiMark(this);
+    this.uiDanmaku = new UiDanmaku(this);
     this.controls = new Controls(this);
   }
   private _initEvents() {
@@ -292,12 +422,14 @@ export class VideoPlayer extends Core {
       if (typeof config.fit === 'string') {
         this.setFit(config.fit);
       }
+      this.resize();
     });
     this.on(PlayerEvents.BEFORE_SET_SRC, () => {
       this.isStopUpdateCurrentTimeUi = true;
     });
     this.on(PlayerEvents.AFTER_SET_SRC, () => {
       this.isStopUpdateCurrentTimeUi = false;
+      this.resize();
     });
     this.once(PlayerEvents.LOAD_SOURCE, () => {
       this.volume = this.options.volume;
@@ -306,6 +438,9 @@ export class VideoPlayer extends Core {
     });
     this.on(VideoEvents.VOLUME_CHANGE, () => {
       this.emit(UiEvents.UI_VOLUME_UPDATE);
+    });
+    this.on(VideoEvents.CANPLAY, () => {
+      this.resize();
     });
     this.on(PlayerEvents.BEFORE_DESTROY, this.destroy);
     this.on(UiEvents.UI_USER_PLAY, () => {
@@ -334,7 +469,12 @@ export class VideoPlayer extends Core {
         this.currentTime = options.currentTime;
       }
     }
+    if (typeof options.loop === 'boolean') {
+      this.loop = options.loop;
+    }
   }
 }
+
+export { PlayerEvents, UiEvents, VideoEvents, WindowEvents } from './constants';
 
 export default VideoPlayer;

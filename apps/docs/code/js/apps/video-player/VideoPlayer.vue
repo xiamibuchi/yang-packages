@@ -6,7 +6,7 @@ import '@syseven/video-player/dist/index.css';
 const root = ref<HTMLElement | null>(null);
 const levels = [
   {
-    uri: 'https://taggy-test.b-cdn.net/test/reolink-original/output.m3u8',
+    uri: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8',
     name: '540p',
     loudness: '-16.543',
   },
@@ -15,19 +15,30 @@ const levels = [
     name: '360p',
     loudness: '-16.552',
   },
+  {
+    uri: 'https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_adv_example_hevc/master.m3u8',
+    name: 'subtitle',
+  },
 ];
 onMounted(() => {
   if (!root.value) {
     return;
   }
-  new VideoPlayer({
+  const player = new VideoPlayer({
     el: root.value,
-    autoplay: true,
+    isLive: false,
+    fillMode: 'auto',
+    loop: true,
+    autoplay: false,
     autoplayMuted: true,
-    src: 'https://vjs.zencdn.net/v/oceans.mp4',
+    src: levels[2].uri,
     levels,
     muted: true,
     preload: 'none',
+  });
+  player.sendDanmaku({
+    text: '测试弹幕',
+    color: 'red',
   });
 });
 </script>

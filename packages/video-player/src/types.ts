@@ -6,6 +6,11 @@ export interface VideoLevel {
 
 type ObjectFit = 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
 
+interface DanmakuOptions {
+  opacity: number;
+  unlimited: boolean;
+}
+
 /**
  * @description 播放器配置项
  * @property {HTMLElement} el 播放器容器
@@ -26,6 +31,9 @@ type ObjectFit = 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
  * @property {VideoLevel[]} levels 清晰度列表
  * @property {number} currentTime 当前播放时间
  * @property {string} lang 语言
+ * @property {HTMLVideoElement['playbackRate']} playbackRate 播放速率
+ * @property {HTMLMediaElement['loop']} loop 是否循环播放
+ * @property {boolean} isLive 是否直播
  */
 export interface PlayerOptions {
   el: HTMLElement;
@@ -36,6 +44,7 @@ export interface PlayerOptions {
   playsinline: boolean;
   preload: HTMLVideoElement['preload'] | boolean;
   fit: ObjectFit;
+  fillMode?: 'auto';
   poster: string;
   posterFit: ObjectFit;
   controls: boolean;
@@ -47,4 +56,7 @@ export interface PlayerOptions {
   currentTime: number;
   lang: string;
   playbackRate: HTMLVideoElement['playbackRate'];
+  loop: HTMLMediaElement['loop'];
+  isLive: boolean;
+  danmakuOptions?: DanmakuOptions;
 }

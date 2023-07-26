@@ -16,12 +16,13 @@ interface EventListener {
 
 interface CoreConfig {
   /** video element */
-  video?: HTMLVideoElement;
+  video?: HTMLMediaElement;
   autoplay: boolean;
   muted: boolean;
   playsinline: boolean;
   preload: PlayerOptions['preload'];
-  playbackRate: HTMLVideoElement['playbackRate'];
+  playbackRate: HTMLMediaElement['playbackRate'];
+  loop: HTMLMediaElement['loop'];
 }
 
 const DEFAULT_CONFIG: CoreConfig = {
@@ -30,6 +31,7 @@ const DEFAULT_CONFIG: CoreConfig = {
   playsinline: true,
   preload: 'auto',
   playbackRate: 1,
+  loop: false,
 };
 
 const normalizeConfig = (config: CoreConfig) => {
@@ -196,8 +198,21 @@ export class Core extends EventEmitter {
     this.video.playsInline = playsinline;
     if (playsinline) {
       this.video.setAttribute('playsinline', String(playsinline));
+      this.video.setAttribute('webkit-playsinline', String(playsinline));
+      this.video.setAttribute('x5-playsinline', String(playsinline));
+      // 微信 X5 https://x5.tencent.com/docs/video.html
+      this.video.setAttribute('x5-video-player-type', 'h5-page');
+      // 支付宝/UC/钉钉 https://opendocs.alipay.com/mini/component/video
+      this.video.setAttribute('raw-controls', 'raw-controls');
+      // 360浏览器 https://bbs.360.cn/thread-15959526-1-1.html
+      this.video.setAttribute('controls360', 'no');
     } else {
       this.video.removeAttribute('playsinline');
+      this.video.removeAttribute('webkit-playsinline');
+      this.video.removeAttribute('x5-playsinline');
+      this.video.removeAttribute('x5-video-player-type');
+      this.video.removeAttribute('raw-controls');
+      this.video.removeAttribute('controls360');
     }
   }
   // duration
@@ -336,6 +351,22 @@ export class Core extends EventEmitter {
     }
     this.video.defaultPlaybackRate = playbackRate;
     this.video.playbackRate = playbackRate;
+  }
+  // loop
+  get loop() {
+    return this.video?.loop || false;
+  }
+  set loop(loop: CoreConfig['loop']) {
+    if (typeof loop !== 'boolean') {
+      return;
+    }
+    if (!this.video) {
+      this.once(PlayerEvents.VIDEO_ATTACHED, () => {
+        this.loop = loop;
+      });
+      return;
+    }
+    this.video.loop = loop;
   }
 
   attachMedia(video: HTMLVideoElement) {

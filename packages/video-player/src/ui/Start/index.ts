@@ -26,6 +26,10 @@ export default class Start {
     this.playButton.firstElementChild?.classList.add('svg-icon');
     this.pauseButton.firstElementChild?.classList.add('svg-icon');
 
+    if (this.player.isLive) {
+      this._switchPause(false);
+    }
+
     this.player.appendChild(this.playButton);
     this.player.appendChild(this.pauseButton);
 
@@ -86,6 +90,9 @@ export default class Start {
       return;
     }
     if (isShow) {
+      if (this.player.isLive) {
+        return;
+      }
       this.playButton.classList.remove('hide');
     } else {
       this.playButton.classList.add('hide');
@@ -100,6 +107,9 @@ export default class Start {
       this._timer = null;
     }
     if (isShow) {
+      if (this.player.isLive) {
+        return;
+      }
       this.pauseButton.classList.remove('hide');
       this._timer = window.setTimeout(() => {
         this.pauseButton.classList.add('hide');

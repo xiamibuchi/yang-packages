@@ -22,8 +22,14 @@
 .sy-player__level-wrap {
   order: 7;
 }
-.sy-player__fullscreen-box {
+.sy-player__css-pip-box {
   order: 8;
+}
+.sy-player__css-fullscreen-box {
+  order: 9;
+}
+.sy-player__fullscreen-box {
+  order: 10;
 }
 
 .sy-player {
@@ -34,6 +40,26 @@
   word-break: initial;
   line-height: 1em;
   user-select: none;
+  &.sy-player--fill-auto {
+    height: 0;
+    .sy-player__video {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+  &.sy-player--css-fullscreen {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+  }
   .hide {
     display: none;
   }

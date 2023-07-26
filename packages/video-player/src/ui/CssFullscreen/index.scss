@@ -1,0 +1,8 @@
+@use '../_var.scss' as *;
+
+.sy-player__css-fullscreen-box {
+  position: relative;
+  margin-left: $controls-item-margin;
+  color: $color-text;
+  cursor: pointer;
+}
