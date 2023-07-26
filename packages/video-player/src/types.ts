@@ -6,6 +6,11 @@ export interface VideoLevel {
 
 type ObjectFit = 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
 
+interface DanmakuOptions {
+  opacity: number;
+  unlimited: boolean;
+}
+
 /**
  * @description 播放器配置项
  * @property {HTMLElement} el 播放器容器
@@ -53,4 +58,5 @@ export interface PlayerOptions {
   playbackRate: HTMLVideoElement['playbackRate'];
   loop: HTMLMediaElement['loop'];
   isLive: boolean;
+  danmakuOptions?: DanmakuOptions;
 }

@@ -6,4 +6,33 @@
   top: 0;
   width: 100%;
   height: 100%;
+  z-index: $zIndex-danmaku;
+  overflow: hidden;
+  pointer-events: none;
+  &.move {
+    .sy-player__danmaku-item {
+      animation-play-state: running;
+    }
+  }
+}
+
+.sy-player__danmaku-item {
+  color: #fff;
+  text-shadow: 1px 0 1px #000000, 0 1px 1px #000000, 0 -1px 1px #000000,
+    -1px 0 1px #000000;
+  position: absolute;
+  animation-play-state: paused;
+  right: 0;
+  transform: translateX(100%);
+
+  will-change: transform;
+  animation-name: danmaku-move;
+  animation-timing-function: linear;
+  animation-play-state: paused;
+}
+
+@keyframes danmaku-move {
+  from {
+    transform: translateX(100%);
+  }
 }

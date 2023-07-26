@@ -15,22 +15,30 @@ const levels = [
     name: '360p',
     loudness: '-16.552',
   },
+  {
+    uri: 'https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_adv_example_hevc/master.m3u8',
+    name: 'subtitle',
+  },
 ];
 onMounted(() => {
   if (!root.value) {
     return;
   }
-  new VideoPlayer({
+  const player = new VideoPlayer({
     el: root.value,
-    isLive: true,
+    isLive: false,
     fillMode: 'auto',
     loop: true,
     autoplay: false,
     autoplayMuted: true,
-    src: levels[0].uri,
+    src: levels[2].uri,
     levels,
     muted: true,
     preload: 'none',
+  });
+  player.sendDanmaku({
+    text: '测试弹幕',
+    color: 'red',
   });
 });
 </script>

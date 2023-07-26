@@ -8,17 +8,18 @@ import {
   VideoEvents,
   WindowEvents,
 } from './constants';
-// utils
+// util
 import { createElement } from './utils';
-// plugins
+// plugin
 import AutoplayStrategy from './plugins/AutoplayStrategy';
 // ui
 import UiStart from './ui/Start';
 import UiLoading from './ui/Loading';
 import UiPoster from './ui/Poster';
 import UiMark from './ui/Mark';
+import UiDanmaku from './ui/Danmaku';
 import Controls from './ui/Controls';
-// types
+// type
 import type { PlayerOptions, VideoLevel } from './types';
 
 const DEFAULT_OPTIONS = {
@@ -68,6 +69,7 @@ export class VideoPlayer extends Core {
   uiStart?: UiStart;
   uiPoster?: UiPoster;
   uiMark?: UiMark;
+  uiDanmaku?: UiDanmaku;
   constructor(options: Partial<PlayerOptions>) {
     if (!options.el) {
       throw new Error('el is required');
@@ -320,6 +322,16 @@ export class VideoPlayer extends Core {
     }, 100);
   }
 
+  sendDanmaku(dan: {
+    text: string;
+    color: string;
+    time: VideoPlayer['currentTime'];
+  }) {
+    if (this.uiDanmaku) {
+      this.uiDanmaku.send(dan);
+    }
+  }
+
   setOptions(options: Partial<PlayerOptions>) {
     this.options = {
       ...this.options,
@@ -401,6 +413,7 @@ export class VideoPlayer extends Core {
     this.uiLoading = new UiLoading(this);
     this.uiPoster = new UiPoster(this);
     this.uiMark = new UiMark(this);
+    this.uiDanmaku = new UiDanmaku(this);
     this.controls = new Controls(this);
   }
   private _initEvents() {
