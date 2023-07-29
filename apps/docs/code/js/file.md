@@ -9,7 +9,7 @@ import FileImage from './components/FileImage.vue'
 
 ## Blob
 
-Blob (binary large object)，对象表示一个不可变、原始数据的类文件对象。
+Blob (binary large object)表示一个不可变、原始数据的类文件对象。
 
 - Blob 支持结构化克隆算法（structured clone algorithm），所以可以通过消息事件从另外一个窗口或线程中获取 blob 对象
 - 调用 Blob 构造函数。`new Blob(blobParts[, options]);`

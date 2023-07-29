@@ -1,18 +1,32 @@
 # 播放器
 
-## 播放
+[播放器 demo](./apps/video-player/video-player.md)
 
-- 解协议：将流媒体协议的数据，解析为相应的封装格式数据。音视频在网络上传播的时候，常常采用各种流媒体协议，例如 RTMP，RTSP 。这些协议在传输视音频数据的同时，也会传输一些信令数据。这些信令数据包括对播放的控制（播放，暂停，停止），或者对网络状态的描述等。解协议的过程中会去除掉信令数据而只保留视音频数据。
+## 基础知识
+
+- 解协议：将流媒体协议的数据，解析为相应的封装格式数据。音视频在网络上传播的时候，常常采用各种流媒体协议，例如 RTMP，RTSP。这些协议在传输视音频数据的同时，也会传输一些信令数据。这些信令数据包括对播放的控制（播放，暂停，停止），或者对网络状态的描述等。解协议的过程中会去除掉信令数据而只保留视音频数据
 - 解封装：将输入的封装格式的数据，分离成为音频流压缩编码数据和视频流压缩编码数据。封装格式种类很多，例如 MP4，TS，FLV，HLS
 - 解码视音频：视频的压缩编码标准则包含 H264，H265，VC-1，音频的压缩编码标准包含 AAC，MP3，AC-3。编码格式决定的是音视频数据压缩的算法及方式
-- 视音频同步：音视频通过时间戳同步。每个音视频数据块中一般都含有解码时间戳 DTS 和播放时间戳 PTS。
+- 视音频同步：音视频通过时间戳同步。每个音视频数据块中一般都含有解码时间戳 DTS 和播放时间戳 PTS
 
 图像一般都是有数据冗余的，主要包括以下 4 种：
 
-- 空间冗余。比如说将一帧图像划分成一个个 16x16 的块之后，相邻的块很多时候都有比较明显的相似性，这种就叫空间冗余。
-- 时间冗余。一个帧率为 25fps 的视频中前后两帧图像相差只有 40ms，两张图像的变化是比较小的，相似性很高，这种叫做时间冗余。
-- 视觉冗余。我们的眼睛是有视觉灵敏度这个东西的。人的眼睛对于图像中高频信息的敏感度是小于低频信息的。有的时候去除图像中的一些高频信息，人眼看起来跟不去除高频信息差别不大，这种叫做视觉冗余。
-- 信息熵冗余。我们一般会使用 Zip 等压缩工具去压缩文件，将文件大小减小，这个对于图像来说也是可以做的，这种冗余叫做信息熵冗余。
+- 空间冗余。比如说将一帧图像划分成一个个 16x16 的块之后，相邻的块很多时候都有比较明显的相似性，这种就叫空间冗余
+- 时间冗余。一个帧率为 25fps 的视频中前后两帧图像相差只有 40ms，两张图像的变化是比较小的，相似性很高，这种叫做时间冗余
+- 视觉冗余。我们的眼睛是有视觉灵敏度这个东西的。人的眼睛对于图像中高频信息的敏感度是小于低频信息的。有的时候去除图像中的一些高频信息，人眼看起来跟不去除高频信息差别不大，这种叫做视觉冗余
+- 信息熵冗余。我们一般会使用 Zip 等压缩工具去压缩文件，将文件大小减小，这个对于图像来说也是可以做的，这种冗余叫做信息熵冗余
+
+请求：
+
+- video 标签播放时会先请包含`range`请求头用于检测服务端是否支持 Range 的请求，请求成功服务器会返回 206 状态码。在请求的范围越界的情况下（范围值超过了资源的大小），服务器会返回 416（请求的范围无法满足）。在不支持范围请求的情况下，服务器会返回 200。
+
+### HLS
+
+HTTP Live Streaming。把整个流分成一个个小的基于 HTTP 的文件来下载，每次只下载一些。当媒体流正在播放时，客户端可以选择从许多不同的备用源中以不同的速率下载同样的资源，允许流媒体会话适应不同的数据速率。
+
+### Media Source Extensions（MSE）
+
+基于 Web 的流媒体的功能。使用 MSE，媒体串流能够通过 JavaScript 创建，并且能通过使用 audio 和 video 元素进行播放。MSE 使我们可以把通常的单个媒体文件的 src 值替换成引用 MediaSource 对象（一个包含即将播放的媒体文件的准备状态等信息的容器），以及引用多个 SourceBuffer 对象（代表多个组成整个串流的不同媒体块）的元素。
 
 ## 视频格式
 
@@ -58,22 +72,7 @@
 
 safari 会通过自动推理引擎来阻止自动播放，文档提到的因素有**电量**和**带宽**，猜测会有类似 chrome 白名单的策略。
 
-### 最佳实践
-
-```
-var promise = document.querySelector('video').play();
-
-if (promise !== undefined) {
-  promise.then(_ => {
-    // Autoplay started!
-  }).catch(error => {
-    // Autoplay was prevented.
-    // Show a "Play" button so that user can start playback.
-  });
-}
-```
-
-## 媒体参与度指数（MEI）
+### 媒体参与度指数（MEI）
 
 MEI 衡量个人在站点上消费媒体的倾向。Chrome 当前的做法是每个来源的访问次数与重大媒体播放事件的比率：
 
@@ -114,20 +113,14 @@ _Chrome 提供了全球 1000 多个站点允许自动播放的白名单，白名
 一些浏览器会劫持 video 并且生成原生视频播放器。在这种情况下，用 z-index 无法控制浏览器层级，播放器定位永远高于其他元素（包括定位元素）。
 解决方案。部分浏览器提供特殊属性控制浏览器，设置后不再将 vidoe 转化为原生播放器：
 
-- `raw-controls`：钉钉、UC
-- `controls`：360 浏览器
-- `x5-video-player-type="h5"`：微信内置浏览器
-
-```html
-<video
-  raw-controls
-  controls
-  x-webkit-airplay
-  playsinline
-  webkit-playsinline
-  x5-playsinline
-  x5-video-player-type="h5-page"
-></video>
+```js
+// 微信 X5 https://x5.tencent.com/docs/video.html
+this.video.setAttribute('x5-playsinline', String(playsinline));
+this.video.setAttribute('x5-video-player-type', 'h5-page');
+// 支付宝/UC/钉钉 https://opendocs.alipay.com/mini/component/video
+this.video.setAttribute('raw-controls', 'raw-controls');
+// 360浏览器 https://bbs.360.cn/thread-15959526-1-1.html
+this.video.setAttribute('controls360', 'no');
 ```
 
 ## Picture-in-Picture
@@ -181,45 +174,24 @@ class Index {
       console.warn('响度字段未配置');
       return;
     }
-    this._initEvent();
-  }
-  _initEvent() {
-    const { player } = this;
-    player.on(player.Events.PLAYING, this._initAudio);
-    player.on(player.Events.VOLUME_CHANGE, this._initAudio);
-    player.on(player.Events.SET_CURRENT_LEVEL, () => {
-      const leave = player.getCurrentLevel();
-      const levels = player.getLevels();
-      if (!levels[leave].attributes) {
-        return;
-      }
-      this.loudnessOfVideo =
-        levels[leave].attributes[this.config.loudnessField];
-      this._setGain();
-    });
-    player.on(player.Events.BEFORE_DESTROY, this.destroy);
   }
   _initAudio() {
     const { player } = this;
-    if (!player.getMuted()) {
+    if (!player.muted) {
       this.audioCtx = new AudioContext();
       this.source = this.audioCtx.createMediaElementSource(this.player.video);
       this.gainNode = this.audioCtx.createGain();
       this._setGain();
       this.source.connect(this.gainNode);
       this.gainNode.connect(this.audioCtx.destination);
-      player.off(player.Events.PLAYING, this._initAudio);
-      player.off(player.Events.VOLUME_CHANGE, this._initAudio);
     }
   }
   _setGain() {
     const { loudnessTargets } = this.config;
     const { loudnessOfVideo, audioCtx } = this;
-
     if (!loudnessOfVideo || !loudnessTargets || !audioCtx) {
       return;
     }
-
     this.gainNode.gain.value = 10 ** ((loudnessTargets - loudnessOfVideo) / 20);
   }
   destroy() {
