@@ -6,14 +6,14 @@ import '@syseven/video-player/dist/index.css';
 const root = ref<HTMLElement | null>(null);
 const levels = [
   {
-    uri: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8',
-    name: '540p',
-    loudness: '-16.543',
+    uri: 'https://vjs.zencdn.net/v/oceans.mp4',
+    name: 'oceans',
+    loudness: '-16.552',
   },
   {
-    uri: 'https://vjs.zencdn.net/v/oceans.mp4',
-    name: '360p',
-    loudness: '-16.552',
+    uri: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8',
+    name: 'x36xhzz',
+    loudness: '-16.543',
   },
   {
     uri: 'https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_adv_example_hevc/master.m3u8',
@@ -31,7 +31,7 @@ onMounted(() => {
     loop: true,
     autoplay: false,
     autoplayMuted: true,
-    src: levels[2].uri,
+    src: levels[1].uri,
     levels,
     muted: true,
     preload: 'none',
@@ -44,5 +44,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="root">1</div>
+  <div ref="root" />
 </template>

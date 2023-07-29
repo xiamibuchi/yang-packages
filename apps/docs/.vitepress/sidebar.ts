@@ -7,6 +7,10 @@ const js = [
     text: 'file',
     link: '/code/js/file',
   },
+  {
+    text: '播放器',
+    link: '/code/js/player',
+  },
 ];
 
 const css = [
