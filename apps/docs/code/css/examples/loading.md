@@ -1,10 +1,4 @@
 <script setup>
-import LoadingBox from '../components/loading/LoadingBox.vue'
-import LoadingCircle from '../components/loading/LoadingCircle.vue'
-import load4 from '../components/loading/load4.vue'
-import load5 from '../components/loading/load5.vue'
-import load6 from '../components/loading/load6.vue'
-import load7 from '../components/loading/load7.vue'
 import LoadingCollection from '../components/loading/LoadingCollection.vue'
 </script>
 
