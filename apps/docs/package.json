@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@syseven/xiami": "workspace:*",
-    "element-plus": "^2.3.6",
+    "element-plus": "^2.3.8",
     "highlight.js": "^11.8.0",
     "vue": "^3.3.4",
     "xlsx": "^0.18.5"
@@ -17,6 +17,6 @@
     "extends": "../../package.json"
   },
   "devDependencies": {
-    "vitepress": "1.0.0-beta.2"
+    "vitepress": "1.0.0-beta.7"
   }
 }

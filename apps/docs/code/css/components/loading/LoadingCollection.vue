@@ -9,6 +9,9 @@ import load4 from './load4.vue';
 import load5 from './load5.vue';
 import load6 from './load6.vue';
 import load7 from './load7.vue';
+import load8 from './load8.vue';
+import load9 from './load9.vue';
+import load10 from './load10.vue';
 </script>
 
 <template>
@@ -42,6 +45,15 @@ import load7 from './load7.vue';
     </div>
     <div class="flex-center">
       <load7 />
+    </div>
+    <div class="flex-center">
+      <load8 />
+    </div>
+    <div class="flex-center">
+      <load9 />
+    </div>
+    <div class="flex-center">
+      <load10 />
     </div>
   </div>
 </template>

@@ -219,35 +219,45 @@ Math.pow(10, '2');
 
 上面的例子中，`Math.pow` 必须接受两个 `number` 类型的参数。事实上 `Math.pow` 的类型定义如下：
 
-```
+```ts
 interface Math {
-    /**
-     * Returns the value of a base expression taken to a specified power.
-     * @param x The base value of the expression.
-     * @param y The exponent value of the expression.
-     */
-    pow(x: number, y: number): number;
+  /**
+   * Returns the value of a base expression taken to a specified power.
+   * @param x The base value of the expression.
+   * @param y The exponent value of the expression.
+   */
+  pow(x: number, y: number): number;
 }
 ```
 
 再举一个 DOM 中的例子：
 
-```
-document.addEventListener('click', function(e) {    console.log(e.targetCurrent);});
+```ts
+document.addEventListener('click', (e) => {
+  console.log(e.targetCurrent);
+});
 // index.ts(2,17): error TS2339: Property 'targetCurrent' does not exist on type 'MouseEvent'.
 ```
 
 上面的例子中，`addEventListener` 方法是在 TypeScript 核心库中定义的：
 
-```
-interface Document extends Node, GlobalEventHandlers, NodeSelector, DocumentEvent {
-    addEventListener(type: string, listener: (ev: MouseEvent) => any, useCapture?: boolean): void;
+```ts
+interface Document
+  extends Node,
+    GlobalEventHandlers,
+    NodeSelector,
+    DocumentEvent {
+  addEventListener(
+    type: string,
+    listener: (ev: MouseEvent) => any,
+    useCapture?: boolean
+  ): void;
 }
 ```
 
 所以 `e` 被推断成了 `MouseEvent`，而 `MouseEvent` 是没有 `targetCurrent` 属性的，所以报错了。
 
-注意，TypeScript 核心库的定义中不包含 Node.js 部分。
+> TypeScript 核心库的定义中不包含 Node.js 部分。
 
 #### 用 TypeScript 写 Node.js
 
@@ -265,33 +275,35 @@ npm install @types/node --save-dev
 
 定义一对值分别为 `string` 和 `number` 的元组：
 
-```
-let tom: [string, number] = ['Tom', 25];
+```ts
+const tom: [string, number] = ['Tom', 25];
 ```
 
 当赋值或访问一个已知索引的元素时，会得到正确的类型：
 
-```
-let tom: [string, number];tom[0] = 'Tom';tom[1] = 25;
-tom[0].slice(1);tom[1].toFixed(2);
+```ts
+let tom: [string, number];
+tom[0] = 'Tom';
+tom[1] = 25;
+tom[0].slice(1);
+tom[1].toFixed(2);
 ```
 
 也可以只赋值其中一项：
 
-```
+```ts
 let tom: [string, number];
 tom[0] = 'Tom';
 ```
 
 但是当直接对元组类型的变量进行初始化或者赋值的时候，需要提供所有元组类型中指定的项。
 
-```
-let tom: [string, number];
-tom = ['Tom', 25];
+```ts
+const tom: [string, number] = ['Tom', 25];
 ```
 
-```
-let tom: [string, number];tom = ['Tom'];
+```ts
+const tom: [string, number] = ['Tom'];
 // Property '1' is missing in type '[string]' but required in type '[string, number]'.
 ```
 
@@ -299,8 +311,9 @@ let tom: [string, number];tom = ['Tom'];
 
 当添加越界的元素时，它的类型会被限制为元组中每个类型的联合类型：
 
-```
-let tom: [string, number];tom = ['Tom', 25];tom.push('male');tom.push(true);
+```ts
+const tom: [string, number] = ['Tom', 25];
+tom.push('male', true);
 // Argument of type 'true' is not assignable to parameter of type 'string | number'.
 ```
 
