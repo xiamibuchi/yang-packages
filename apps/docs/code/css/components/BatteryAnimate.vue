@@ -1,48 +1,50 @@
 <template>
-  <div class="battery-container">
-    <div class="battery" />
-  </div>
-
-  <div class="battery-wave-container">
-    <div class="battery-wave-header" />
-    <div class="battery-wave" />
-    <div class="battery-wave-copy">
-      <div class="battery-wave-g-wave" />
-      <div class="battery-wave-g-wave" />
-      <div class="battery-wave-g-wave" />
+  <div class="battery-wrap">
+    <div class="battery-container">
+      <div class="battery" />
     </div>
-  </div>
 
-  <div class="g-container">
-    <div class="g-number">98.7%</div>
-    <div class="g-contrast">
-      <div class="g-circle" />
-      <ul class="g-bubbles">
-        <li />
-        <li />
-        <li />
-        <li />
-        <li />
-        <li />
-        <li />
-        <li />
-        <li />
-        <li />
-        <li />
-        <li />
-        <li />
-        <li />
-        <li />
-      </ul>
+    <div class="battery-wave-container">
+      <div class="battery-wave-header" />
+      <div class="battery-wave" />
+      <div class="battery-wave-copy">
+        <div class="battery-wave-g-wave" />
+        <div class="battery-wave-g-wave" />
+        <div class="battery-wave-g-wave" />
+      </div>
     </div>
-  </div>
 
-  <a href="https://juejin.cn/post/6844904029336649741" target="_blank"
-    >原文地址</a
-  >
+    <div class="g-container">
+      <div class="g-number">98.7%</div>
+      <div class="g-contrast">
+        <div class="g-circle" />
+        <ul class="g-bubbles">
+          <li />
+          <li />
+          <li />
+          <li />
+          <li />
+          <li />
+          <li />
+          <li />
+          <li />
+          <li />
+          <li />
+          <li />
+          <li />
+          <li />
+          <li />
+        </ul>
+      </div>
+    </div>
+
+    <a href="https://juejin.cn/post/6844904029336649741" target="_blank"
+      >原文地址</a
+    >
+  </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .battery-container {
   position: relative;
   width: 100px;
@@ -112,7 +114,7 @@
 }
 </style>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .battery-wave-container {
   position: relative;
   width: 140px;
