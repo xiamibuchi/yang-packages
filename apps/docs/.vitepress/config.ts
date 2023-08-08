@@ -29,9 +29,10 @@ if (process.env.DOC_ENV !== 'production') {
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: '/docs/',
+  base: '/',
   title: "羊圈",
   description: "神羊的羊圈",
+  outDir: "../../dist",
   head: [
     ["link", { rel: "shortcut icon", type: 'image/svg+xml', href: "/logo.svg" }],
     ["meta", { name: "author", content: "xiamibuchi" }],
