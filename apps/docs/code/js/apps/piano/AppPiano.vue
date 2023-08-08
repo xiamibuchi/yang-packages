@@ -23,9 +23,12 @@ const PIANO_KEY_LIST = [
 
 const allKeys = PIANO_KEY_LIST.map((item) => item.key); // getting all keys from PIANO_KEY_LIST array
 
-const audio = new Audio(`tunes/a.wav`);
+let audio: null | HTMLAudioElement = null;
 
 const playTune = (key) => {
+  if (!audio) {
+    return;
+  }
   audio.src = `tunes/${key}.wav`; // passing audio src based on key pressed
   audio.play(); // playing audio
   const clickedKey = document.querySelector(`[data-key="${key}"]`); // getting clicked key element
@@ -40,6 +43,9 @@ const playTune = (key) => {
 };
 
 const handleVolume = (e) => {
+  if (!audio) {
+    return;
+  }
   audio.volume = e.target.value; // passing the range slider value as an audio volume
 };
 
@@ -49,6 +55,7 @@ const pressedKey = (e) => {
 };
 
 onMounted(() => {
+  audio = new window.Audio(`tunes/a.wav`);
   document.addEventListener('keydown', pressedKey);
 });
 onBeforeUnmount(() => {
