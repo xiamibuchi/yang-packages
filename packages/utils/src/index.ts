@@ -3,6 +3,7 @@ export * from './dom';
 export * from './vue';
 export * from './arrays';
 export * from './i18n';
+export * from './lodash';
 export * from './json';
 export * from './objects';
 export * from './typescript';
