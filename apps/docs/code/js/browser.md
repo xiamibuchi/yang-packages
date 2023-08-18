@@ -77,6 +77,8 @@ IndexedDb 提供了一个结构化的、事务型的、高性能的 NoSQL 类型
 
 [详情](./indexed-db)
 
+常用库: https://github.com/dexie/Dexie.js
+
 #### PWA(Service Worker)
 
 作为一个独立的线程，是一段在后台运行的脚本，可使 web app 也具有类似原生 App 的离线使用、消息推送、后台自动更新等能力
