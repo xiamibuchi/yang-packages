@@ -243,6 +243,9 @@ importers:
       highlight.js:
         specifier: ^11.8.0
         version: 11.8.0
+      leaflet:
+        specifier: ^1.9.4
+        version: 1.9.4
       vue:
         specifier: ^3.3.4
         version: 3.3.4
@@ -10364,6 +10367,10 @@ packages:
     dependencies:
       flush-write-stream: 1.1.1
     dev: true
+
+  /leaflet@1.9.4:
+    resolution: {integrity: sha512-nxS1ynzJOmOlHp+iL3FyWqK89GtNL8U8rvlMOsQdTTssxZwCXh8N2NB3GDQOL+YR3XnWyZAxwQixURb+FA74PA==}
+    dev: false
 
   /less-loader@11.1.0(less@4.2.0)(webpack@5.84.1):
     resolution: {integrity: sha512-C+uDBV7kS7W5fJlUjq5mPBeBVhYpTIm5gB09APT9o3n/ILeaXVsiSFTbZpTJCJwQ/Crczfn3DmfQFwxYusWFug==}
