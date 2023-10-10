@@ -1,6 +1,7 @@
 {
   "name": "@syseven/docs",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vitepress dev",
     "build": "vitepress build",
@@ -18,6 +19,6 @@
     "extends": "../../package.json"
   },
   "devDependencies": {
-    "vitepress": "1.0.0-beta.7"
+    "vitepress": "1.0.0-rc.20"
   }
 }
