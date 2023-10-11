@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue';
-import Leaflet from 'leaflet';
 
-onMounted(() => {
+onMounted(async () => {
+  const Leaflet = await import('leaflet');
   const map = Leaflet.map('game-map', { scrollWheelZoom: false }).setView(
     [-29.5, 145],
     3.5
