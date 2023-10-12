@@ -285,16 +285,11 @@ Asynchronous [e'sɪŋkrənəs] Javascript And XML， AJAX 不是一门的新的�
 
 #### 简单请求和非简单请求
 
-简单请求：使用下列方法之一且没有人为设置对 CORS 安全的首部字段集合之外的其他首部字段：
+简单请求
 
-```txt
-GET
-HEAD
-POST- 仅当POST方法的Content-Type值等于下列之一才算作简单请求
- - text/plain
- - multipart/form-data
- - application/x-www-form-urlencoded
-```
+- 请求方法是 HEAD、GET、POST 三种之一；
+- HTTP 头信息不超过右边着几个字段：Accept、Accept-Language、Content-Language、Last-Event-ID
+- Content-Type 只限于三个值 application/x-www-form-urlencoded、multipart/form-data、text/plain；
 
 #### JSONP
 
@@ -319,15 +314,15 @@ window.postMessage(message,targetOrigin) 方法是 html5 新引进的特性，�
 postMessage(message, targetOrigin);
 
 // iframe
-window.parent.postMessage("Hello from the main page!", "*");
+window.parent.postMessage('Hello from the main page!', '*');
 
 // handle messages
 window.addEventListener(
-  "message",
+  'message',
   (event) => {
     // Do we trust the sender of this message?  (might be
     // different from what we originally opened, for example).
-    if (event.origin !== "http://example.com") return;
+    if (event.origin !== 'http://example.com') return;
 
     // event.source is popup
     // event.data is "hi there yourself!  the secret response is: rheeeeet!"
@@ -336,20 +331,20 @@ window.addEventListener(
 );
 
 // 如果需要指定 targetOrigin
-let target = "";
+let target = '';
 try {
   target = parent.location.origin; // 跨域时无法获取 parent.location.origin
 } catch (e) {
   // 仅在 referrer 不是同域名时才使用 referrer
   if (
-    typeof document.referrer === "string" &&
+    typeof document.referrer === 'string' &&
     !document.referrer.includes(location.origin)
   ) {
     target = document.referrer;
   }
 }
 if (!target) {
-  target = "xxxx"; // 需要给保底值
+  target = 'xxxx'; // 需要给保底值
 }
 ```
 
@@ -430,27 +425,27 @@ loadXMLDoc() 函数创建 XMLHttpRequest 对象，添加当服务器响应就绪
 ```js
 function loadDoc() {
   const xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
+  xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       myFunction(this);
     }
   };
-  xhttp.open("GET", "cd_catalog.xml", true);
+  xhttp.open('GET', 'cd_catalog.xml', true);
   xhttp.send();
 }
 function myFunction(xml) {
   let i;
   const xmlDoc = xml.responseXML;
-  let table="<tr><th>Artist</th><th>Title</th></tr>";
-  const x = xmlDoc.getElementsByTagName("CD");
-  for (i = 0; i <x.length; i++) {
-    table += `<tr><td>${ 
-    x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue 
-    }</td><td>${ 
-    x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue 
+  let table = '<tr><th>Artist</th><th>Title</th></tr>';
+  const x = xmlDoc.getElementsByTagName('CD');
+  for (i = 0; i < x.length; i++) {
+    table += `<tr><td>${
+      x[i].getElementsByTagName('ARTIST')[0].childNodes[0].nodeValue
+    }</td><td>${
+      x[i].getElementsByTagName('TITLE')[0].childNodes[0].nodeValue
     }</td></tr>`;
   }
-  document.getElementById("demo").innerHTML = table;
+  document.getElementById('demo').innerHTML = table;
 }
 ```
 
@@ -501,11 +496,11 @@ function myFunction(xml) {
 ## Server-sent events
 
 ```js
-const evtSource = new EventSource("ssedemo.php");
+const evtSource = new EventSource('ssedemo.php');
 evtSource.onmessage = function (e) {
-  const newElement = document.createElement("li");
+  const newElement = document.createElement('li');
 
-  newElement.innerHTML = `message: ${  e.data}`;
+  newElement.innerHTML = `message: ${e.data}`;
   eventList.appendChild(newElement);
 };
 ```
@@ -527,27 +522,27 @@ WebSocket 是一种网络通信协议。
 - 协议标识符是 ws（如果加密，则为 wss），服务器网址就是 URL。
 
 ```js
-const ws = new WebSocket("wss://echo.websocket.org");
+const ws = new WebSocket('wss://echo.websocket.org');
 
 ws.onopen = function (evt) {
-  console.log("Connection open ...");
-  ws.send("Hello WebSockets!");
+  console.log('Connection open ...');
+  ws.send('Hello WebSockets!');
 };
 
 ws.onmessage = function (evt) {
-  console.log(`Received Message: ${  evt.data}`);
+  console.log(`Received Message: ${evt.data}`);
   ws.close();
 };
 
 ws.onclose = function (evt) {
-  console.log("Connection closed.");
+  console.log('Connection closed.');
 };
 ```
 
 ### 构造函数
 
 ```js
-const ws = new WebSocket("ws://localhost:8080");
+const ws = new WebSocket('ws://localhost:8080');
 ```
 
 此时，客户端会与服务端进行链接
@@ -587,15 +582,15 @@ websocket 实例对象的属性，用于指定连接成功后的回掉函数
 
 ```js
 ws.onopen = function () {
-  ws.send("Hello Server");
+  ws.send('Hello Server');
 };
 ```
 
 如果要指定多个回调函数，可以使用 addEventListener 方法。
 
 ```js
-ws.addEventListener("open", (event) => {
-  ws.send("Hello Server!");
+ws.addEventListener('open', (event) => {
+  ws.send('Hello Server!');
 });
 ```
 
@@ -611,7 +606,7 @@ ws.onclose = function (event) {
   // handle close event
 };
 
-ws.addEventListener("close", (event) => {
+ws.addEventListener('close', (event) => {
   const code = event.code;
   const reason = event.reason;
   const wasClean = event.wasClean;
@@ -629,7 +624,7 @@ ws.onmessage = function (event) {
   // 处理数据
 };
 
-ws.addEventListener("message", (event) => {
+ws.addEventListener('message', (event) => {
   const data = event.data;
   // 处理数据
 });
@@ -641,13 +636,13 @@ ws.addEventListener("message", (event) => {
 
 ```js
 // 收到的是 blob 数据
-ws.binaryType = "blob";
+ws.binaryType = 'blob';
 ws.onmessage = function (e) {
   console.log(e.data.size);
 };
 
 // 收到的是 ArrayBuffer 数据
-ws.binaryType = "arraybuffer";
+ws.binaryType = 'arraybuffer';
 ws.onmessage = function (e) {
   console.log(e.data.byteLength);
 };
@@ -660,7 +655,7 @@ ws.onmessage = function (e) {
 发送文本的例子。
 
 ```js
-ws.send("your message");
+ws.send('your message');
 ```
 
 发送 Blob 对象的例子。
@@ -704,7 +699,7 @@ socket.onerror = function (event) {
   // handle error event
 };
 
-socket.addEventListener("error", (event) => {
+socket.addEventListener('error', (event) => {
   // handle error event
 });
 ```
@@ -899,3 +894,7 @@ HTML meta element
 
 `Content-Security-Policy: default-src <source>;`
 `Content-Security-Policy: default-src <source> <source>;`
+
+## 正向代理（Forward Proxy）和反向代理（Reverse Proxy）
+
+一般给客户端做代理的都是正向代理，给服务器做代理的就是反向代理。

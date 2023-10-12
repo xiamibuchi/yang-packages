@@ -1156,3 +1156,15 @@ self.addEventListener('activate', (event) => {
   );
 });
 ```
+
+### form 表单
+
+- inputmode：allows a browser to display an appropriate virtual keyboard.
+  - none
+  - text (default value)
+  - numeric：数字九宫格，验证码常用
+  - ...
+- autocomplete：
+  - one-time-code，自动补全短信里的数字
+  - off
+  - on
