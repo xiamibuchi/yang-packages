@@ -1,4 +1,4 @@
-# 第 8 章\_jQuery
+# jQuery
 
 jQuery 是 JavaScript 世界中使用最广泛的一个库。它的作用：
 
@@ -424,17 +424,17 @@ $.post({
 
 ### 事件绑定
 
-1. 简单事件绑定:click(handler); // click(handler)
+1. 简单事件绑定: click(handler);
 2. bind('event',fn); // 不支持动态创建出来的元素绑定事件.
    - $(selector).unbind(); //解绑所有的事件
-   - $(selector).unbind(“click”); //解绑指定的事件
+   - $(selector).unbind('click'); //解绑指定的事件
 3. delegate('element', 'event',fn); // 为什么 delegate 支持动态绑定事件？原因是事件冒泡机制。因为事件绑定到父元素上的,由子元素触发
-   - $( selector ).undelegate(); //解绑所有的 delegate 事件
-   - $( selector).undelegate( “click” ); //解绑所有的 click 事件
+   - $(selector).undelegate(); //解绑所有的 delegate 事件
+   - $(selector).undelegate('click'); //解绑所有的 click 事件
 4. on('event', 'element',fn):jQuery1.7 之后,jQuery 用 on 统一了所有事件的处理方法
    - $(selector).off();// 解绑匹配元素的所有事件
-   - $(selector).off(“click”);解绑匹配元素的所有 click 事件
-   - $(selector).off( “click”, “\*\*” ); 解绑所有代理的 click 事件，元素本身的事件不会被解绑。这个选择器是父级元素
+   - $(selector).off('click');解绑匹配元素的所有 click 事件
+   - $(selector).off( 'click', “\*\*” ); 解绑所有代理的 click 事件，元素本身的事件不会被解绑。这个选择器是父级元素
 
 on 事件绑定:
 
@@ -579,11 +579,11 @@ $('p').one('click', function () {
 
 ## 事件触发
 
-简单事件触发
 $(selector).click(); //触发 click 事件
 
 trigger 方法触发事件
-$(selector).trigger("click");
+
+$(selector).trigger('click');
 
 ## 阻止浏览器默认事件
 
@@ -654,15 +654,12 @@ AJAX 是一种与服务器交换数据的技术,可以在不重新载入整个�
   - $.noConflict()释放变量 $ 的 jQuery 控制权
   - $.param()创建数组或对象的序列化表示形式（可在生成 AJAX 请求时用于 URL 查询字符串中）
   - removeData()移除之前存放的数据
-  - size()在版本 1.8 中被废弃。返回被 jQuery 选择器匹配的 DOM 元素的数量
   - toArray()以数组的形式检索所有包含在 jQuery 集合中的所有 DOM 元素
   - pushStack()将一个 DOM 元素集合加入到 jQuery 栈
   - $.when()提供一种方法来执行一个或多个对象的回调函数
 
 ## jQuery 实用工具
 
-$.boxModel 在版本 1.8 中被废弃。检测浏览器是否使用W3C的CSS盒模型渲染当前页面
-$.browser 在版本 1.9 中被废弃。返回用户当前使用的浏览器的相关信息
 $.contains() 判断另一个DOM元素是否是指定DOM元素的后代
 $.each() 遍历指定的对象和数组
 $.extend() 将一个或多个对象的内容合并到目标对象
@@ -687,7 +684,6 @@ $.parseJSON() 将符合标准格式的JSON字符串转为与之对应的JavaScri
 $.parseXML() 将字符串解析为对应的 XML 文档
 $.trim() 去除字符串两端的空白字符
 $.type() 确定 JavaScript 内置对象的类型
-$.unique() 在jQuery 3.0中被弃用。对DOM元素数组进行排序,并移除重复的元素
 $.uniqueSort() 对 DOM 元素数组进行排序,并移除重复的元素
 $.data() 在指定的元素上存取数据,并返回设置值
 $.hasData() 确定一个元素是否有相关的 jQuery 数据
@@ -695,54 +691,3 @@ $.sub() 创建一个新的jQuery副本,其属性和方法可以修改,而不会�
 $.speed 创建一个包含一组属性的对象用来定义自定义动画
 $.htmlPrefilter() 通过jQuery操作方法修改和过滤HTML字符串
 $.readyException() 处理包裹在 jQuery()中函数同步抛出的错误
-
-## jQuery 回调对象
-
-$.Callbacks() 一个多用途的回调列表对象,用来管理回调函数列表
-callbacks.add() 在回调列表中添加一个回调或回调的集合
-callbacks.disable() 禁用回调列表中的回调函数
-callbacks.disabled() 确定回调列表是否已被禁用
-callbacks.empty() 从列表中清空所有的回调
-callbacks.fire() 传入指定的参数调用所有的回调
-callbacks.fired() 确定回调是否至少已经调用一次
-callbacks.firewith() 给定的上下文和参数访问列表中的所有回调
-callbacks.has() 判断回调列表中是否添加过某回调函数
-callbacks.lock() 锁定当前状态的回调列表
-callbacks.locked() 判断回调列表是否被锁定
-callbacks.remove() 从回调列表中的删除一个回调或回调集合
-
-## jQuery 延迟对象
-
-在 jQuery 1.5 中介绍了 Deferred 延迟对象,它是通过调用 jQuery.Deferred() 方法来创建的可链接的实用对象。它可注册多个回调函数到回调列表,调用回调列表并且传递异步或同步功能的成功或失败的状态。
-延迟对象是可链接的,类似于一个 jQuery 对象可链接的方式,区别于它有自己的方法。在创建一个 Deferred 对象之后,您可以使用以下任何方法,直接链接到通过调用一个或多个的方法创建或保存的对象。
-
-$.Deferred() 返回一个链式实用对象方法来注册多个回调
-deferred.always() 当 Deferred（延迟）对象被受理或被拒绝时,调用添加的处理程序
-deferred.done() 当 Deferred（延迟）对象被受理时,调用添加的处理程序
-deferred.fail() 当 Deferred（延迟）对象被拒绝时,调用添加的处理程序
-deferred.isRejected() 从 jQuery1.7 开始已经过时,确定 Deferred 对象是否已被拒绝
-deferred.isResolved() 从 jQuery1.7 开始已经过时,确定 Deferred 对象是否已被解决
-deferred.notify() 给定一个参数,调用正在延迟对象上进行的回调函数( progressCallbacks )
-deferred.notifyWith() 给定上下文和参数,调用正在延迟对象上进行的回调函数( progressCallbacks )
-deferred.pipe() 过滤 and/or 链式延迟对象的工具方法
-deferred.progress() 当 Deferred（延迟）对象生成进度通知时,调用添加处理程序
-deferred.promise() 返回 Deferred(延迟)的 Promise 对象
-deferred.reject() 拒绝 Deferred（延迟）对象,并根据给定的参数调用任何 failCallbacks 回调函数
-deferred.rejectWith() 拒绝 Deferred（延迟）对象,并根据给定的 context 和 args 参数调用任何 failCallbacks 回调函数
-deferred.resolve() 解决 Deferred（延迟）对象,并根据给定的参数调用任何 doneCallbacks 回调函数
-deferred.resolveWith() 解决 Deferred（延迟）对象,并根据给定的 context 和 args 参数调用任何 doneCallbacks 回调函数
-deferred.state() 确定一个 Deferred（延迟）对象的当前状态
-deferred.then() 当 Deferred（延迟）对象解决,拒绝或仍在进行中时,调用添加处理程序
-.promise() 返回一个 Promise 对象,观察某种类型被绑定到集合的所有行动,是否已被加入到队列中
-
-## jQuery 属性
-
-- context 在版本 1.10 中被废弃。包含被传递到 jQuery 的原始上下文
-  - jquery 包含 jQuery 的版本号
-  - jQuery.fx.interval 改变以毫秒计的动画运行速率
-  - jQuery.fx.off 对所有动画进行全局禁用或启用
-  - jQuery.support 包含表示不同浏览器特性或漏洞的属性集（主要用于 jQuery 的内部使用）
-  - length 包含 jQuery 对象中元素的数目
-  - jQuery.cssNumber 包含所有可以不使用单位的 CSS 属性的对象
-
-## jQuery 的框架封装
