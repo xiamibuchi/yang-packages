@@ -36,3 +36,5 @@ export const isStringNumber = (val: string): boolean => {
   }
   return !Number.isNaN(Number(val));
 };
+
+export type Timer = ReturnType<typeof setTimeout>;

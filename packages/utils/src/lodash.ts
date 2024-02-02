@@ -1,3 +1,20 @@
+import type { Timer } from './types';
+
+const isObject = (value: any) => {
+  return typeof value === 'object' && value !== null;
+};
+
+/**
+ * @description 深拷贝，Object 结构复杂的情况下，效率比 lodash.cloneDeep 要高
+ * @see https://www.measurethat.net/Benchmarks/Show/7472/0/lodash-clonedeep-vs-json-clone-with-youtube-data
+ */
+export function cloneDeep(data: object) {
+  if (!isObject(data)) {
+    return data;
+  }
+  return JSON.parse(JSON.stringify(data));
+}
+
 /**
  * @description 从对象中取出指定路径的值，如果值不存在则返回默认值
  * @param value 传入对象
@@ -34,4 +51,76 @@ export const get = <TDefault = unknown>(
     current = current?.[key];
   }
   return current ?? defaultValue;
+};
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+export const debounce = (func: Function, wait = 50) => {
+  let timer: Timer | undefined;
+  const active = true;
+  const debounced = (...args: unknown[]) => {
+    if (active) {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        active && func(...args);
+        timer = undefined;
+      }, wait);
+    } else {
+      func(...args);
+    }
+  };
+  return debounced;
+};
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+export const throttle = (func: Function, wait = 50) => {
+  let timer: Timer | undefined;
+  let active = true;
+  const throttled = (...args: any[]) => {
+    if (!active) {
+      return;
+    }
+    func(...args);
+    active = false;
+    timer = setTimeout(() => {
+      clearTimeout(timer);
+      timer = undefined;
+      active = true;
+    }, wait);
+  };
+  return throttled;
+};
+
+export const uniqBy = (arr: Record<string, any> | string[], keys: string[]) => {
+  if (!Array.isArray(arr) || !Array.isArray(keys) || keys.length === 0) {
+    throw new Error(
+      'Invalid input. The first parameter should be an array, and the second parameter should be a non-empty array of keys.'
+    );
+  }
+
+  if (typeof arr[0] === 'string') {
+    // If the array is a string array, ensure unique values based on keys
+    const uniqueValues = new Set();
+    return arr.filter((item) => {
+      if (uniqueValues.has(item)) {
+        return false;
+      }
+      uniqueValues.add(item);
+      return true;
+    });
+  } else if (typeof arr[0] === 'object') {
+    // If the array is an object array, ensure unique objects based on key combinations
+    const uniqueObjects = new Set();
+    return arr.filter((item) => {
+      const keyCombination = keys.map((key) => get(item, key)).join('|');
+      if (uniqueObjects.has(keyCombination)) {
+        return false;
+      }
+      uniqueObjects.add(keyCombination);
+      return true;
+    });
+  } else {
+    throw new TypeError(
+      'Invalid input. The first parameter should be an array of strings or an array of objects.'
+    );
+  }
 };
