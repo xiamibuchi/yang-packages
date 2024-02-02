@@ -53,16 +53,26 @@ export class VideoPlayer extends Core {
   };
   // ui
   root: HTMLElement;
-  playerBox: HTMLElement;
+  playerBox: HTMLElement & {
+    mozRequestFullScreen?: () => void;
+    webkitRequestFullscreen?: () => void;
+    msRequestFullscreen?: () => void;
+  };
   video: HTMLVideoElement & {
     /* https://developer.apple.com/documentation/webkitjs/htmlvideoelement/1633500-webkitenterfullscreen */
     webkitEnterFullscreen?: () => void;
     // https://developer.apple.com/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls
     webkitSupportsPresentationMode?: (mode: string) => boolean;
+    // https://developer.apple.com/documentation/webkitjs/htmlvideoelement/1630493-webkitdisplayingfullscreen
+    webkitDisplayingFullscreen?: boolean;
     webkitSetPresentationMode?: (mode: string) => void;
     // https://developer.apple.com/documentation/webkitjs/htmlvideoelement/1631913-webkitpresentationmode
     webkitPresentationMode?: 'inline' | 'picture-in-picture' | 'fullscreen';
+    webkitfullscreen?: boolean;
   };
+  _iosFullscreen = false;
+  _iosFullscreenPause = true;
+  _iosFullscreenTimer: number | null = null;
 
   controls?: Controls;
   uiLoading?: UiLoading;
@@ -82,6 +92,7 @@ export class VideoPlayer extends Core {
     super(_options);
     this.options = _options;
     this.getLang.bind(this);
+    this._onEscHandle.bind(this);
     this.currentLevelName = '';
     this.supportsTouch =
       'ontouchstart' in window || Boolean(navigator?.maxTouchPoints);
@@ -113,7 +124,24 @@ export class VideoPlayer extends Core {
 
     this.setPlayerSrc();
   }
-
+  // fullscreen
+  get fullscreen() {
+    return Boolean(
+      // @ts-ignore
+      document.fullScreen ||
+        // @ts-ignore
+        document.mozFullScreen ||
+        // @ts-ignore
+        document.webkitIsFullScreen ||
+        // @ts-ignore
+        document.webkitFullScreen ||
+        // @ts-ignore
+        document.msFullscreen ||
+        document.fullscreen ||
+        document.fullscreenElement?.nodeName ||
+        this.video?.webkitDisplayingFullscreen
+    );
+  }
   get isLive() {
     if (this.options.isLive === true) {
       return true;
@@ -158,6 +186,12 @@ export class VideoPlayer extends Core {
     }
     if (playerBox.requestFullscreen) {
       return playerBox.requestFullscreen();
+    } else if (playerBox.mozRequestFullScreen) {
+      playerBox.mozRequestFullScreen();
+    } else if (playerBox.webkitRequestFullscreen) {
+      playerBox.webkitRequestFullscreen();
+    } else if (playerBox.msRequestFullscreen) {
+      playerBox.msRequestFullscreen();
     } else if (video?.webkitEnterFullscreen) {
       this.emit(UiEvents.UI_FULLSCREEN_ERROR);
       return video.webkitEnterFullscreen();
@@ -361,16 +395,53 @@ export class VideoPlayer extends Core {
     this.plugins[pluginName] = plugin;
     return plugin;
   }
+  private _onEscHandle() {
+    const isFullScreen = this.fullscreen;
+    this.emit(UiEvents.UI_FULLSCREEN_CHANGE, isFullScreen);
+  }
   private _initBaseDomEvents() {
     const { root } = this;
     this.addEventListener(this.playerBox, 'fullscreenchange', () => {
       this.emit(UiEvents.UI_FULLSCREEN_CHANGE);
     });
+    this.addEventListener(this.video, 'webkitbeginfullscreen', () => {
+      this._iosFullscreen = true;
+      this._iosFullscreenPause = this.paused;
+    });
+    this.on(VideoEvents.PAUSE, () => {
+      if (this._iosFullscreen) {
+        this._iosFullscreenTimer && clearTimeout(this._iosFullscreenTimer);
+        this._iosFullscreenTimer = window.setTimeout(() => {
+          this._iosFullscreenPause = true;
+        }, 800);
+      }
+    });
+    this.on(VideoEvents.PLAYING, () => {
+      if (this._iosFullscreen) {
+        this._iosFullscreenTimer && clearTimeout(this._iosFullscreenTimer);
+        this._iosFullscreenTimer = window.setTimeout(() => {
+          this._iosFullscreenPause = false;
+        }, 800);
+      }
+    });
+    this.addEventListener(this.video, 'webkitendfullscreen', () => {
+      this.emit(UiEvents.UI_FULLSCREEN_CHANGE, false);
+      this._iosFullscreenTimer && clearTimeout(this._iosFullscreenTimer);
+      this._iosFullscreen = false;
+      // ios退出全屏之前 如果之前是播放状态，先触发 paused 状态(可以监听到)
+      // 如果是暂停状态，不会触发 pause
+      setTimeout(() => {
+        if (!this._iosFullscreenPause) {
+          this.play();
+        }
+      }, 500);
+    });
     // handle ESC
     if (document.addEventListener) {
-      document.addEventListener('fullscreenchange', () => {
-        this.emit(UiEvents.UI_FULLSCREEN_CHANGE);
-      });
+      document.addEventListener('fullscreenchange', this._onEscHandle);
+      document.addEventListener('mozfullscreenchange', this._onEscHandle);
+      document.addEventListener('webkitfullscreenchange', this._onEscHandle);
+      document.addEventListener('msfullscreenchange', this._onEscHandle);
     }
 
     if (this.supportsTouch) {

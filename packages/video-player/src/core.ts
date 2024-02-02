@@ -322,10 +322,6 @@ export class Core extends EventEmitter {
   get ended() {
     return this.video?.ended || false;
   }
-  // fullscreen
-  get fullscreen() {
-    return Boolean(document.fullscreen || document.fullscreenElement?.nodeName);
-  }
   // playbackRate
   get playbackRate() {
     return this.video?.playbackRate || 1;
