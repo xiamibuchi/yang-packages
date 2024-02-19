@@ -123,6 +123,12 @@ this.video.setAttribute('raw-controls', 'raw-controls');
 this.video.setAttribute('controls360', 'no');
 ```
 
+## x5 浏览器竖屏
+
+x5-video-player-orientation
+
+x5-video-player-orientation="portraint"：声明播放器支持的方向，横屏：landscape，竖屏：portraint，默认竖屏播放，无论是直播还是全屏 H5 一般都是竖屏播放，但是该属性需要 x5-video-player-type 开启 H5 模式（x5-video-player-type='h5'）；
+
 ## Picture-in-Picture
 
 ```js
