@@ -1,5 +1,3 @@
-import { MimetypesKind } from './constants';
-
 const formatNumber = (num: number) => {
   return num < 10 ? `0${num}` : `${num}`;
 };
@@ -41,12 +39,3 @@ export function getBoundingClientRect(el: Element) {
     elBoundingClientRect.y || elBoundingClientRect.top || 0;
   return elBoundingClientRect;
 }
-
-export const getMimetype = (url: string) => {
-  if (!url || typeof url !== 'string') {
-    return '';
-  }
-  const ext = url.split('.').pop()?.toLocaleLowerCase() || '';
-  const mediaType = MimetypesKind[ext] || ext;
-  return mediaType;
-};

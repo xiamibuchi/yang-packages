@@ -198,11 +198,21 @@ export class VideoPlayer extends Core {
     }
   }
   exitFullscreen() {
-    const isFullScreen = this.fullscreen;
-    if (!isFullScreen) {
-      return;
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+      // @ts-ignore
+    } else if (document.mozCancelFullScreen) {
+      // @ts-ignore
+      document.mozCancelFullScreen();
+      // @ts-ignore
+    } else if (document.webkitExitFullscreen) {
+      // @ts-ignore
+      document.webkitExitFullscreen();
+      // @ts-ignore
+    } else if (document.msExitFullscreen) {
+      // @ts-ignore
+      document.msExitFullscreen();
     }
-    return document.exitFullscreen();
   }
 
   getCurrentLevel() {

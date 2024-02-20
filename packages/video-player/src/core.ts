@@ -1,8 +1,16 @@
 import EventEmitter from 'eventemitter3';
+import Hls from 'hls.js/dist/hls.light.js';
 import { PlayerEvents, VideoEvents, WindowEvents } from './constants';
-import { getMimetype } from './utils';
-import type Hls from 'hls.js';
+// @ts-ignore
 import type { PlayerOptions } from './types';
+
+type EventListenerOptions =
+  | boolean
+  | {
+      capture?: boolean;
+      passive?: boolean;
+      once?: boolean;
+    };
 
 interface EventListener {
   (
@@ -123,27 +131,22 @@ export class Core extends EventEmitter {
       return;
     }
     this.emit(PlayerEvents.BEFORE_SET_SRC);
-    const mediaType = getMimetype(src);
-    const isSupportFormat = this.video?.canPlayType(mediaType);
-    if (!isSupportFormat) {
+    if (Hls.isSupported()) {
       if (this.hls) {
         this.hls.destroy();
         this.hls = undefined;
       }
-      import('hls.js').then((Hls) => {
-        this.hls = new Hls.default();
-        if (!this.hls) {
-          throw new Error('Hls is not supported');
-        }
-        this.video && this.hls.attachMedia(this.video);
-        this.hls.loadSource(src);
-        this.emit(PlayerEvents.AFTER_SET_SRC);
-      });
+      this.hls = new Hls();
+      if (!this.hls) {
+        throw new Error('Hls is not supported');
+      }
+      this.video && this.hls.attachMedia(this.video);
+      this.hls.loadSource(src);
     } else {
       this.video.src = src;
       this.video.load();
-      this.emit(PlayerEvents.AFTER_SET_SRC);
     }
+    this.emit(PlayerEvents.AFTER_SET_SRC);
   }
   // currentTime
   get currentTime() {
@@ -179,7 +182,7 @@ export class Core extends EventEmitter {
       currentTime = 0;
     }
 
-    if (video.fastSeek) {
+    if (typeof video.fastSeek === 'function') {
       video.fastSeek(currentTime);
     } else {
       video.currentTime = currentTime;
@@ -314,6 +317,15 @@ export class Core extends EventEmitter {
   get buffered() {
     return this.video?.buffered;
   }
+  get canplay() {
+    if (!this.video) {
+      return false;
+    }
+    if (typeof this.video.readyState === 'number') {
+      return this.video.readyState >= 3;
+    }
+    return true;
+  }
   // paused
   get paused() {
     return this.video?.paused || false;
@@ -426,7 +438,7 @@ export class Core extends EventEmitter {
     dom: Element,
     type: string,
     listener: EventListener,
-    options?: AddEventListenerOptions
+    options?: EventListenerOptions
   ): () => void {
     dom.addEventListener(type, listener, options);
     const removeListener = () => {
