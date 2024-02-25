@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue';
 import VideoPlayer from '@syseven/video-player';
-import '@syseven/video-player/dist/index.css';
 
 const root = ref<HTMLElement | null>(null);
 const levels = [
