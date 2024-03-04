@@ -3,32 +3,10 @@
   "version": "0.0.1",
   "description": "",
   "license": "MIT",
-  "main": "lib/index.js",
-  "module": "es/index.mjs",
-  "types": "es/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./es/index.d.ts",
-      "import": "./es/index.mjs",
-      "require": "./lib/index.js"
-    },
-    "./es": "./es/index.mjs",
-    "./lib": "./lib/index.js",
-    "./es/*.mjs": "./es/*.mjs",
-    "./es/*": "./es/*.mjs",
-    "./lib/*.js": "./lib/*.js",
-    "./lib/*": "./lib/*.js",
-    "./*": "./*"
-  },
-  "style": "dist/index.css",
+  "main": "index.ts",
+  "module": "index.ts",
+  "types": "index.ts",
   "peerDependencies": {
     "vue": "^3.3.4"
-  },
-  "sideEffects": [
-    "dist/*",
-    "style/**/*.css",
-    "style/src/**/*.scss",
-    "es/components/*/style/*",
-    "lib/components/*/style/*"
-  ]
+  }
 }

@@ -1,31 +1,5 @@
 import { defineConfig } from 'vitepress'
-import {
-  projRoot,
-} from '@syseven/build-utils'
-import path from 'path';
 import sidebar from './sidebar';
-
-import type { Alias } from 'vite'
-
-const alias: Alias[] = [
-  {
-    find: '~/',
-    replacement: `${path.resolve(__dirname, './.vitepress/vitepress')}/`,
-  },
-]
-
-if (process.env.DOC_ENV !== 'production') {
-  alias.push(
-    {
-      find: /^@syseven\/xiami(\/(es|lib))?$/,
-      replacement: path.resolve(projRoot, 'packages/xiami/index.ts'),
-    },
-    {
-      find: /^@syseven\/xiami\/(es|lib)\/(.*)$/,
-      replacement: `${path.resolve(projRoot, 'packages')}/$2`,
-    }
-  )
-}
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -71,8 +45,6 @@ export default defineConfig({
     server: {
       port: 3333,
     },
-    resolve: {
-      alias,
-    },
+    resolve: {},
   }
 })
