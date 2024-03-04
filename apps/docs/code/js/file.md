@@ -263,7 +263,7 @@ const uploadFile = async (file: File) => {
 <FileDownloadAnchor />
 
 - 对于图片文件等这种可以被浏览器打开的文件不会被下载，浏览器会直接打开文件
-- 动态创建 a 标签下载图片，如果图片跨域，则浏览器也会新标签下载图片
+- a 标签下载图片，跨域则浏览器下载图片，如果如果图片同域则是新标签打开
 
 ### DataUrl 和 BlobUrl
 
