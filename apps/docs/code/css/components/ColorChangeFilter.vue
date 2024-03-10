@@ -111,8 +111,11 @@ export default {
     change() {
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       const self = this;
-      const startDom = this.$refs.start.$el;
-      const endDom = this.$refs.end.$el;
+      const startDom = this.$refs.start?.$el;
+      const endDom = this.$refs.end?.$el;
+      if (!startDom || !endDom) {
+        return;
+      }
       const startColor = this.startColor;
       const endColor = this.endColor;
       const canvas = document.createElement('canvas');
