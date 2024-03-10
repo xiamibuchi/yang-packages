@@ -7,11 +7,6 @@
     "stub": {
       "dependsOn": ["^stub"],
       "outputs": ["dist"]
-    },
-    "@syseven/icons-vue#build": {
-      "dependsOn": [],
-      "inputs": ["src/**", "package.json", "tsconfig.build.json", "tsconfig.json"],
-      "outputs": ["dist"]
     }
   }
 }

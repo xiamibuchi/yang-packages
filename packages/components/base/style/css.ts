@@ -1,1 +1,1 @@
-import '@syseven/style/base.css';
+import '@syseven/style/src/base.css';

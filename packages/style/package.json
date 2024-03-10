@@ -2,9 +2,11 @@
   "name": "@syseven/style",
   "description": "style",
   "style": "index.css",
+  "files": [
+    "src"
+  ],
   "scripts": {
-    "clean": "rimraf dist",
-    "build": "gulp --require @esbuild-kit/cjs-loader"
+    "clean": "rimraf dist"
   },
   "devDependencies": {
   }
