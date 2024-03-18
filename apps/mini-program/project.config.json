@@ -11,5 +11,23 @@
     "postcss": false,
     "minified": false
   },
-  "compileType": "miniprogram"
+  "compileType": "miniprogram",
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "default",
+          "pathName": "pages/index/index",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "webview",
+          "pathName": "pages/webview/webview",
+          "query": "url=https%3A%2F%2Fwww.baidu.com&title=shenyang",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

@@ -64,6 +64,7 @@ module.exports = defineConfig({
       },
       rules: {
         'no-undef': 'off',
+        '@typescript-eslint/no-empty-function': 'off',
       },
     },
     {

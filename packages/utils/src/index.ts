@@ -6,4 +6,5 @@ export * from './i18n';
 export * from './lodash';
 export * from './json';
 export * from './objects';
+export * from './querystring';
 export * from './typescript';

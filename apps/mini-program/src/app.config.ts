@@ -1,5 +1,5 @@
 export default {
-  pages: ['pages/index/index'],
+  pages: ['pages/index/index', 'pages/webview/webview'],
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',
