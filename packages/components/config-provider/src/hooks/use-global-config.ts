@@ -66,6 +66,7 @@ export const provideGlobalConfig = (
     if (!oldConfig?.value) {
       return cfg;
     }
+    // @ts-ignore
     return mergeConfig(oldConfig.value, cfg);
   });
   // @ts-ignore
@@ -73,10 +74,12 @@ export const provideGlobalConfig = (
   // @ts-ignore
   provideFn(
     namespaceContextKey,
+    // @ts-ignore
     computed(() => context.value.namespace)
   );
 
   if (global || !globalConfig.value) {
+    // @ts-ignore
     globalConfig.value = context.value;
   }
   return context;

@@ -24,7 +24,6 @@ export const excludeFiles = (files: string[]) => {
     'gulpfile',
     'dist',
     'icons-svg',
-    'icons-vue',
   ];
   return files.filter(
     (path) => !excludes.some((exclude) => path.includes(exclude))

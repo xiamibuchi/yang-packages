@@ -14,8 +14,8 @@
     "clean:dist": "rimraf dist",
     "build": "pnpm run -C internal/build start",
     "docs:build": "pnpm --filter @syseven/docs build",
-    "test": "pnpm run -r unit:test && vitest",
-    "test:coverage": "vitest --coverage"
+    "test": "pnpm run -r unit:test && vitest --config ./vitest.config.ts",
+    "test:coverage": "vitest run --coverage --config ./vitest.config.ts"
   },
   "lint-staged": {
     "*.{ts,js,vue,tsx,jsx,md}": [
