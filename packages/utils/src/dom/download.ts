@@ -1,4 +1,4 @@
-export const downloadAnchor = (url: string, name: string | undefined) => {
+export const downloadAnchor = (url: string, name?: string) => {
   const link: HTMLAnchorElement = document.createElement('a');
   if (name) {
     link.download = name;
@@ -24,7 +24,7 @@ export const image2base64 = (img: HTMLImageElement) => {
   return dataUrl;
 };
 
-export const downloadImage = (url: string, name: string | undefined) => {
+export const downloadImage = (url: string, name?: string) => {
   const img = new Image();
   img.crossOrigin = 'anonymous';
   img.src = url;
@@ -34,7 +34,7 @@ export const downloadImage = (url: string, name: string | undefined) => {
   };
 };
 
-export const downloadBlob = (link: string, name: string | undefined) => {
+export const downloadBlob = (link: string, name?: string) => {
   const xhr = new XMLHttpRequest();
   xhr.open('get', link, true);
   xhr.responseType = 'blob';

@@ -1,4 +1,3 @@
-// @ts-nocheck
 const ESCAPE_MAP = {
   '"': '"',
   '\\': '\\',
@@ -13,7 +12,7 @@ const ESCAPE_MAP = {
 /**
  * @description: parse json 字符串中的 bigint 至 string。非 int 类型的数字都会被转换为 string
  */
-export const safeJsonParse = (source: string): Record<string, any> => {
+export const safeJsonParse = (source) => {
   if (typeof source !== 'string') {
     throw new TypeError(`Expected a string, got ${typeof source}`);
   }
@@ -21,7 +20,7 @@ export const safeJsonParse = (source: string): Record<string, any> => {
   let character = ' ';
   let characterIndex = 0;
 
-  const nextCharacter = (expectedCharacter?: string) => {
+  const nextCharacter = (expectedCharacter) => {
     if (expectedCharacter && expectedCharacter !== character) {
       throw new Error(
         `Expected '${expectedCharacter}' instead of '${character}'`

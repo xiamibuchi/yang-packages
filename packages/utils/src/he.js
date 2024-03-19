@@ -1,6 +1,8 @@
-/* eslint-disable unicorn/number-literal-case */
-/* eslint-disable unicorn/no-hex-escape */
-// @ts-nocheck
+/**
+ * @description HTML entities encode and decode forked from he.js
+ * @see https://github.com/mathiasbynens/he
+ */
+
 const regexEscape = /["&'<>`]/g;
 const escapeMap = {
   '"': '&quot;',
