@@ -29,7 +29,9 @@ jobs:
       - uses: actions/cache@v4
         name: Setup pnpm cache
         with:
-          path: ~/setup-pnpm
+          path: |
+            ./node_modules
+            ~/setup-pnpm
           key: pnpm-lock.yaml
           restore-keys: ${{ runner.os }}-pnpm-store-
       - name: Install dependencies
