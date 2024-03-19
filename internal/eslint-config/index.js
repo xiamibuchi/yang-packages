@@ -1,8 +1,5 @@
 /* eslint-env node */
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { defineConfig } = require('eslint-define-config');
-
-module.exports = defineConfig({
+module.exports = {
   env: {
     browser: true,
     es2020: true,
@@ -225,13 +222,10 @@ module.exports = defineConfig({
     'unicorn/no-array-method-this-argument': 'error',
     'unicorn/no-array-push-push': 'error',
     'unicorn/no-console-spaces': 'error',
-    'unicorn/no-hex-escape': 'error',
     'unicorn/no-instanceof-array': 'error',
     'unicorn/no-invalid-remove-event-listener': 'error',
     'unicorn/no-new-array': 'error',
     'unicorn/no-new-buffer': 'error',
-    'unicorn/no-unsafe-regex': 'off',
-    'unicorn/number-literal-case': 'error',
     'unicorn/prefer-array-find': 'error',
     'unicorn/prefer-array-flat-map': 'error',
     'unicorn/prefer-array-index-of': 'error',
@@ -256,5 +250,8 @@ module.exports = defineConfig({
     'unicorn/prefer-query-selector': 'off',
     'unicorn/no-for-loop': 'off',
     'unicorn/prefer-optional-catch-binding': 'off',
+    'unicorn/no-unsafe-regex': 'off',
+    'unicorn/no-hex-escape': 'off',
+    'unicorn/number-literal-case': 'off',
   },
-});
+};
