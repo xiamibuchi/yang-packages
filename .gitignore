@@ -68,10 +68,10 @@ jspm_packages
 
 # dotenv environment variables file
 .env
-.env.test
-.env*.local
+.env.*
+!.env.example
 
-# parcel-bundler cache (https://parceljs.org/)
+# cache
 .cache
 
 # Next.js build output
@@ -79,10 +79,13 @@ jspm_packages
 
 # Nuxt.js build / generate output
 .nuxt
+.nitro
 dist
 es
 lib
 dist-ssr
+.output
+.data
 
 # Gatsby files
 .cache/
@@ -133,6 +136,7 @@ dist-ssr
 
 # OS X temporary files
 .DS_Store
+.fleet
 
 # turbo
 .turbo
