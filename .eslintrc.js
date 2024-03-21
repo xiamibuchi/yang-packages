@@ -9,6 +9,9 @@ const DEFAULT_EXTENDS = [
 
 const VUE_EXTENDS = [...DEFAULT_EXTENDS, 'plugin:vue/vue3-recommended'];
 
+const DEFAULT_PLUGINS = ['@typescript-eslint', 'prettier', 'import'];
+const VUE_PLUGINS = [...DEFAULT_PLUGINS, 'vue'];
+
 module.exports = {
   root: true,
   env: {
@@ -24,13 +27,18 @@ module.exports = {
       },
     },
   },
-  plugins: ['@typescript-eslint', 'prettier', 'import'],
-  parser: '@typescript-eslint/parser',
+  plugins: DEFAULT_PLUGINS,
+  parser: 'vue-eslint-parser',
   parserOptions: {
-    sourceType: 'script',
+    ecmaVersion: 'latest',
+    parser: '@typescript-eslint/parser',
+    sourceType: 'module',
   },
   rules: {
-    'import/extensions': ['error', { js: 'always' }],
+    'import/extensions': [
+      'error',
+      { js: 'always', css: 'always', vue: 'always', mjs: 'always' },
+    ],
     camelcase: ['error', { properties: 'never' }],
     'no-console': ['warn', { allow: ['error'] }],
     'no-debugger': 'warn',
@@ -161,11 +169,20 @@ module.exports = {
   },
   overrides: [
     {
+      env: {
+        node: true,
+      },
+      files: ['.eslintrc.{js,cjs}'],
+      parserOptions: {
+        sourceType: 'script',
+      },
+    },
+    {
       files: ['*.json', '*.json5', '*.jsonc'],
       parser: 'jsonc-eslint-parser',
     },
     {
-      files: ['*.ts', '*.tsx', '*.vue'],
+      files: ['*.ts', '*.tsx'],
       rules: {
         // The core 'no-unused-vars' rules (in the eslint:recommeded ruleset)
         // does not work with type definitions
@@ -183,16 +200,14 @@ module.exports = {
       },
     },
     {
-      files: ['apps/docs', 'apps/nuxt3-demo'],
+      files: ['apps/docs', 'apps/nuxt3-demo', 'packages/vue-components'],
       extends: VUE_EXTENDS,
+      plugins: VUE_PLUGINS,
       parser: 'vue-eslint-parser',
       parserOptions: {
-        parser: '@typescript-eslint/parser',
-        extraFileExtensions: ['.vue'],
         ecmaVersion: 'latest',
-        ecmaFeatures: {
-          jsx: true,
-        },
+        parser: '@typescript-eslint/parser',
+        sourceType: 'module',
       },
       rules: {
         'no-undef': 'off',

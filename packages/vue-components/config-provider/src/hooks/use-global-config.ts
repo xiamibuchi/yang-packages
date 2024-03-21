@@ -15,15 +15,15 @@ const globalConfig = ref<ConfigProviderContext>();
 
 export function useGlobalConfig<
   K extends keyof ConfigProviderContext,
-  D extends ConfigProviderContext[K]
+  D extends ConfigProviderContext[K],
 >(
   key: K,
-  defaultValue?: D
+  defaultValue?: D,
 ): Ref<Exclude<ConfigProviderContext[K], undefined> | D>;
 export function useGlobalConfig(): Ref<ConfigProviderContext>;
 export function useGlobalConfig(
   key?: keyof ConfigProviderContext,
-  defaultValue = undefined
+  defaultValue = undefined,
 ) {
   const config = getCurrentInstance()
     ? inject(configProviderContextKey, globalConfig)
@@ -40,7 +40,7 @@ export function useGlobalComponentSettings(block: string) {
 
   const ns = useNamespace(
     block,
-    computed(() => config.value?.namespace || defaultNamespace)
+    computed(() => config.value?.namespace || defaultNamespace),
   );
 
   return {
@@ -51,7 +51,7 @@ export function useGlobalComponentSettings(block: string) {
 export const provideGlobalConfig = (
   config: MaybeRef<ConfigProviderContext>,
   app?: App,
-  global = false
+  global = false,
 ) => {
   const inSetup = !!getCurrentInstance();
   const oldConfig = inSetup ? useGlobalConfig() : undefined;
@@ -75,7 +75,7 @@ export const provideGlobalConfig = (
   provideFn(
     namespaceContextKey,
     // @ts-ignore
-    computed(() => context.value.namespace)
+    computed(() => context.value.namespace),
   );
 
   if (global || !globalConfig.value) {
@@ -87,7 +87,7 @@ export const provideGlobalConfig = (
 
 const mergeConfig = (
   a: ConfigProviderContext,
-  b: ConfigProviderContext
+  b: ConfigProviderContext,
 ): ConfigProviderContext => {
   const keys = [...new Set([...keysOf(a), ...keysOf(b)])];
   const obj: Record<string, any> = {};

@@ -49,7 +49,7 @@
 		"@tarojs/shared": "3.6.25",
 		"@tarojs/taro": "3.6.25",
 		"pinia": "^2.1.6",
-		"vue": "^3.3.4"
+		"vue": "^3.4.21"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.22.11",
