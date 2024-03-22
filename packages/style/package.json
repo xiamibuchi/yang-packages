@@ -5,9 +5,21 @@
   "files": [
     "src"
   ],
+  "exports": {
+    "./src/*.css": {
+      "import": "./src/*.css",
+      "require": "./src/*.css"
+    },
+    "./src/*.scss": {
+      "import": "./src/*.scss",
+      "require": "./src/*.scss"
+    }
+  },
   "scripts": {
     "clean": "rimraf dist"
   },
-  "devDependencies": {
+  "devDependencies": {},
+  "volta": {
+    "extends": "../../package.json"
   }
 }

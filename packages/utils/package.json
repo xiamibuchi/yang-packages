@@ -12,7 +12,7 @@
     "lodash-es": "^4.17.21",
     "vue": "^3.4.21"
   },
-  "devDependencies": {
-    "dependency-cruiser": "^13.0.2"
+  "volta": {
+    "extends": "../../package.json"
   }
 }

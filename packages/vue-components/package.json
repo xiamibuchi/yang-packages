@@ -8,5 +8,8 @@
   "peerDependencies": {
     "vue": "^3.4.21"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "volta": {
+    "extends": "../../package.json"
+  }
 }

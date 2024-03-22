@@ -16,5 +16,8 @@
     "dev": "pnpm run stub",
     "stub": "unbuild --stub"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "volta": {
+    "extends": "../../package.json"
+  }
 }

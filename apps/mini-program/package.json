@@ -68,5 +68,8 @@
 		"ts-node": "^10.9.1",
 		"vue-loader": "^17.1.1",
 		"webpack": "^5.78.0"
-	}
+	},
+  "volta": {
+    "extends": "../../package.json"
+  }
 }
