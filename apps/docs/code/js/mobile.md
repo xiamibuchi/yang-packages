@@ -90,23 +90,33 @@ const iframe = document.createElement('iframe');
 iframe.style.cssText = 'width=1px;height=1px;opacity:0;';
 iframe.src = clientUri;
 document.body.appendChild(iframe);
-const timer = setTimeout(() => {
-  if (!isOpenClient && !document.hidden) {
-    const anchor = document.createElement('a');
-    anchor.href = universalLink;
-    if (typeof anchor.click === 'function') {
-      anchor.click();
-      anchor.remove();
-    } else {
-      location.href = universalLink;
+const checkDate = Date.now();
+
+let _count = 0;
+const timer = setInterval(() => {
+  _count++;
+  const interval = Date.now() - checkDate;
+  if (_count > 100 || interval > 3000) {
+    clearInterval(timer);
+    if (!isOpenClient && !(document.hidden || document.webkitHidden)) {
+      const anchor = document.createElement('a');
+      anchor.href = universalLink;
+      if (typeof anchor.click === 'function') {
+        anchor.click();
+        anchor.remove();
+      } else {
+        location.href = universalLink;
+      }
     }
   }
-}, 2000);
+}, 20);
 document.addEventListener('visibilitychange', () => {
   isOpenClient = true;
+  clearInterval(timer);
 });
 window.addEventListener('pagehide', () => {
   isOpenClient = true;
+  clearInterval(timer);
 });
 ```
 
