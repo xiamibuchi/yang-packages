@@ -35,10 +35,6 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    'import/extensions': [
-      'error',
-      { js: 'always', css: 'always', vue: 'always', mjs: 'always' },
-    ],
     camelcase: ['error', { properties: 'never' }],
     'no-console': ['warn', { allow: ['error'] }],
     'no-debugger': 'warn',
@@ -199,6 +195,7 @@ module.exports = {
         'import/no-duplicates': 'off',
       },
     },
+    // vue
     {
       files: ['apps/docs', 'apps/nuxt3-demo', 'packages/vue-components'],
       extends: VUE_EXTENDS,
@@ -212,6 +209,17 @@ module.exports = {
       rules: {
         'no-undef': 'off',
         '@typescript-eslint/no-empty-function': 'off',
+      },
+    },
+    // react
+    {
+      files: ['apps/nuxt-demo'],
+      extends: 'next/core-web-vitals',
+      rules: {
+        'import/extensions': [
+          'error',
+          { js: 'always', css: 'always', vue: 'always', mjs: 'always' },
+        ],
       },
     },
     {
