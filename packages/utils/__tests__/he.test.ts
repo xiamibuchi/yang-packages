@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { escapeHtml, getHtmlText } from '../src/he';
+import { escapeHtml, getHtmlText } from '../src/he.js';
 import xssCheatSheets from './assets/xss-cheat-sheet';
 
 const replace = function (str: string) {

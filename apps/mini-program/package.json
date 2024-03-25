@@ -49,7 +49,7 @@
 		"@tarojs/shared": "3.6.25",
 		"@tarojs/taro": "3.6.25",
 		"pinia": "^2.1.6",
-		"vue": "^3.3.4"
+		"vue": "^3.4.21"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.22.11",
@@ -68,5 +68,8 @@
 		"ts-node": "^10.9.1",
 		"vue-loader": "^17.1.1",
 		"webpack": "^5.78.0"
-	}
+	},
+  "volta": {
+    "extends": "../../package.json"
+  }
 }

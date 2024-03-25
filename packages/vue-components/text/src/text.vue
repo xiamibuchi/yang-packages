@@ -2,13 +2,11 @@
   <component
     :is="tag"
     v-if="!isScriptCollapse"
-    ref="root"
     :class="textKls"
+    ref="root"
     :style="textStyle"
-  >
-    <slot />
-  </component>
-  <div v-else ref="root" :class="textKls">
+  />
+  <div ref="root" :class="textKls">
     {{ expanded ? props.content : text
     }}<span v-if="hasExpand" @click="switchExpanded">{{
       expanded ? props.collapseText : props.expandText
@@ -160,7 +158,7 @@ watch(
     if (isScriptCollapse.value) {
       calcEllipsised();
     }
-  }
+  },
 );
 
 onMounted(() => {

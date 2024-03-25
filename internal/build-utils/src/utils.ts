@@ -23,7 +23,7 @@ export function camelize(str: string): string {
 export function pascalize(str: string): string {
   return camelize(str).replace(
     pascalizeRE,
-    (_, c1, c2) => c1.toUpperCase() + c2
+    (_, c1, c2) => c1.toUpperCase() + c2,
   );
 }
 export function normalizePath(path: string): string {
@@ -53,7 +53,7 @@ export function getComponents(rootDir: string) {
         }
 
         return false;
-      })
+      }),
     );
 }
 function getPathByName(name: string, pathResolver?: PathResolver) {
@@ -67,7 +67,7 @@ function getPathByName(name: string, pathResolver?: PathResolver) {
 function genImports(
   names: string[],
   pathResolver?: PathResolver,
-  namedExport?: boolean
+  namedExport?: boolean,
 ): string {
   return names
     .map((name) => {
@@ -83,7 +83,7 @@ function genImports(
 function genExports(
   names: string[],
   pathResolver?: PathResolver,
-  namedExport?: boolean
+  namedExport?: boolean,
 ): string {
   if (namedExport) {
     const exports = names
