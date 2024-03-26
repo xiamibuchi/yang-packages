@@ -12,7 +12,6 @@
     "stub": "turbo stub --parallel",
     "clean": "pnpm run clean:dist && pnpm run -r --parallel clean",
     "clean:dist": "rimraf dist",
-    "build": "pnpm run -C internal/build start",
     "docs:build": "pnpm --filter @syseven/docs build",
     "test": "pnpm run -r unit:test && vitest --config ./vitest.config.ts",
     "test:coverage": "vitest run --coverage --config ./vitest.config.ts"
@@ -39,7 +38,6 @@
     "@pnpm/find-workspace-packages": "^6.0.9",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
-    "@syseven/build-utils": "workspace:*",
     "@syseven/constants": "workspace:*",
     "@syseven/hooks": "workspace:*",
     "@syseven/locale": "workspace:*",

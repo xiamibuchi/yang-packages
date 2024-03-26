@@ -45,9 +45,6 @@ importers:
       '@rollup/plugin-node-resolve':
         specifier: ^15.2.3
         version: 15.2.3(rollup@4.13.0)
-      '@syseven/build-utils':
-        specifier: workspace:*
-        version: link:internal/build-utils
       '@syseven/constants':
         specifier: workspace:*
         version: link:packages/constants
@@ -479,8 +476,6 @@ importers:
       workbox-webpack-plugin:
         specifier: ^6.6.0
         version: 6.6.0(webpack@5.84.1)
-
-  internal/build-utils: {}
 
   packages/constants: {}
 

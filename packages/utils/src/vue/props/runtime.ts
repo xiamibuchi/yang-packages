@@ -47,10 +47,10 @@ export const buildProp = <
   Value = never,
   Validator = never,
   Default extends EpPropMergeType<Type, Value, Validator> = never,
-  Required extends boolean = false
+  Required extends boolean = false,
 >(
   prop: EpPropInput<Type, Value, Validator, Default, Required>,
-  key?: string
+  key?: string,
 ): EpPropFinalized<Type, Value, Validator, Default, Required> => {
   // filter native prop type and nested prop, e.g `null`, `undefined` (from `buildProps`)
   if (!isObject(prop) || isEpProp(prop)) return prop as any;
@@ -80,8 +80,8 @@ export const buildProp = <
               `Invalid prop: validation failed${
                 key ? ` for prop "${key}"` : ''
               }. Expected one of [${allowValuesText}], got value ${JSON.stringify(
-                val
-              )}.`
+                val,
+              )}.`,
             );
           }
           return valid;
@@ -104,9 +104,9 @@ export const buildProps = <
     | { [epPropKey]: true }
     | NativePropType
     | EpPropInput<any, any, any, any, any>
-  >
+  >,
 >(
-  props: Props
+  props: Props,
 ): {
   [K in keyof Props]: IfEpProp<
     Props[K],
@@ -118,5 +118,5 @@ export const buildProps = <
     Object.entries(props).map(([key, option]) => [
       key,
       buildProp(option as any, key),
-    ])
+    ]),
   ) as any;

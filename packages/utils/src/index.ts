@@ -12,4 +12,5 @@ export * from './i18n';
 export * from './lodash';
 export * from './json.js';
 export * from './objects';
+export * from './string';
 export * from './typescript';

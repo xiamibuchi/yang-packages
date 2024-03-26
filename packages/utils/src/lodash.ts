@@ -30,7 +30,7 @@ export function cloneDeep(data: object) {
 export const get = <TDefault = unknown>(
   value: any,
   path?: string,
-  defaultValue?: TDefault
+  defaultValue?: TDefault,
 ): TDefault => {
   if (defaultValue === undefined) {
     defaultValue = null as TDefault;
@@ -53,8 +53,10 @@ export const get = <TDefault = unknown>(
   return current ?? defaultValue;
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export const debounce = (func: Function, wait = 50) => {
+export const debounce = (
+  func: (...params: unknown[]) => unknown,
+  wait = 50,
+) => {
   let timer: Timer | undefined;
   const active = true;
   const debounced = (...args: unknown[]) => {
@@ -71,8 +73,10 @@ export const debounce = (func: Function, wait = 50) => {
   return debounced;
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export const throttle = (func: Function, wait = 50) => {
+export const throttle = (
+  func: (...params: unknown[]) => unknown,
+  wait = 50,
+) => {
   let timer: Timer | undefined;
   let active = true;
   const throttled = (...args: any[]) => {
@@ -93,7 +97,7 @@ export const throttle = (func: Function, wait = 50) => {
 export const uniqBy = (arr: Record<string, any> | string[], keys: string[]) => {
   if (!Array.isArray(arr) || !Array.isArray(keys) || keys.length === 0) {
     throw new Error(
-      'Invalid input. The first parameter should be an array, and the second parameter should be a non-empty array of keys.'
+      'Invalid input. The first parameter should be an array, and the second parameter should be a non-empty array of keys.',
     );
   }
 
@@ -120,7 +124,7 @@ export const uniqBy = (arr: Record<string, any> | string[], keys: string[]) => {
     });
   } else {
     throw new TypeError(
-      'Invalid input. The first parameter should be an array of strings or an array of objects.'
+      'Invalid input. The first parameter should be an array of strings or an array of objects.',
     );
   }
 };
