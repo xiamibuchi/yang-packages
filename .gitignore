@@ -86,7 +86,6 @@ out
 .nitro
 dist
 es
-lib
 dist-ssr
 .output
 .data
