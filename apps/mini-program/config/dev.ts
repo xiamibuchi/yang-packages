@@ -3,6 +3,11 @@ module.exports = {
     NODE_ENV: '"development"',
   },
   defineConstants: {},
-  mini: {},
+  mini: {
+    optimizeMainPackage: {
+      enable: false,
+      exclude: [],
+    },
+  },
   h5: {},
 };
