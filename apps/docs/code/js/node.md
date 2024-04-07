@@ -130,6 +130,8 @@ npm why [package_name]
   - pnpm 的 node_modules 布局使用符号链接来创建依赖项的嵌套结构
 
 1. set [Workspace](https://pnpm.io/workspaces)
+2. [overrides](https://pnpm.io/package_json#pnpmoverrides): enforce all your packages to use a single version of a dependency
+3. [packageExtensions](https://pnpm.io/package_json#pnpmpackageextensions): extend the existing package definitions with additional information
 
 > monorepo 的配置，一般是书写一个基础配置，每个项目再各自扩展
 

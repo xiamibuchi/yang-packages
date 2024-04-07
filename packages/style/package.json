@@ -15,9 +15,6 @@
       "require": "./src/*.scss"
     }
   },
-  "scripts": {
-    "clean": "rimraf dist"
-  },
   "devDependencies": {},
   "volta": {
     "extends": "../../package.json"

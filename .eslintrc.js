@@ -178,6 +178,12 @@ module.exports = {
       parser: 'jsonc-eslint-parser',
     },
     {
+      files: ['scripts/*.{js,ts}'],
+      rules: {
+        'no-console': 'off',
+      },
+    },
+    {
       files: ['*.ts', '*.tsx'],
       rules: {
         // The core 'no-unused-vars' rules (in the eslint:recommeded ruleset)
@@ -225,6 +231,7 @@ module.exports = {
     {
       files: ['**/*.md/*.js', '**/*.md/*.ts', '**/*.md/*.vue'],
       rules: {
+        'no-undef': 'off',
         'no-console': 'off',
         'import/no-unresolved': 'off',
         '@typescript-eslint/no-unused-vars': 'off',

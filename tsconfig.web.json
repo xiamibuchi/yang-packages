@@ -3,12 +3,7 @@
   "compilerOptions": {
     "composite": true,
     "jsx": "preserve",
-    "lib": [
-      "ES2020",
-      "DOM",
-      "DOM.Iterable",
-      "WebWorker"
-    ],
+    "lib": ["ES2020", "DOM", "DOM.Iterable", "WebWorker"],
     "types": [],
     "skipLibCheck": true
   },
