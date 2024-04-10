@@ -6,22 +6,21 @@ const AXIOM = 'Rem is the best girl';
 
 describe('Text.vue', () => {
   test('render text & class', () => {
-    const wrapper = mount(() => (
-      <Text
-        v-slots={{
-          default: () => AXIOM,
-        }}
-      />
-    ));
-    const vm = wrapper.vm;
-
-    expect(vm.$el.classList.contains('sy-text')).toEqual(true);
+    const wrapper = mount(Text, {
+      slots: {
+        default: AXIOM,
+      },
+    });
+    expect(wrapper.classes()).toContain('sy-text');
     expect(wrapper.text()).toEqual(AXIOM);
   });
 
   test('tag', () => {
-    const wrapper = mount(() => <Text tag="del" />);
-    const vm = wrapper.vm;
-    expect(vm.$el.tagName).toEqual('DEL');
+    const wrapper = mount(Text, {
+      props: {
+        tag: 'del',
+      },
+    });
+    expect(wrapper.html()).toEqual(`<del class="sy-text"></del>`);
   });
 });

@@ -5,8 +5,12 @@
     :class="textKls"
     ref="root"
     :style="textStyle"
-  />
-  <div ref="root" :class="textKls">
+  >
+    <slot>
+      {{ props.content }}
+    </slot>
+  </component>
+  <div v-else ref="root" :class="textKls">
     {{ expanded ? props.content : text
     }}<span v-if="hasExpand" @click="switchExpanded">{{
       expanded ? props.collapseText : props.expandText
@@ -33,6 +37,9 @@ const root = ref<HTMLElement>();
 const ns = useNamespace('text');
 
 const isScriptCollapse = computed(() => {
+  if (!props.rows) {
+    return false;
+  }
   if (!props.rows) {
     return false;
   }
