@@ -1,0 +1,13 @@
+{
+  "name": "minify-font",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "node index.js"
+  },
+  "keywords": [],
+  "dependencies": {
+    "fontmin": "^1.0.1"
+  }
+}

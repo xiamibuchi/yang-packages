@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Yang Extensions",
+  "name": "SY Extensions",
   "description": "Base Function Extension",
   "version": "1.0",
   "background": {
@@ -15,5 +15,13 @@
     "32": "images/icon-60.png",
     "48": "images/icon-60.png",
     "128": "images/icon-300.png"
-  }
+  },
+  "permissions": [
+    "cookies",
+    "tabs",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ]
 }
