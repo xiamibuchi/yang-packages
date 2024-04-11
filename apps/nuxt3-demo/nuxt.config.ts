@@ -9,5 +9,6 @@ export default defineNuxtConfig({
       },
     ],
   },
-  css: [],
+  css: ['@syseven/style/src/reset.scss'],
+  modules: ['@pinia/nuxt'],
 });
