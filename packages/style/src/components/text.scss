@@ -1,6 +1,6 @@
 @use 'sass:map';
 
-@use './defination/function.scss' as *;
+@use '../defination/function.scss' as *;
 
 @include b(text) {
   @include m(ellipsis) {

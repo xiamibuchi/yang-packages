@@ -162,4 +162,25 @@ export type EpPropFinalized<Type, Value, Validator, Default, Required> = EpProp<
   Required
 >;
 
-export {};
+/**
+ *
+ */
+type NativeType =
+  | null
+  | number
+  | string
+  | boolean
+  | symbol
+  | ((...args: unknown[]) => unknown);
+
+type InferDefault<P, T> =
+  | ((props: P) => T & object)
+  | (T extends NativeType ? T : never);
+
+/**
+ * vue props 默认值类型推断，未导出
+ * @see https://github.com/vuejs/core/blob/main/packages/runtime-core/src/apiSetupHelpers.ts#L294
+ */
+export type InferDefaults<T> = {
+  [K in keyof T]?: InferDefault<T, T[K]>;
+};
