@@ -1,13 +1,13 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import { isServer } from '@syseven/utils';
-import type { ColorMode } from '@syseven/utils';
+import { type ColorMode, getTheme, setTheme } from '@syseven/utils';
 import { useHeadSafe } from '#imports';
 
 export const useThemeStore = defineStore('theme', () => {
   const theme = ref<'auto' | 'light' | 'dark'>('auto');
   const setTheme = async (theme: ColorMode) => {
-    console.log(theme);
+    setTheme(theme);
     if (!isServer()) {
       useHeadSafe({
         meta: [
@@ -19,8 +19,15 @@ export const useThemeStore = defineStore('theme', () => {
       });
     }
   };
+  const initTheme = () => {
+    if (isServer()) {
+      return;
+    }
+    theme.value = getTheme();
+  };
   return {
     theme,
     setTheme,
+    initTheme,
   };
 });
