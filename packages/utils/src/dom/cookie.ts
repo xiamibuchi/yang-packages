@@ -1,12 +1,16 @@
 import { isServer } from '../env';
 
-interface CookieAttributes {
+interface CookieAttributeOptions {
   expires?: number | Date | undefined;
   path?: string;
   domain?: string;
   secure?: boolean;
   sameSite?: 'strict' | 'lax' | 'none';
   [key: string]: any;
+}
+
+interface CookieAttributes extends Omit<CookieAttributeOptions, 'expires'> {
+  expires?: string | CookieAttributeOptions['expires'];
 }
 
 const DEFAULT_ATTRIBUTES: CookieAttributes = {
@@ -29,12 +33,12 @@ const write = (value: string) => {
 export const setCookie = (
   name: string,
   value: string,
-  attributes: CookieAttributes = {},
+  attributes: CookieAttributeOptions = {},
 ) => {
   if (isServer()) {
     return;
   }
-  const _attributes: Omit<CookieAttributes, 'expires'> = {
+  const _attributes: CookieAttributes = {
     ...DEFAULT_ATTRIBUTES,
     ...attributes,
   };
@@ -87,7 +91,7 @@ export const getCookie = (name: string) => {
 
 export const removeCookie = (
   name: string,
-  attributes: CookieAttributes = {},
+  attributes: CookieAttributeOptions = {},
 ) => {
   setCookie(name, '', { ...attributes, expires: -1 });
 };
