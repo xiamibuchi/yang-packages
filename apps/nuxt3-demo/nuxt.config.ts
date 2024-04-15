@@ -2,8 +2,6 @@ import legacy from '@vitejs/plugin-legacy';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
-  srcDir: 'src/',
   components: {
     dirs: [
       {
@@ -11,8 +9,13 @@ export default defineNuxtConfig({
       },
     ],
   },
+  devtools: { enabled: true },
   css: ['@syseven/style/src/reset.scss'],
+  imports: {
+    autoImport: true,
+  },
   modules: ['@pinia/nuxt'],
+  srcDir: 'src/',
   vite: {
     resolve: {
       alias: [
