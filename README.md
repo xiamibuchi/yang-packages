@@ -2,7 +2,15 @@
 
 base utils & components
 
-## 图片压缩
+## Setup
+
+```bash
+pnpm install
+```
+
+## image compress before commit
+
+[source code](scripts/compress-image.js)
 
 depend on tinypng。[doc](https://tinypng.com/developers)
 
