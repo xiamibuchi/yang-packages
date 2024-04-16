@@ -150,3 +150,6 @@ build
 
 # misc
 *.pem
+
+# node inspect
+.clinic
