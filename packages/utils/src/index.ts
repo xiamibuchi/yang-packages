@@ -2,9 +2,11 @@ export * from './browser';
 
 export * from './dom/clipboard';
 export * from './dom/cookie';
+export * from './dom/download';
 export * from './dom/select';
 export * from './dom/textarea';
-export * from './dom/download';
+export * from './dom/html';
+export * from './dom/toast';
 
 export * from './vue';
 export * from './arrays';
