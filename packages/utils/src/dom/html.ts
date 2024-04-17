@@ -26,5 +26,5 @@ export const updateHTMLAttribute = (
   if (isSwitch && el.getAttribute(attribute) === value) {
     return el.removeAttribute(attribute);
   }
-  el.setAttribute(attribute, value);
+  return el.setAttribute(attribute, value);
 };
