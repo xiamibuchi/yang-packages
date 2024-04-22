@@ -1,13 +1,10 @@
 #!/usr/bin/env node
-/* eslint-disable @typescript-eslint/no-var-requires */
-
-const { spawnSync, execSync } = require('node:child_process');
-const { readFileSync, writeFileSync } = require('node:fs');
-const tinify = require('tinify');
-const { optimize } = require('svgo');
-
-require('dotenv').config();
-
+import { execSync, spawnSync } from 'node:child_process';
+import { readFileSync, writeFileSync } from 'node:fs';
+import tinify from 'tinify';
+import { optimize } from 'svgo';
+import 'dotenv/config';
+console.log(process.env.TINYPNG_KEY);
 // 跳过 merge
 const status = execSync('git status', {
   encoding: 'utf-8',

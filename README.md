@@ -10,7 +10,7 @@ pnpm install
 
 ## image compress before commit
 
-[source code](scripts/compress-image.js)
+[source code](scripts/compress-image.mjs)
 
 depend on tinypng。[doc](https://tinypng.com/developers)
 
