@@ -1,4 +1,5 @@
 import EventEmitter from 'eventemitter3';
+// @ts-ignore
 import Hls from 'hls.js/dist/hls.light.js';
 import { PlayerEvents, VideoEvents, WindowEvents } from './constants';
 // @ts-ignore
@@ -18,7 +19,7 @@ interface EventListener {
       changedTouches?: TouchList;
       clientX?: number;
       clientY?: number;
-    }
+    },
   ): void;
 }
 
@@ -438,7 +439,7 @@ export class Core extends EventEmitter {
     dom: Element,
     type: string,
     listener: EventListener,
-    options?: EventListenerOptions
+    options?: EventListenerOptions,
   ): () => void {
     dom.addEventListener(type, listener, options);
     const removeListener = () => {

@@ -35,6 +35,9 @@ export default function Stopwatch() {
   const domRef = useRef(null);
 
   function handleStart() {
+    if (timer.current) {
+      return;
+    }
     if (!startTime) {
       setStartTime(Date.now());
     }
@@ -47,6 +50,7 @@ export default function Stopwatch() {
 
   function handleStop() {
     timer.current && window.clearInterval(timer.current);
+    timer.current = null;
   }
 
   function handleReset() {

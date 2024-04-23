@@ -1,9 +1,11 @@
 'use client';
 import { useReducer, useRef, useState } from 'react';
+import Link from 'next/link';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useOnlineStatus } from '../../hooks/use-online-status';
 import Profile from './profile';
 import './styles.scss';
-import StopWatch from './components/StopWatch/StopWatch.tsx';
+import StopWatch from './components/stop-watch/stop-watch.tsx';
 
 const initialState = { count: 0 };
 
@@ -48,8 +50,24 @@ export default function TestPage() {
     }
     return <button onClick={handleClick}>I'm {count}</button>;
   }
+  const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   return (
     <div className="test-page">
+      <div>
+        <h2>router</h2>
+        <div>当前路径：{pathname}</div>
+        <Link href="/" scroll={false}>
+          Home by Link
+        </Link>
+        <div onClick={() => router.push('/', { scroll: false })}>
+          Home by router.push
+        </div>
+        <div onClick={() => router.replace('/')}>Home by router.redirect</div>
+        <div>searchParams：{searchParams.toString()}</div>
+      </div>
       <StatusBar />
       <Profile />
       <MyButton />

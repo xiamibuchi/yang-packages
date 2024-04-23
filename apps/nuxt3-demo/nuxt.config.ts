@@ -37,6 +37,7 @@ export default defineNuxtConfig({
       },
     },
     plugins: [
+      // @ts-ignore
       legacy({
         targets: [
           'chrome >= 37',
