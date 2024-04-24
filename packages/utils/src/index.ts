@@ -6,6 +6,8 @@ export * from './dom/download';
 export * from './dom/select';
 export * from './dom/textarea';
 export * from './dom/html';
+export * from './dom/lazy-load';
+export * from './dom/scroll-lock';
 export * from './dom/toast';
 
 export * from './vue';
