@@ -1,5 +1,7 @@
 # mac
 
+- [oh-my-zsh](https://ohmyz.sh/)
+
 ## 应用下载
 
 - [xclient.info](https://xclient.info) 跟 macwk 类似
