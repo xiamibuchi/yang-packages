@@ -1,9 +1,11 @@
 import { cookies, headers } from 'next/headers';
 import { type NextRequest } from 'next/server';
+import { PrismaClient } from '@prisma/client';
+import { db } from '@/server/db';
 
 export async function GET(request: Request) {
   const requestHeaders = new Headers(request.headers);
-  console.log(requestHeaders);
+  const users = await db.user.findMany();
   const cookieStore = cookies();
   const token = cookieStore.get('token');
   const headersList = headers();
