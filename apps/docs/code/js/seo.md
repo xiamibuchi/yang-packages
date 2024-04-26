@@ -125,3 +125,11 @@ https://ziyuan.baidu.com/linksubmit
 ### bing
 
 https://www.bing.com/webmasters/home
+
+## schema
+
+[官网](https://schema.org/)
+
+- https://schema.org/MobileApplication
+- https://schema.org/Offer
+- https://schema.org/Article
