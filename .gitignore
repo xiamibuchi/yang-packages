@@ -117,6 +117,14 @@ build
 .idea/
 *.iml
 
+# IDEs and editors
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
 # VSCode project files
 .vscode/*
 !.vscode/settings.json
@@ -153,3 +161,7 @@ build
 
 # node inspect
 .clinic
+
+# temp directory
+.temp
+.tmp

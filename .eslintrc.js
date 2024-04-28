@@ -178,7 +178,7 @@ module.exports = {
       parser: 'jsonc-eslint-parser',
     },
     {
-      files: ['scripts/*.{js,ts}'],
+      files: ['scripts/**/*.{js,ts}'],
       rules: {
         'no-console': 'off',
       },
@@ -203,7 +203,11 @@ module.exports = {
     },
     // vue
     {
-      files: ['apps/docs', 'apps/nuxt3-demo', 'packages/vue-components'],
+      files: [
+        'apps/docs/**',
+        'apps/nuxt3-demo/**',
+        'packages/vue-components/**',
+      ],
       extends: VUE_EXTENDS,
       plugins: VUE_PLUGINS,
       parser: 'vue-eslint-parser',
@@ -219,13 +223,27 @@ module.exports = {
     },
     // react
     {
-      files: ['apps/nuxt-demo'],
+      files: ['apps/nuxt-demo/**'],
       extends: 'next/core-web-vitals',
       rules: {
         'import/extensions': [
           'error',
           { js: 'always', css: 'always', vue: 'always', mjs: 'always' },
         ],
+      },
+    },
+    {
+      files: ['apps/nestjs/**'],
+      env: {
+        node: true,
+        jest: true,
+      },
+      rules: {
+        '@typescript-eslint/interface-name-prefix': 'off',
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/consistent-type-imports': 'off',
       },
     },
     {
