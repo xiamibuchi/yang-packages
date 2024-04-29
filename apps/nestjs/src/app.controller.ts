@@ -1,5 +1,4 @@
 import { Controller, Get, HttpCode } from '@nestjs/common';
-// @ts-ignore
 import { AppService } from './app.service';
 
 @Controller()

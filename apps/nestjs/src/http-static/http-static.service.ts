@@ -2,7 +2,7 @@ import { join } from 'node:path';
 import { Inject, Injectable } from '@nestjs/common';
 import { existsSync, readFileSync, statSync } from 'fs-extra';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
-import { STATIC_PATH } from '@/constant/config';
+import { STATIC_PATH } from '../constant/config';
 
 @Injectable()
 export class HttpStaticService {

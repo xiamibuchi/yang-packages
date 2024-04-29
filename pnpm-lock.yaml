@@ -386,6 +386,9 @@ importers:
       '@nestjs/common':
         specifier: ^10.0.0
         version: 10.3.8(reflect-metadata@0.2.2)(rxjs@7.8.1)
+      '@nestjs/config':
+        specifier: ^3.2.2
+        version: 3.2.2(@nestjs/common@10.3.8(reflect-metadata@0.2.2)(rxjs@7.8.1))(rxjs@7.8.1)
       '@nestjs/core':
         specifier: ^10.0.0
         version: 10.3.8(@nestjs/common@10.3.8(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.3.8)(encoding@0.1.13)(reflect-metadata@0.2.2)(rxjs@7.8.1)
@@ -401,6 +404,9 @@ importers:
       cache-manager:
         specifier: ^5.5.1
         version: 5.5.1
+      cache-manager-redis-store:
+        specifier: 2.0.0
+        version: 2.0.0
       fastify:
         specifier: ^4.26.2
         version: 4.26.2
@@ -3087,6 +3093,12 @@ packages:
         optional: true
       class-validator:
         optional: true
+
+  '@nestjs/config@3.2.2':
+    resolution: {integrity: sha512-vGICPOui5vE6kPz1iwQ7oCnp3qWgqxldPmBQ9onkVoKlBtyc83KJCr7CjuVtf4OdovMAVcux1d8Q6jglU2ZphA==}
+    peerDependencies:
+      '@nestjs/common': ^8.0.0 || ^9.0.0 || ^10.0.0
+      rxjs: ^7.1.0
 
   '@nestjs/core@10.3.8':
     resolution: {integrity: sha512-AxF4tpYLDNn5Wfb3C4bNaaHJ4pREH5FJrSisR2A5zkYpQFORFs0Tc36lOFPMwBTy8Iv2wUwWLUVc5ftBnxEv4w==}
@@ -6134,6 +6146,10 @@ packages:
     resolution: {integrity: sha512-AKcdTnFSWATd5/GCPRxr2ChwIJ85CeyrEyjRHlKxQ56d4XJMGym0uAiKn0xbLOGOl3+yRpOTi484dVCEc5AUzQ==}
     engines: {node: '>=0.10.0'}
 
+  cache-manager-redis-store@2.0.0:
+    resolution: {integrity: sha512-bWLWlUg6nCYHiJLCCYxY2MgvwvKnvlWwrbuynrzpjEIhfArD2GC9LtutIHFEPeyGVQN6C+WEw+P3r+BFBwhswg==}
+    engines: {node: '>= 8.3'}
+
   cache-manager@5.5.1:
     resolution: {integrity: sha512-QYZFOjZTTennYdN3NNCKh+yq452+wQ4ChyL40jkEyghIgg5Ugwb4YO8ARIIF1fvTBkgDLlLTYFaxZVaPGmQ92A==}
 
@@ -7511,6 +7527,10 @@ packages:
   delegates@1.0.0:
     resolution: {integrity: sha512-bd2L678uiWATM6m5Z1VzNCErI3jiGzt6HGY8OVICs40JQq/HALfbyNJmp0UDakEY4pMMaN0Ly5om/B1VI/+xfQ==}
 
+  denque@1.5.1:
+    resolution: {integrity: sha512-XwE+iZ4D6ZUB7mfYRMb5wByE8L74HCn30FBN7sWnXksWc1LO1bPDl67pBR9o/kC4z/xSNAwkMYcGgqDV3BE3Hw==}
+    engines: {node: '>=0.10'}
+
   denque@2.1.0:
     resolution: {integrity: sha512-HVQE3AAb/pxF8fQAoiqpvg9i3evqug3hoiwakOyZAwJm+6vZehbkYXZ0l4JxS+I3QxM97v5aaRNhj8v5oBhekw==}
     engines: {node: '>=0.10'}
@@ -7707,6 +7727,10 @@ packages:
   dot-prop@8.0.2:
     resolution: {integrity: sha512-xaBe6ZT4DHPkg0k4Ytbvn5xoxgpG0jOS1dYxSOwAHPuNLjP3/OzN0gH55SrLqpx8cBfSaVt91lXYkApjb+nYdQ==}
     engines: {node: '>=16'}
+
+  dotenv-expand@10.0.0:
+    resolution: {integrity: sha512-GopVGCpVS1UKH75VKHGuQFqS1Gusej0z4FyQkPdwjil2gNIv+LNsqBlboOzpJFZKVT95GkCyWJbBSdFEFUWI2A==}
+    engines: {node: '>=12'}
 
   dotenv-expand@9.0.0:
     resolution: {integrity: sha512-uW8Hrhp5ammm9x7kBLR6jDfujgaDarNA02tprvZdyrJ7MpdzD1KyrIHG4l+YoC2fJ2UcdFdNWNWIjt+sexBHJw==}
@@ -13363,6 +13387,9 @@ packages:
     resolution: {integrity: sha512-tYkDkVVtYkSVhuQ4zBgfvciymHaeuel+zFKXShfDnFP5SyVEP7qo70Rf1jTOTCx3vGNAbnEi/xFkcfQVMIBWag==}
     engines: {node: '>=12'}
 
+  redis-commands@1.7.0:
+    resolution: {integrity: sha512-nJWqw3bTFy21hX/CPKHth6sfhZbdiHP6bTawSgQBlKOVRG7EZkfHbbHwQJnrE4vsQf0CMNE+3gJ4Fmm16vdVlQ==}
+
   redis-errors@1.2.0:
     resolution: {integrity: sha512-1qny3OExCf0UvUV/5wpYKf2YwPcOqXzkwKKSmKHiE6ZMQs5heeE/c8eXK+PNllPvmjgAbfnsbpkGZWy8cBpn9w==}
     engines: {node: '>=4'}
@@ -13370,6 +13397,10 @@ packages:
   redis-parser@3.0.0:
     resolution: {integrity: sha512-DJnGAeenTdpMEH6uAJRK/uiyEIH9WVsUmoLwzudwGJUwZPp80PDBWPHXSAGNPwNvIXAbe7MSUB1zQFugFml66A==}
     engines: {node: '>=4'}
+
+  redis@3.1.2:
+    resolution: {integrity: sha512-grn5KoZLr/qrRQVwoSkmzdbw6pwF+/rwODtrOr6vuBRiR/f3rjSTGupbF90Zpqm2oenix8Do6RV7pYEkGwlKkw==}
+    engines: {node: '>=10'}
 
   reflect-metadata@0.2.2:
     resolution: {integrity: sha512-urBwgfrvVP/eAyXx4hluJivBKzuEbSQs9rKWCrCkbSxNv8mxPcUZKeuoF3Uy4mJl3Lwprp6yy5/39VWigZ4K6Q==}
@@ -15554,6 +15585,10 @@ packages:
 
   uuid@8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    hasBin: true
+
+  uuid@9.0.1:
+    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
     hasBin: true
 
   v8-compile-cache-lib@3.0.1:
@@ -21598,6 +21633,15 @@ snapshots:
       tslib: 2.6.2
       uid: 2.0.2
 
+  '@nestjs/config@3.2.2(@nestjs/common@10.3.8(reflect-metadata@0.2.2)(rxjs@7.8.1))(rxjs@7.8.1)':
+    dependencies:
+      '@nestjs/common': 10.3.8(reflect-metadata@0.2.2)(rxjs@7.8.1)
+      dotenv: 16.4.5
+      dotenv-expand: 10.0.0
+      lodash: 4.17.21
+      rxjs: 7.8.1
+      uuid: 9.0.1
+
   '@nestjs/core@10.3.8(@nestjs/common@10.3.8(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.3.8)(encoding@0.1.13)(reflect-metadata@0.2.2)(rxjs@7.8.1)':
     dependencies:
       '@nestjs/common': 10.3.8(reflect-metadata@0.2.2)(rxjs@7.8.1)
@@ -26063,6 +26107,10 @@ snapshots:
       union-value: 1.0.1
       unset-value: 1.0.0
 
+  cache-manager-redis-store@2.0.0:
+    dependencies:
+      redis: 3.1.2
+
   cache-manager@5.5.1:
     dependencies:
       eventemitter3: 5.0.1
@@ -27445,6 +27493,8 @@ snapshots:
 
   delegates@1.0.0: {}
 
+  denque@1.5.1: {}
+
   denque@2.1.0: {}
 
   depcheck@1.4.5:
@@ -27689,6 +27739,8 @@ snapshots:
   dot-prop@8.0.2:
     dependencies:
       type-fest: 3.13.1
+
+  dotenv-expand@10.0.0: {}
 
   dotenv-expand@9.0.0: {}
 
@@ -34730,11 +34782,20 @@ snapshots:
       indent-string: 5.0.0
       strip-indent: 4.0.0
 
+  redis-commands@1.7.0: {}
+
   redis-errors@1.2.0: {}
 
   redis-parser@3.0.0:
     dependencies:
       redis-errors: 1.2.0
+
+  redis@3.1.2:
+    dependencies:
+      denque: 1.5.1
+      redis-commands: 1.7.0
+      redis-errors: 1.2.0
+      redis-parser: 3.0.0
 
   reflect-metadata@0.2.2: {}
 
@@ -37327,6 +37388,8 @@ snapshots:
   uuid@3.4.0: {}
 
   uuid@8.3.2: {}
+
+  uuid@9.0.1: {}
 
   v8-compile-cache-lib@3.0.1: {}
 

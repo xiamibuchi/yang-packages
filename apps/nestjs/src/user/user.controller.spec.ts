@@ -1,19 +1,19 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CacheMemoryModule } from '../common/cache/cache-memory.module';
-import { HttpStaticController } from './http-static.controller';
-import { HttpStaticService } from './http-static.service';
+import { UserController } from './user.controller';
+import { UserService } from '@/user/user.service';
 
-describe('HttpStaticController', () => {
-  let controller: HttpStaticController;
+describe('UserController', () => {
+  let controller: UserController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [HttpStaticController],
+      controllers: [UserController],
       imports: [CacheMemoryModule],
-      providers: [HttpStaticService],
+      providers: [UserService],
     }).compile();
 
-    controller = module.get<HttpStaticController>(HttpStaticController);
+    controller = module.get<UserController>(UserController);
   });
 
   it('should be defined', () => {
