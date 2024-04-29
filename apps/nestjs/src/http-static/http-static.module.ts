@@ -1,15 +1,11 @@
 import { Module } from '@nestjs/common';
-import { ServeStaticModule } from '@nestjs/serve-static';
-import { STATIC_PATH } from '../constant/config';
 import { HttpStaticController } from './http-static.controller';
+import { HttpStaticService } from './http-static.service';
+import { CacheMemoryModule } from '@/common/cache/cache-memory.module';
 
 @Module({
-  imports: [
-    ServeStaticModule.forRoot({
-      rootPath: STATIC_PATH,
-    }),
-  ],
+  imports: [CacheMemoryModule],
   controllers: [HttpStaticController],
-  providers: [],
+  providers: [HttpStaticService],
 })
 export class HttpStaticModule {}
