@@ -7,6 +7,7 @@ export * from './dom/select';
 export * from './dom/textarea';
 export * from './dom/html';
 export * from './dom/lazy-load';
+export * from './dom/navigator';
 export * from './dom/scroll-lock';
 export * from './dom/toast';
 
