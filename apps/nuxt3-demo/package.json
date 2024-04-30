@@ -12,7 +12,8 @@
     "server:inspect": "node --inspect --expose-gc --trace_gc --trace-sync-io ./scripts/inspect.js",
     "server:doctor": "clinic doctor --trace-sync-io --autocannon [ -d 20 http://127.0.0.1:3000 ] -- node ./scripts/inspect.js",
     "server:flame": "clinic flame --autocannon [ -d 20 http://127.0.0.1:3000 ] -- node ./scripts/inspect.js",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "analyze": "nuxt analyze"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
