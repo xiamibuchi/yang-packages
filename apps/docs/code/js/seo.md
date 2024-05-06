@@ -133,3 +133,24 @@ https://www.bing.com/webmasters/home
 - https://schema.org/MobileApplication
 - https://schema.org/Offer
 - https://schema.org/Article
+
+## sitemap.txt
+
+https://developers.google.cn/search/docs/crawling-indexing/sitemaps/build-sitemap?hl=zh-cn
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.example.com/foo.html</loc>
+    <lastmod>2022-06-04</lastmod>
+  </url>
+</urlset>
+```
+
+在 robots.txt 中定义：
+
+```txt
+# robots.txt file of https://example.com/
+sitemap: https://sitemaps.example.com/sitemap-example-com.xml
+```
