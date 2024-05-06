@@ -1,6 +1,9 @@
 # mac
 
-- [oh-my-zsh](https://ohmyz.sh/)
+## 软件
+
+- [oh-my-zsh](https://ohmyz.sh)
+- [filetransfer](https://www.android.com/filetransfer)
 
 ## 应用下载
 
