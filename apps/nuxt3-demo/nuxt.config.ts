@@ -38,17 +38,7 @@ export default defineNuxtConfig({
     },
     plugins: [
       // @ts-ignore
-      legacy({
-        targets: [
-          'chrome >= 37',
-          'android >= 4.4.4',
-          'iOS >= 9.3',
-          'bb 7',
-          'not ie < 11',
-          'not ie_mob < 11',
-        ],
-        modernTargets: ['chrome >= 52', 'safari >= 11'],
-      }),
+      legacy(),
     ],
     server: {
       fs: {
