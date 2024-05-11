@@ -126,7 +126,7 @@ const dataURItoBlob = (dataURI) => {
 
 ### form 表单上传
 
-```js
+```html
 <form action="upload" method="post" enctype="multipart/form-data">
   <input type="file" name="pic" />
   <input type="submit" value="上传" />

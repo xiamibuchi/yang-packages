@@ -108,26 +108,30 @@ const leaks = (function () {
 
 ### dom 清空或删除时，事件未清除导致的内存泄漏
 
-```js
+```html
 <div id="container"></div>;
 
-$('#container')
+<script>
+  $('#container')
   .bind('click', () => {
     console.log('click');
   })
   .remove();
+</script>
 
-// zepto 和原生 js下，#container dom 元素，还在内存里jquery 的 empty和 remove会帮助开发者避免这个问题
+<!-- zepto 和原生 js下，#container dom 元素，还在内存里jquery 的 empty和 remove会帮助开发者避免这个问题 -->
 
 <div id="container"></div>;
 
-$('#container')
-  .bind('click', () => {
-    console.log('click');
-  })
-  .off('click')
-  .remove();
-//把事件清除了，即可从内存中移除
+<script>
+  $('#container')
+    .bind('click', () => {
+      console.log('click');
+    })
+    .off('click')
+    .remove();
+</script>
+<!-- 把事件清除了，即可从内存中移除 -->
 ```
 
 ## 运算符
