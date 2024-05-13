@@ -1,4 +1,4 @@
-import type { Timer } from './types';
+import type { Timer } from './typescript/types';
 
 const isObject = (value: any) => {
   return typeof value === 'object' && value !== null;

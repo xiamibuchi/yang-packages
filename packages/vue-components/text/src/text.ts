@@ -1,38 +1,26 @@
-import { buildProps } from '@syseven/utils';
-import type { ExtractPropTypes } from 'vue';
 import type Text from './text.vue';
 
-export const textProps = buildProps({
-  expandText: {
-    type: String,
-    default: '',
-  },
-  collapseText: {
-    type: String,
-    default: '',
-  },
-  rows: {
-    type: Number,
-    default: 0,
-  },
+export interface textPropsType {
+  expandText?: string;
+  collapseText?: string;
+  rows?: number;
   /**
    * @description text ellipsis label
    */
-  dots: {
-    type: String,
-    default: '...',
-  },
+  dots?: string;
   /**
    * @description custom element tag
    */
-  tag: {
-    type: String,
-    default: 'span',
-  },
-  content: {
-    type: String,
-  },
-} as const);
+  tag?: string;
+  content?: string;
+}
 
-export type TextProps = ExtractPropTypes<typeof textProps>;
+export const textPropsDefault: textPropsType = {
+  expandText: '',
+  collapseText: '',
+  rows: 0,
+  dots: '...',
+  tag: 'span',
+};
+
 export type TextInstance = InstanceType<typeof Text>;

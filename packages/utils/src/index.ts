@@ -11,6 +11,9 @@ export * from './dom/navigator';
 export * from './dom/scroll-lock';
 export * from './dom/toast';
 
+export * from './typescript/component';
+export * from './typescript/typescript';
+
 export * from './vue';
 export * from './arrays';
 export * from './env';
@@ -21,4 +24,3 @@ export * from './json.js';
 export * from './objects';
 export * from './string';
 export * from './theme';
-export * from './typescript';

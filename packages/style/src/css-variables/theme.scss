@@ -1,10 +1,11 @@
 :root {
   color-scheme: light;
 
-  --color-primary: #0070f3;
+  --sy-color-primary: #409eff;
+  --sy-color-text: #fff;
 }
 .dark {
   color-scheme: dark;
 
-  --color-primary: #409eff;
+  --sy-color-text: #000;
 }

@@ -2,8 +2,8 @@
   <component
     :is="tag"
     v-if="!isScriptCollapse"
-    :class="textKls"
     ref="root"
+    :class="textKls"
     :style="textStyle"
   >
     <slot>
@@ -21,13 +21,15 @@
 <script lang="ts" setup>
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useNamespace } from '@syseven/hooks';
-import { textProps } from './text';
+import { textPropsDefault, type textPropsType } from './text';
+// style
+import '../style/index';
 
 defineOptions({
   name: 'SyText',
 });
 
-const props = defineProps(textProps);
+const props = withDefaults(defineProps<textPropsType>(), textPropsDefault);
 
 const text = ref('');
 const expanded = ref(false);

@@ -1,7 +1,13 @@
 // color
-$color-primary: var(--color-primary);
+$color-primary: var(--sy-color-primary);
+$color-text: var(--sy-color-text);
 // font
 $font-base: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
   'Heiti SC', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+// 楷体
+$font-regular-script: '楷体', '楷体_GB2312', 'Kaiti SC Regular', 'KaiTi',
+  'SimKai', 'STKaiti', 'serif';
 // z-index
 $z-index-modal: 800;
+// border-radius
+$border-radius: 4px;
