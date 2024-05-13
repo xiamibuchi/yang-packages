@@ -252,6 +252,7 @@ module.exports = {
         jest: true,
       },
       rules: {
+        ...DEFAULT_RULES,
         '@typescript-eslint/interface-name-prefix': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
@@ -262,6 +263,7 @@ module.exports = {
     {
       files: ['**/*.md/*.js', '**/*.md/*.ts', '**/*.md/*.vue'],
       rules: {
+        ...DEFAULT_RULES,
         'no-undef': 'off',
         'no-console': 'off',
         'import/no-unresolved': 'off',
