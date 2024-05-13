@@ -12,3 +12,13 @@
     scroll-behavior: auto !important;
   }
 }
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.font-bold {
+  font-weight: 700;
+}

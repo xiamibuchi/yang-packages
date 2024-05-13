@@ -15,4 +15,11 @@
     --safe-area-inset-bottom: env(safe-area-inset-bottom);
     --safe-area-inset-left: env(safe-area-inset-left);
   }
+  // font
+  --sy-font-base-size: 14px;
+  --sy-font-base-line-height: 1.5;
+  --sy-font-large-size: 16px;
+  --sy-font-large-line-height: 1.5;
+  --sy-font-small-size: 12px;
+  --sy-font-small-line-height: 1.5;
 }
