@@ -10,11 +10,7 @@ export default defineNuxtConfig({
     ],
   },
   devtools: { enabled: true },
-  css: [
-    '@syseven/style/src/reset.scss',
-    '@syseven/style/src/css-variables/layout.scss',
-    '@syseven/style/src/css-variables/theme.scss',
-  ],
+  css: ['@syseven/style/src/reset.scss', '@syseven/style/src/base.scss'],
   imports: {
     autoImport: true,
   },
