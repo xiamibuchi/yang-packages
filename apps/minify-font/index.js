@@ -5,6 +5,7 @@ const text = fs.readFileSync('langs/chinese.txt', 'utf8');
 const fontmin = new Fontmin()
   .use(Fontmin.glyph({ text }))
   .use(Fontmin.ttf2woff2())
+  .use(Fontmin.ttf2woff())
   .src('fonts/*.ttf')
   .dest('dist');
 
