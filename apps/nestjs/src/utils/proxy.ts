@@ -9,7 +9,7 @@ const getHomePage = async () => {
 export const proxyToBing = createProxyMiddleware({
   target: 'https://www.bing.com',
   pathRewrite() {
-    return '/home';
+    return '/';
   },
   changeOrigin: true,
   secure: false,
