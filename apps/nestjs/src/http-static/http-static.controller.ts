@@ -7,6 +7,7 @@ export class HttpStaticController {
 
   @Get('/')
   @Header('Content-Type', 'text/html')
+  @Header('Cache-Control', 'no-cache')
   async getIndexHtml() {
     const str = await this.httpStaticService.getIndexHtmlByCache('index.html');
     return str;
