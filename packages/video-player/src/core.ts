@@ -2,7 +2,6 @@ import EventEmitter from 'eventemitter3';
 // @ts-ignore
 import Hls from 'hls.js/dist/hls.light.js';
 import { PlayerEvents, VideoEvents, WindowEvents } from './constants';
-// @ts-ignore
 import type { PlayerOptions } from './types';
 
 type EventListenerOptions =
@@ -185,9 +184,8 @@ export class Core extends EventEmitter {
 
     if (typeof video.fastSeek === 'function') {
       video.fastSeek(currentTime);
-    } else {
-      video.currentTime = currentTime;
     }
+    video.currentTime = currentTime;
   }
   get playsinline() {
     return this.video ? this.video.playsInline : false;
