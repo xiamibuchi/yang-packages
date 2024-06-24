@@ -166,7 +166,7 @@ export class Core extends EventEmitter {
     }
     const { video } = this;
 
-    if (!video) {
+    if (!video || !this.canplay) {
       this.once(VideoEvents.CANPLAY, () => {
         this.currentTime = currentTime;
       });
