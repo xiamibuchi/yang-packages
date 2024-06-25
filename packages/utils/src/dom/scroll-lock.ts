@@ -77,8 +77,7 @@ function preventDefault(rawEvent: TouchEvent) {
 
 function setOverflowHidden(options: LockOptions) {
   if (previousBodyPaddingRight === undefined) {
-    const _reserveScrollBarGap = options?.reserveScrollBarGap === true;
-    if (_reserveScrollBarGap) {
+    if (options?.reserveScrollBarGap === true) {
       const scrollBarGap =
         window.innerWidth - document.documentElement.clientWidth;
       // if css scrollgutter is stable, no need to reserve the scrollbar gap
