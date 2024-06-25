@@ -2,16 +2,11 @@
 
 ## 移动端调试
 
-1. ios 手机连接到 pc
-
-设置手机 safari 设置-》safari-》高级-》打开 web 检查器 （授权调试功能） 2. [安装 ios_webkit_debug_proxy](https://github.com/google/ios-webkit-debug-proxy)。 1. 安装 scoop 2. 通过 scoop 安装 ios_webkit_debug_proxy 3. 连接测试
-确认手机已连接 pc，输入
-ios_webkit_debug_proxy -f chrome-devtools://devtools/bundled/inspector.html
-在 localhost:9221 中查看设备连接情况，此时可看到连接设备的地址。
-
-在 chrome://inspect/#devices 添加设备端口
-
-此时手机通过 safari 访问网页，刷新 chrome://inspect/#devices
+1. 设置手机 safari 设置-> safari-> 高级-> 打开 web 检查器 （授权调试功能）
+2. [安装 ios_webkit_debug_proxy](https://github.com/google/ios-webkit-debug-proxy)。
+3. 连接到 PC。输入`ios_webkit_debug_proxy -f chrome-devtools://devtools/bundled/inspector.html` 在 localhost:9221 中查看设备连接情况，此时可看到连接设备的地址。
+4. 在 chrome://inspect/#devices 添加设备端口
+5. 此时手机通过 Safari 访问网页，刷新 chrome://inspect/#devices
 
 ## chrome
 
