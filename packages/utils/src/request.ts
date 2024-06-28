@@ -1,5 +1,5 @@
 import { isServer } from './env';
-import type { UnknowFunction } from './typescript';
+import type { UnknowFunction } from './typescript/typescript';
 
 export const toFormData = (data: any) => {
   const formData = isServer() ? new URLSearchParams() : new FormData();

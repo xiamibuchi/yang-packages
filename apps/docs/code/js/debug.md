@@ -10,21 +10,16 @@
 
 ## chrome
 
-- console
-- [devtools](https://developer.chrome.com/docs/devtools/overview/)
+[devtools](https://developer.chrome.com/docs/devtools/overview/)
 
 ## vConsole
 
 [Github](https://github.com/Tencent/vConsole)
 
 ```html
-<script
-  type="text/javascript"
-  src="https://cdn.bootcss.com/vConsole/3.13.0/vconsole.min.js"
-></script>
+<script src="https://unpkg.com/vconsole@3.13.0/dist/vconsole.min.js"></script>
 <script>
-  // 初始化
-  var vConsole = new VConsole();
+  var vConsole = new window.VConsole();
   console.log('Hello world');
 </script>
 ```

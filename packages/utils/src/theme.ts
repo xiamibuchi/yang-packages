@@ -1,4 +1,4 @@
-import { type UnknowFunction } from './typescript';
+import { type UnknowFunction } from './typescript/typescript';
 import { updateHTMLAttribute } from './dom/html';
 import { isServer } from './env';
 import { getCookie, removeCookie, setCookie } from './dom/cookie';
