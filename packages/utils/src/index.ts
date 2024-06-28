@@ -13,7 +13,7 @@ export * from './dom/scroll-lock';
 export * from './dom/toast';
 
 export * from './typescript/component';
-export * from './typescript/typescript';
+export * from './typescript/types';
 
 export * from './vue';
 export * from './arrays';
