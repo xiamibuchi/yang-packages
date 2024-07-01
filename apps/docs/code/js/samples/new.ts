@@ -1,7 +1,7 @@
 import { type UnknowFunction } from '@syseven/utils';
 
 function isArrowFunction(fn: UnknowFunction) {
-  return /^\s*(=>|\(|\{)\s*$/.test(fn.toString());
+  return fn.prototype === undefined;
 }
 
 /**
