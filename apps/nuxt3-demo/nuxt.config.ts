@@ -29,9 +29,6 @@ export default defineNuxtConfig({
         },
       ],
     },
-    build: {
-      target: 'modules',
-    },
     css: {
       preprocessorOptions: {
         scss: {
