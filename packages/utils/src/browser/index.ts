@@ -10,3 +10,8 @@ export const isMobile = (ua: string) =>
   !isPad(ua) && (isMobileDevice(ua) || isAndroid(ua) || isiOS(ua));
 export const isWechat = (ua: string) => UA(/MicroMessenger|WindowsWechat/i, ua);
 export const isAlipay = (ua: string) => UA(/AlipayClient/i, ua);
+export const isBot = (ua: string) =>
+  UA(
+    /bot|spider|googlebot|bingbot|baiduspider|yodaobot|gigabot|twitterbot/i,
+    ua,
+  );
