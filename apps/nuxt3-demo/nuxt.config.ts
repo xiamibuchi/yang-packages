@@ -1,4 +1,4 @@
-import legacy from '@vitejs/plugin-legacy';
+import legacy from 'vite-plugin-legacy-swc';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
