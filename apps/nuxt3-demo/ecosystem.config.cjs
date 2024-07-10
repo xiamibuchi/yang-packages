@@ -3,7 +3,7 @@ module.exports = {
     {
       name: 'WebAppNext',
       exec_mode: 'cluster',
-      instances: '20',
+      instances: 'max - 1',
       script: './.output/server/index.mjs',
       max_memory_restart: '3584M',
       listen_timeout: 150000,
