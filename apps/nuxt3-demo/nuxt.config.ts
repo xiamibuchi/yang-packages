@@ -9,16 +9,21 @@ export default defineNuxtConfig({
       },
     ],
   },
+
   devtools: { enabled: true },
   css: ['@syseven/style/src/reset.scss', '@syseven/style/src/base.scss'],
+
   imports: {
     autoImport: true,
   },
+
   modules: ['@pinia/nuxt'],
   srcDir: 'src/',
+
   devServer: {
     host: '0.0.0.0',
   },
+
   vite: {
     resolve: {
       alias: [
@@ -47,4 +52,6 @@ export default defineNuxtConfig({
     },
     define: {},
   },
+
+  compatibilityDate: '2024-07-10',
 });
