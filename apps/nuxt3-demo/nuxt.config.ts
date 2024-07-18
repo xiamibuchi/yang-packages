@@ -41,10 +41,7 @@ export default defineNuxtConfig({
         },
       },
     },
-    plugins: [
-      // @ts-ignore
-      legacy(),
-    ],
+    plugins: [legacy()],
     server: {
       fs: {
         allow: ['../../node_modules', 'node_modules'],
