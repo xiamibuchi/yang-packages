@@ -505,6 +505,10 @@ map.get('name'); // "shen"
 
 JavaScript 的对象是一组由键-值组成的无序集合。JavaScript 对象的键都是字符串类型，值可以是任意数据类型。
 
+- 每个对象都有一个特殊的内部属性 `__proto__`，它指向该对象的原型。原型可以是另一个对象或者 null
+- new Object() 创建的对象，以及通过对象字面量创建的对象（如 {}），其原型是 Object.prototype
+- 函数也是对象，通过 new Function() 创建的函数对象，其原型是 Function.prototype
+
 ```js
 const obj = {};
 
