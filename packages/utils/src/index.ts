@@ -12,6 +12,8 @@ export * from './dom/scroll';
 export * from './dom/scroll-lock';
 export * from './dom/toast';
 
+export * from './node/file';
+
 export * from './typescript/component';
 export * from './typescript/types';
 
