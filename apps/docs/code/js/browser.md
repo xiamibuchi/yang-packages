@@ -177,7 +177,7 @@ IndexedDb 提供了一个结构化的、事务型的、高性能的 NoSQL 类型
 
 [文档](https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-processing-model)
 
-1. 清除旧任务对戏那个
+1. 清除旧任务队列
 2. start
 3. microtask
 4. requestAnimationFrame

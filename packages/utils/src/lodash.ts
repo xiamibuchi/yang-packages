@@ -1,7 +1,35 @@
 import type { Timer } from './typescript/types';
 
-const isObject = (value: any) => {
+export const isObject = (value: unknown) => {
   return typeof value === 'object' && value !== null;
+};
+
+export const isFunction = (value: unknown) => {
+  return typeof value === 'function';
+};
+
+export const isArray = (value: unknown) => {
+  return Array.isArray(value);
+};
+
+export const isDate = (value: unknown) => {
+  return value instanceof Date;
+};
+
+export const isNull = (value: unknown) => {
+  return value === null;
+};
+
+export const isUndefined = (value: unknown) => {
+  return value === undefined;
+};
+
+export const isNaN = (value: unknown) => {
+  return Number.isNaN(value);
+};
+
+export const isPromise = (value: unknown) => {
+  return value instanceof Promise;
 };
 
 /**

@@ -23,7 +23,7 @@ JavaScript 是在创建变量（对象，字符串等）时自动进行了分配
 2. 无法处理循环引用的事例。在下面的例子中，两个对象被创建，并互相引用，形成了一个循环。它们被调用之后会离开函数作用域，所以它们已经没有用了，可以被回收了。然而，引用计数算法考虑到它们互相都有至少一次引用，所以它们不会被回收。
 
 ```js
-function f() {
+function fn() {
   const o = {};
   const o2 = {};
   o.a = o2; // o 引用 o2
@@ -32,7 +32,7 @@ function f() {
   return 'azerty';
 }
 
-f();
+fn();
 ```
 
 mark-and-sweep（标记清除）：
@@ -195,6 +195,7 @@ const leaks = (function () {
 - instanceof：instanceof 的原理是基于原型链的查询，只要处于原型链中，判断永远为 true。当然，如果使用 instanceof 操作符检测基本类型的值，则该操作符始终会返回 false
 
 > typeof null === 'object'，null 的存储单元最后三位和 object 一样是 000。所以 typeof null 的结果被误判为 Object。
+> `Object instanceof Function`: true
 
 ### 基本数据结构
 
@@ -348,7 +349,7 @@ a[mySymbol]; // undefined
 a['mySymbol']; // "Hello!"
 ```
 
-上面代码中，因为点运算符后面总是字符串，所以不会读取`mySymbol`作为标识名所指代的那个值，导致`a`的属性名实际上是一个字符串，而不是一个 Symbol 值。
+上面代码中，因为点运算符后面总是字符串，所以不会读取`mySymbol`作为标识名所指代的值，导致`a`的属性名实际上是一个字符串，而不是一个 Symbol 值。
 
 #### Symbol.iterator
 
@@ -817,7 +818,7 @@ const p2 = new Point(10, 10);
 console.log(Point.distance(p1, p2));
 ```
 
-当调用静态或原型方法时，没有值为“this”的对象(或“this”作为布尔，字符串，数字，未定义或 null) ，那么“this”值在被调用的函数内部将为**undefined**。不会发生自动装箱。即使我们以非严格模式编写代码，它的行为也是一样的，因为所有的函数、方法、构造函数、getters 或 setters 都在严格模式下执行。因此如果我们没有指定 this 的值，this 值将为**undefined**。
+当调用静态或原型方法时，没有值为“this”的对象(或“this”作为布尔，字符串，数字，未定义或 null) ，那么`this`值在被调用的函数内部将为**undefined**。不会发生自动装箱。即使我们以非严格模式编写代码，它的行为也是一样的，因为所有的函数、方法、构造函数、getters 或 setters 都在严格模式下执行。因此如果我们没有指定 this 的值，this 值将为**undefined**。
 
 ```js
 class Animal {
