@@ -40,9 +40,9 @@ IDE: [IDEA](https://www.jetbrains.com/idea/)
 
 ## JVM、JRE、JDK
 
-- JVM 是运行 Java 字节码的虚拟机,JVM 可以理解的代码就叫做字节码（即扩展名为 .class 的文件。
-- JDK 是 Java Development Kit 缩写，它是功能齐全的 Java SDK。它拥有 JRE 所拥有的一切，还有编译器（javac）和工具（如 javadoc 和 jdb）。它能够创建和编译程序。
-- JRE 是 Java 运行时环境。它是运行已编译 Java 程序所需的所有内容的集合，包括 Java 虚拟机（JVM），Java 类库，java 命令和其他的一些基础构件。但是，它不能用于创建新程序。
+- JVM：运行 Java 字节码的虚拟机，JVM 可以理解的代码就叫做字节码（即扩展名为 .class 的文件）。
+- JDK：Java Development Kit 缩写，它是功能齐全的 Java SDK。它拥有 JRE 所拥有的一切，还有编译器（javac）和工具（如 javadoc 和 jdb）。它能够创建和编译程序。
+- JRE：Java 运行时环境。它是运行已编译 Java 程序所需的所有内容的集合，包括 Java 虚拟机（JVM），Java 类库，java 命令和其他的一些基础构件。
 
 ## 编译与解释并存
 
@@ -64,10 +64,10 @@ Java 语言既具有编译型语言的特征，也具有解释型语言的特征
 - 文档注释
 
 ```java
+/*
+ * 文档注释
+ */
 public class HelloWorld {
-    /*
-     * 文档注释
-     */
     public static void main(String[] args) {
         // 单行注释
         /* 多行注释：
@@ -147,6 +147,11 @@ for (Size s : Size.values()) {
 // false
 ```
 
+## 字符串
+
+- String
+- StringBuffer 和 StringBuilder 类：和 String 类不同的是，StringBuffer 和 StringBuilder 类的对象能够被多次的修改，并且不产生新的未使用对象。StringBuilder 的方法不是线程安全的（不能同步访问），StringBuilder 相较于 StringBuffer 有速度优势
+
 ## 泛型
 
 JDK 5 引入，提供了编译时类型安全检测机制，该机制允许程序员在编译时检测到非法的类型。泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数。
@@ -169,7 +174,9 @@ System.out.println(list)
 
 常量名也可以用小写，但为了便于识别，通常使用大写字母表示常量
 
-### byte
+### number
+
+#### byte
 
 8 位、有符号的，以二进制补码表示的整数
 最小值：`-128（-2^7）`
@@ -180,7 +187,7 @@ byte 类型用在大型数组中节约空间，主要代替整数，因为 byte 
 
 `byte a = -50;`
 
-### short
+#### short
 
 16 位、有符号的以二进制补码表示的整数
 
@@ -192,7 +199,7 @@ Short 数据类型也可以像 byte 那样节省空间。一个 short 变量是 
 
 `short s = 1000，short r = -20000`
 
-### int
+#### int
 
 32 位、有符号的以二进制补码表示的整数
 
@@ -204,7 +211,7 @@ Short 数据类型也可以像 byte 那样节省空间。一个 short 变量是 
 
 `int a = 100000;`
 
-### long
+#### long
 
 64 位、有符号的以二进制补码表示的整数
 最小值：`-9,223,372,036,854,775,808（-2^63）`
@@ -217,7 +224,7 @@ Short 数据类型也可以像 byte 那样节省空间。一个 short 变量是 
 
 "L"理论上不分大小写，但是若写成"l"容易与数字"1"混淆，不容易分辩。所以最好大写。
 
-### float
+#### float
 
 单精度、32 位、符合 IEEE 754 标准的浮点数
 float 在储存大型浮点数组的时候可节省内存空间
@@ -227,13 +234,23 @@ float 在储存大型浮点数组的时候可节省内存空间
 
 `float f1 = 234.5f;`
 
-### double
+#### double
 
 双精度、64 位、符合 IEEE 754 标准的浮点数
 浮点数的默认类型为 double 类型
 double 类型同样不能表示精确的值，如货币
 默认值：`+0.0D`
 `double a = 123.4;`
+
+### BigInteger
+
+Biglnteger add(Biglnteger other)
+Biglnteger subtract(Biglnteger other)
+Biglnteger multipiy(Biginteger other)
+Biglnteger divide(Biglnteger other)
+Biglnteger mod(Biglnteger other) // 余数
+int compareTo(Biglnteger other) // 如果这个大整数与另一个大整数 other 相等， 返回 0; 如果这个大整数小于另一个大整数 other, 返回负数； 否则， 返回正数。
+static Biglnteger valueOf(1ong x) //返回值等于 x 的大整数。
 
 ### boolean
 
@@ -253,22 +270,13 @@ char 数据类型可以储存任何字符
 
 > 字符串常量是双引号引起的 0 个或若干个字符，而 char 必须有单一字符
 
-### BigInteger
-
-Biglnteger add(Biglnteger other)
-Biglnteger subtract(Biglnteger other)
-Biglnteger multipiy(Biginteger other)
-Biglnteger divide(Biglnteger other)
-Biglnteger mod(Biglnteger other) // 余数
-int compareTo(Biglnteger other) // 如果这个大整数与另一个大整数 other 相等， 返回 0; 如果这个大整数小于另一个大整数 other, 返回负数； 否则， 返回正数。
-static Biglnteger valueOf(1ong x) //返回值等于 x 的大整数。
-
 ## 数组
 
 ```java
 int list = new int[1000]; // 创建了一个可以存储 100 个整数的数组
+list[0] = 1;
 int[] list = { 1, 2, 3 };
-int list[] = { 4, 5, 6 };
+int list[] = { 4, 5, 6 }; // 不推荐 c 的写法
 ```
 
 ```java
@@ -287,6 +295,7 @@ public class ArrayDemo {
 // array[2] = 4
 
 // 多维数组
+int[][] a = new int[2][3];
 Integer[][] a = {
     {1, 2, 3 },
     {4, 5, 6 },
@@ -360,8 +369,7 @@ public class Test {
 - 局部变量：类的方法中的变量。
 
 ```java
-
- public class Variable{
+ public class Variable {
  static int allClicks=0; // 类变量
     String str="hello world";  // 实例变量
     public void method(){
@@ -372,7 +380,7 @@ public class Test {
 
 ## 修饰符
 
-- **default** (即默认，什么也不写）: 在同一包内可见，不使用任何修饰符。使用对象：类、接口、变量、方法。
+- **default**（即默认，什么也不写）: 在同一包内可见，不使用任何修饰符。使用对象：类、接口、变量、方法。
 - **private** : 在同一类内可见。使用对象：变量、方法。 **注意：不能修饰类（外部类）**
 - **public** : 对所有类可见。使用对象：类、接口、变量、方法
 - **protected** : 对同一包内的类和所有子类可见。使用对象：变量、方法。 **注意：不能修饰类（外部类）**
@@ -394,7 +402,7 @@ public class Test {
 
 - static 修饰符，用来声明独立于对象的静态变量，无论一个类实例化多少对象，它的静态变量只有一份拷贝
 - final 修饰符，用来修饰类、方法和变量，final 修饰的类不能够被继承，修饰的方法不能被继承类重新定义，修饰的变量为常量，是不可修改的
-- abstract 修饰符，用来创建抽象类和抽象方法，抽象类不能用来实例化对象，声明抽象类的唯一目的是为了将来对该类进行扩充
+- abstract 修饰符，用来创建抽象类和抽象方法，抽象类不能用来实例化对象（方法的具体实现由子类提供），声明抽象类的唯一目的是为了将来对该类进行扩充
 
   - **抽象方法**
 
@@ -416,7 +424,7 @@ public class Test {
     class SubClass extends SuperClass{
          //实现抽象方法
           void m(){
-              .........
+              // .........
           }
     }
     ```
@@ -431,15 +439,15 @@ public class Test {
 
 Java 定义了位运算符，应用于整数类型(int)，长整型(long)，短整型(short)，字符型(char)，和字节型(byte)等类型。
 
-| 操作符 | 描述                                                                               | 例子                            |
-| :----- | :--------------------------------------------------------------------------------- | :------------------------------ |
-| ＆     | 如果相对应位都是 1，则结果为 1，否则为 0                                           | （A＆B），得到 12，即 0000 1100 |
-| \|     | 如果相对应位都是 0，则结果为 0，否则为 1                                           | （A \| B）得到 61，即 0011 1101 |
-| ^      | 如果相对应位值相同，则结果为 0，否则为 1                                           | （A ^ B）得到 49，即 0011 0001  |
-| 〜     | 按位取反运算符翻转操作数的每一位，即 0 变成 1，1 变成 0。                          | （〜A）得到-61，即 1100 0011    |
-| <<     | 按位左移运算符。左操作数按位左移右操作数指定的位数。                               | A << 2 得到 240，即 1111 0000   |
-| >>     | 按位右移运算符。左操作数按位右移右操作数指定的位数。                               | A >> 2 得到 15 即 1111          |
-| >>>    | 按位右移补零操作符。左操作数的值按右操作数指定的位数右移，移动得到的空位以零填充。 | A>>>2 得到 15 即 0000 1111      |
+| 操作符 | 描述                                                                   | 例子                            |
+| :----- | :--------------------------------------------------------------------- | :------------------------------ |
+| ＆     | 如果相对应位都是 1，则结果为 1，否则为 0                               | （A＆B），得到 12，即 0000 1100 |
+| \|     | 如果相对应位都是 0，则结果为 0，否则为 1                               | （A \| B）得到 61，即 0011 1101 |
+| ^      | 如果相对应位值相同，则结果为 0，否则为 1                               | （A ^ B）得到 49，即 0011 0001  |
+| 〜     | 按位取反运算符翻转操作数的每一位，即 0 变成 1，1 变成 0                | （〜A）得到-61，即 1100 0011    |
+| <<     | 按位左移运算符。左操作数按位左移右操作数指定的位数                     | A << 2 得到 240，即 1111 0000   |
+| >>     | 按位右移运算符。左操作数按位右移右操作数指定的位数                     | A >> 2 得到 15 即 1111          |
+| >>>    | 按位右移补零操作符。左操作数的值按右操作数指定的位数右移，空位以零填充 | A>>>2 得到 15 即 0000 1111      |
 
 ## 方法
 
@@ -448,11 +456,125 @@ public static void main(String[] args) {
     System.out.println("Hello World");
 }
 
-public static int fib(int num) {
-    if (num == 1 || num == 2) {
-        return 1;
-    } else {
-        return fib(num - 2) + fib(num - 1);
+public static int max(int num) {
+  if (num1 > num2)
+    return num1;
+  else
+    return num2;
+}
+
+// 方法的重载
+public static double max(double num1, double num2) {
+  if (num1 > num2)
+    return num1;
+  else
+    return num2;
+}
+```
+
+- `?:`：三元运算符
+- `&&`
+- `||`
+- `!`
+
+## Date
+
+```java
+import java.util.Date;
+
+public class DateDemo {
+   public static void main(String[] args) {
+       Date date = new Date();
+       System.out.println(date.toString());
+       System.out.println(date.get);
+   }
+}
+```
+
+## regex
+
+```java
+import java.util.regex.*;
+
+class RegexExample1{
+    public static void main(String[] args){
+       String content = "I am noob " +
+        "from runoob.com.";
+
+       String pattern = ".*runoob.*";
+
+       boolean isMatch = Pattern.matches(pattern, content);
+       System.out.println("字符串中是否包含了 'runoob' 子字符串? " + isMatch);
     }
 }
 ```
+
+## 异常处理
+
+```java
+try {
+    // 可能会抛出异常的代码
+} catch (IOException e) {
+    // 处理异常的代码
+}
+
+public void readFile() throws IOException {
+    // 可能会抛出IOException的代码
+}
+
+try {
+    // 可能会抛出异常的代码
+} catch (NullPointerException e) {
+    // 处理异常的代码
+}
+```
+
+## class
+
+### 继承
+
+```java
+public class Animal {
+    private String name;
+    private int id;
+    public Animal(String myName, int myid) {
+        //初始化属性值
+    }
+    public void eat() {  //吃东西方法的具体实现  }
+    public void sleep() { //睡觉方法的具体实现  }
+}
+
+public class Penguin  extends  Animal{
+}
+
+public interface A {
+    public void eat();
+    public void sleep();
+}
+
+public interface B {
+    public void show();
+}
+
+public class C implements A,B {
+}
+```
+
+## Override/Overload
+
+重写（Override）是指子类定义了一个与其父类中具有相同名称、参数列表和返回类型的方法，并且子类方法的实现覆盖了父类方法的实现。 即外壳不变，核心重写！
+
+- 参数列表与被重写方法的参数列表必须完全相同。
+
+- 返回类型与被重写方法的返回类型可以不相同，但是必须是父类返回值的派生类（java5 及更早版本返回类型要一样，java7 及更高版本可以不同）。
+- 访问权限不能比父类中被重写的方法的访问权限更低。例如：如果父类的一个方法被声明为 public，那么在子类中重写该方法就不能声明为 protected。
+- 父类的成员方法只能被它的子类重写。
+- 声明为 final 的方法不能被重写。
+- 声明为 static 的方法不能被重写，但是能够被再次声明。
+- 子类和父类在同一个包中，那么子类可以重写父类所有方法，除了声明为 private 和 final 的方法。
+- 子类和父类不在同一个包中，那么子类只能够重写父类的声明为 public 和 protected 的非 final 方法。
+- 重写的方法能够抛出任何非强制异常，无论被重写的方法是否抛出异常。但是，重写的方法不能抛出新的强制性异常，或者比被重写方法声明的更广泛的强制性异常，反之则可以。
+- 构造方法不能被重写。
+- 如果不能继承一个类，则不能重写该类的方法。
+
+重载(overloading) 是在一个类里面，方法名字相同，而参数不同。返回类型可以相同也可以不同

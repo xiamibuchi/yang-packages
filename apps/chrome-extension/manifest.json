@@ -16,12 +16,6 @@
     "48": "images/icon-60.png",
     "128": "images/icon-300.png"
   },
-  "permissions": [
-    "cookies",
-    "tabs",
-    "activeTab"
-  ],
-  "host_permissions": [
-    "<all_urls>"
-  ]
+  "permissions": ["cookies", "tabs", "activeTab"],
+  "host_permissions": ["<all_urls>"]
 }
