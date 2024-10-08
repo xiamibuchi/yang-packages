@@ -11,3 +11,10 @@ export const capitalize = (str: string): string => {
   const lower = str.toLowerCase();
   return lower.substring(0, 1).toUpperCase() + lower.substring(1, lower.length);
 };
+
+export const padStart = (str: string | number) => {
+  if (typeof str === 'number') {
+    return str < 10 ? `0${str}` : str.toString();
+  }
+  return str.length === 1 ? `0${str}` : str;
+};
