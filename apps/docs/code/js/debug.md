@@ -17,6 +17,12 @@
 [Github](https://github.com/Tencent/vConsole)
 
 ```html
+<script src="https://unpkg.com/vconsole@3.15.1/dist/vconsole.min.js"></script>
+<script>
+  // VConsole will be exported to `window.VConsole` by default.
+  var vConsole = new window.VConsole();
+</script>
+
 <script src="https://unpkg.com/vconsole@3.13.0/dist/vconsole.min.js"></script>
 <script>
   var vConsole = new window.VConsole();
