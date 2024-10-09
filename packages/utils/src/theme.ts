@@ -29,10 +29,10 @@ export const setTheme = async (options: SetThemeOptions = {}) => {
   if (!color) {
     return;
   }
-  if (color === 'auto') {
+  if (color === ColorMode.Auto) {
     removeCookie(colorStorageKey || '');
   }
-  const themeColor = color === 'auto' ? getTheme() : color;
+  const themeColor = color === ColorMode.Auto ? getTheme() : color;
   updateHTMLAttribute('html', 'class', themeColor);
   setCookie(colorStorageKey || '', themeColor, { domain: options.domain });
   if (typeof callback === 'function') {

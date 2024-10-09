@@ -12,9 +12,15 @@ export const capitalize = (str: string): string => {
   return lower.substring(0, 1).toUpperCase() + lower.substring(1, lower.length);
 };
 
-export const padStart = (str: string | number) => {
-  if (typeof str === 'number') {
-    return str < 10 ? `0${str}` : str.toString();
+/**
+ * @description add 0 to the start if the length of the string is limit or the number is less than 10 * limit
+ */
+export const padStart = (str: string | number, limit = 1) => {
+  if (!str) {
+    return str;
   }
-  return str.length === 1 ? `0${str}` : str;
+  if (typeof str === 'number') {
+    return str < 10 * limit ? `0${str}` : str.toString();
+  }
+  return str.length <= limit ? `0${str}` : str;
 };
