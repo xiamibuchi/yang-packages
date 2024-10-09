@@ -13,8 +13,9 @@ Used for text.
 
 ## ellipsis
 
-::: demo Use the `expand-text` attribute to define Text's expand text.
-
 <sy-text :rows="2" expand-text="展开" collapse-text="收回" content="测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出"></sy-text>
-
+::: details demo Use the `expand-text` attribute to define Text's expand text.
+```vue
+<sy-text :rows="2" expand-text="展开" collapse-text="收回" content="测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出测试一下如果文本溢出"></sy-text>
+```
 :::

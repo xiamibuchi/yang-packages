@@ -44,6 +44,7 @@ export default defineConfig({
   vite: {
     server: {
       port: 3333,
+      host: '0.0.0.0'
     },
     resolve: {},
   }

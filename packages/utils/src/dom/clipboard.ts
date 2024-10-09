@@ -20,8 +20,8 @@ function command(type: string): boolean {
 function legacyCopy(text: string) {
   const fakeElement = createFakeElement();
   fakeElement.value = text;
-  const selectedText = select(fakeElement);
-  command(selectedText);
+  select(fakeElement);
+  command('copy');
   fakeElement.value = '';
   clearSelection();
 }

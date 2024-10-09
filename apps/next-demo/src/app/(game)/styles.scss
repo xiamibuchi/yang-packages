@@ -1,0 +1,17 @@
+.game-page {
+  .square {
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #999;
+    margin-right: -1px;
+    margin-top: -1px;
+  }
+  .board-row {
+    display: flex;
+  }
+}

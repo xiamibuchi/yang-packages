@@ -1,0 +1,26 @@
+@use 'sass:map';
+
+@use '../defination/function.scss' as *;
+@use '../defination/var.scss' as *;
+
+@include b(toast) {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+  word-wrap: break-word;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 30px;
+  transform: translate3d(-50%, -50%, 0);
+  min-width: 80px + 14px * 2;
+  pointer-events: none;
+  opacity: 1;
+  max-width: calc(100% - 16px * 2);
+  font-size: 16px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  padding: 14px 24px;
+  z-index: $z-index-modal;
+  transition: opacity 0.3s ease-in-out;
+  text-align: center;
+}

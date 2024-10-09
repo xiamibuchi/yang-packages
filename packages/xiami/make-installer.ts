@@ -1,9 +1,9 @@
-import { provideGlobalConfig } from '@syseven/components/config-provider';
+import { provideGlobalConfig } from '@syseven/vue-components/config-provider';
 import { INSTALLED_KEY } from '@syseven/constants';
 import { version } from './version';
 
 import type { App, Plugin } from 'vue';
-import type { ConfigProviderContext } from '@syseven/components/config-provider';
+import type { ConfigProviderContext } from '@syseven/vue-components/config-provider';
 
 export type CustomApp = App & { [INSTALLED_KEY]?: boolean };
 

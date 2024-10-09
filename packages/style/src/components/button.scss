@@ -1,0 +1,17 @@
+@use 'sass:map';
+
+@use '../defination/function.scss' as *;
+@use '../defination/var.scss' as *;
+
+@include b(button) {
+  outline: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  white-space: nowrap;
+  color: $color-text;
+  @include m(primary) {
+    background-color: $color-primary;
+  }
+}

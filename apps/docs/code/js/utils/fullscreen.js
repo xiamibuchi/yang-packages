@@ -26,7 +26,7 @@ export function exitFullscreen() {
 }
 
 // 全屏事件
-document.addEventListener('fullscreenchange', (e) => {
+document.addEventListener('fullscreenchange', () => {
   if (document.fullscreenElement) {
     console.log('进入全屏');
   } else {

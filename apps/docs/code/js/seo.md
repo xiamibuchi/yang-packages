@@ -83,6 +83,7 @@ alternate 用来告诉爬虫当前页的变体，如多语言、桌面和移动�
 - og:image - An image URL which should represent your object within the graph.
   - og:image should be at least 200px in both dimensions, with 1500x1500 preferred. (Maximum image size is 5MB.)
 - og:url - The canonical URL of your object that will be used as its permanent ID in the graph, e.g., "https://www.imdb.com/title/tt0117500/".
+- og:description
 - ...
 
 ```html
@@ -101,6 +102,15 @@ alternate 用来告诉爬虫当前页的变体，如多语言、桌面和移动�
   ...
 </html>
 ```
+
+### twitter
+
+[twitter Cards markup](https://developer.x.com/en/docs/twitter-for-websites/cards/guides/getting-started)
+
+- `<meta name="twitter:card" content="summary">`
+- `<meta name="twitter:title" content="标题">`
+- `<meta name="twitter:description" content="描述">`
+- `<meta name="twitter:image" content="图片">`
 
 ### debug
 
@@ -125,3 +135,38 @@ https://ziyuan.baidu.com/linksubmit
 ### bing
 
 https://www.bing.com/webmasters/home
+
+### 360
+
+[站长平台](https://www.so.com/help/help_3_16.html)
+
+[网站收录](https://info.so.360.cn/site_submit.html)
+
+## schema
+
+[官网](https://schema.org/)
+
+- https://schema.org/MobileApplication
+- https://schema.org/Offer
+- https://schema.org/Article
+
+## sitemap.txt
+
+https://developers.google.cn/search/docs/crawling-indexing/sitemaps/build-sitemap?hl=zh-cn
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.example.com/foo.html</loc>
+    <lastmod>2022-06-04</lastmod>
+  </url>
+</urlset>
+```
+
+在 robots.txt 中定义：
+
+```txt
+# robots.txt file of https://example.com/
+sitemap: https://sitemaps.example.com/sitemap-example-com.xml
+```

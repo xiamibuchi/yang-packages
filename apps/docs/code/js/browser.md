@@ -177,7 +177,7 @@ IndexedDb 提供了一个结构化的、事务型的、高性能的 NoSQL 类型
 
 [文档](https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-processing-model)
 
-1. 清除旧任务对戏那个
+1. 清除旧任务队列
 2. start
 3. microtask
 4. requestAnimationFrame
@@ -344,12 +344,13 @@ div {
 ### 强缓存(200 from cache)
 
 - Expires：服务端将资源失效的日期告知客户端，Expires 和 Cache-Control 同时存在的时候，Cache-Control 优先
-- cache-control（http 1.1）：
+- cache-control：
 
-  - max-age[秒] | 响应的最大 age 值
-  - no-cache | 缓存前必须先确认其有效性
-  - no-store | 不缓存请求或响应的任何内容
-  - private | 只有浏览器能缓存了，中间的代理服务器不能缓存
+  - max-age[sec]：响应的最大 age 值
+  - s-maxage：常用于 CDN 缓存，功能类似 max-age
+  - no-cache：缓存前必须先确认其有效性
+  - no-store：不缓存请求或响应的任何内容
+  - private：只有浏览器能缓存了，中间的代理服务器不能缓存
 
 > Expires 使用的是服务器端的时，但是有时候会客户端时间和服务端不同步，推荐用 Max-Age
 

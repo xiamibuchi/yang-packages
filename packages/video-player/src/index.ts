@@ -139,7 +139,7 @@ export class VideoPlayer extends Core {
         document.msFullscreen ||
         document.fullscreen ||
         document.fullscreenElement?.nodeName ||
-        this.video?.webkitDisplayingFullscreen
+        this.video?.webkitDisplayingFullscreen,
     );
   }
   get isLive() {
@@ -468,7 +468,7 @@ export class VideoPlayer extends Core {
         () => {
           this.emit(UiEvents.UI_BLUR);
         },
-        { passive: true }
+        { passive: true },
       );
     } else {
       root.addEventListener('mouseleave', () => {

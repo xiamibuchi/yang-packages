@@ -18,6 +18,12 @@
     "jsx": "preserve",
     "allowJs": true,
     "resolveJsonModule": true,
+    "types": ["@tarojs/components/vue3"],
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["./src", "./types"],
 }

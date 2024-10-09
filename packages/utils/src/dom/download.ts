@@ -45,3 +45,34 @@ export const downloadBlob = (link: string, name?: string) => {
   };
   xhr.send();
 };
+
+// csv
+export function handleDownload() {
+  const values = [
+    {
+      id: 1,
+      name: '1',
+    },
+    {
+      id: 2,
+      name: '2',
+    },
+  ];
+  const HEADERS = ['header1', 'header2'];
+  const CSV_STR = `${HEADERS.join(',')}\n${values.reduce((result, ele) => {
+    result += `${Object.values(ele).join(',\t')}\n`; // 如需保证csv顺序，按照字段顺序排列
+    return result;
+  }, '')}`;
+
+  const blob = new Blob([CSV_STR], {
+    type: '.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel',
+  });
+
+  const URI = window.URL.createObjectURL(blob);
+  const FILE_NAME = '文件流下载' + '.csv';
+  let anchor: HTMLAnchorElement | null = document.createElement('a');
+  anchor.href = URI;
+  anchor.setAttribute('download', FILE_NAME);
+  anchor.click();
+  anchor = null;
+}

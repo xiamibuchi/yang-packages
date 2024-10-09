@@ -18,16 +18,8 @@ function getAll(begin, end) {
 
 getAll('2017-02-27', '2017-03-02');
 
-// 时间戳转换为时间
-function timestampToTime(timestamp = Date.parse(new Date()), isMs = true) {
-  const date = new Date(timestamp * (isMs ? 1 : 1000));
-  return `${date.getFullYear()}-${
-    date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1
-  }-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-}
-
 // 日期按所传格式进行格式化
-function formatDate(date, fmt) {
+export function formatDate(date, fmt) {
   const o = {
     'M+': date.getMonth() + 1, //月份
     'd+': date.getDate(), //日
@@ -40,13 +32,15 @@ function formatDate(date, fmt) {
   if (/(y+)/.test(fmt))
     fmt = fmt.replace(
       RegExp.$1,
-      `${date.getFullYear()}`.slice(4 - RegExp.$1.length)
+      `${date.getFullYear()}`.slice(4 - RegExp.$1.length),
     );
-  for (const k in o)
-    if (new RegExp(`(${k})`).test(fmt))
+  for (const k in o) {
+    if (new RegExp(`(${k})`).test(fmt)) {
       fmt = fmt.replace(
         RegExp.$1,
-        RegExp.$1.length == 1 ? o[k] : `00${o[k]}`.slice(`${o[k]}`.length)
+        RegExp.$1.length == 1 ? o[k] : `00${o[k]}`.slice(`${o[k]}`.length),
       );
+    }
+  }
   return fmt;
 }

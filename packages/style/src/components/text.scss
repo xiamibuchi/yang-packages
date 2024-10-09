@@ -1,0 +1,15 @@
+@use 'sass:map';
+
+@use '../defination/function.scss' as *;
+
+@include b(text) {
+  @include m(ellipsis) {
+    display: block;
+    @include ellipsis-limit-line(1);
+  }
+
+  @include m(ellipsis-mutiple) {
+    display: block;
+    @include ellipsis-limit-line(2);
+  }
+}

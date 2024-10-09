@@ -10,15 +10,15 @@
   "dependencies": {
     "@syseven/xiami": "workspace:*",
     "element-plus": "^2.3.8",
+    "gsap": "^3.12.5",
     "highlight.js": "^11.8.0",
     "leaflet": "^1.9.4",
-    "vue": "^3.3.4",
     "xlsx": "^0.18.5"
   },
   "volta": {
     "extends": "../../package.json"
   },
   "devDependencies": {
-    "vitepress": "1.0.0-rc.45"
+    "vitepress": "1.2.3"
   }
 }

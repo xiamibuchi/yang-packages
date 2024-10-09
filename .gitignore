@@ -41,9 +41,12 @@ build/Release
 # Dependency directories
 node_modules
 jspm_packages
+.pnp
+.pnp.js
 
-# TypeScript cache
+# TypeScript
 *.tsbuildinfo
+next-env.d.ts
 
 # Optional npm cache directory
 .npm
@@ -68,21 +71,25 @@ jspm_packages
 
 # dotenv environment variables file
 .env
-.env.test
-.env*.local
+.env.*
+!.env.example
 
-# parcel-bundler cache (https://parceljs.org/)
+# cache
 .cache
 
 # Next.js build output
 .next
+out
 
 # Nuxt.js build / generate output
 .nuxt
+.nitro
 dist
 es
-lib
 dist-ssr
+.output
+.data
+build
 
 # Gatsby files
 .cache/
@@ -110,6 +117,14 @@ dist-ssr
 .idea/
 *.iml
 
+# IDEs and editors
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
 # VSCode project files
 .vscode/*
 !.vscode/settings.json
@@ -133,9 +148,20 @@ dist-ssr
 
 # OS X temporary files
 .DS_Store
+.fleet
 
 # turbo
 .turbo
 
 # vercel
 .vercel
+
+# misc
+*.pem
+
+# node inspect
+.clinic
+
+# temp directory
+.temp
+.tmp

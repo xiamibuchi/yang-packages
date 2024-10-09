@@ -51,7 +51,7 @@ onMounted(() => {
   });
 
   // 鼠标抬起
-  window.addEventListener('mouseup', (e) => {
+  window.addEventListener('mouseup', () => {
     dragging = false;
     dragDemo.classList.remove('active');
     setTimeout(() => {
@@ -59,7 +59,7 @@ onMounted(() => {
     }, 10);
   });
   // 鼠标离开了视窗
-  document.addEventListener('mouseleave', (e) => {
+  document.addEventListener('mouseleave', () => {
     end();
   });
   // 用户可能离开了浏览器
@@ -114,7 +114,7 @@ onMounted(() => {
   function init(
     { offsetX, offsetY, pageX, pageY }: Record<string, number>,
     { width }: Record<string, number>,
-    flag: number
+    flag: number,
   ) {
     initial = { offsetX, offsetY, pageX, pageY, width, flag };
     moveFlutter(pageX - offsetX, pageY - offsetY);

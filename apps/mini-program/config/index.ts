@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+const path = require('path');
+
 const config = {
   projectName: 'mini-program',
+  alias: {
+    '@': path.resolve(__dirname, '..', 'src'),
+  },
   date: '2023-9-1',
   designWidth: 750,
   deviceRatio: {

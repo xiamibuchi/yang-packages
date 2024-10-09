@@ -13,10 +13,12 @@ HTTP，HyperText Transfer Protocol（超文本传输协议）
 ## 历史版本
 
 - [HTTP/1.0](https://datatracker.ietf.org/doc/html/rfc1945)：传输内容格式不限制，增加 PUT、PATCH、HEAD、 OPTIONS、DELETE 命令
-- [HTTP/1.1](https://tools.ietf.org/html/rfc2616)：持久连接(长连接，Keep-Alive)、节约带宽、HOST 域、管道机制、分块传输编码
+- [HTTP/1.1](https://tools.ietf.org/html/rfc2616)：持久连接(长连接，Keep-Alive)、节约带宽、HOST 域、管道机制（Pipelining）、分块传输编码
+  - `Connection: keep-alive`：连接不断开，无需重新连接。但占用资源、意外断开会丢数据
+  - 管道机制：同一个 TCP 连接上可发出多个请求，服务端并行处理请求
 - HTTP/2.0：
   - 多路复用（通过单一的 HTTP/2 连接请求发起多重的请求-响应消息，多个请求 stream 共享一个 TCP 连接，实现多留并行而不是依赖建立多个 TCP 连接）
-  - 支持二进制传送（实现方便且健壮），HTTP1.x 是字符串传送
+  - 支持二进制（Binary Framing）传送（实现方便且健壮），HTTP1.x 是字符串传送
   - 采用 HPACK 压缩算法压缩头部，减小了传输的体积。例如：METHOD GET 用 2 表示
   - 支持服务端推送
   - 请求优先级（如果流被赋予了优先级，它就会基于这个优先级来处理，由服务器决定需要多少资源来处理该请求

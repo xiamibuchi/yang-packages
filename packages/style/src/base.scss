@@ -1,8 +1,2 @@
-@use './theme/light.scss';
-@use './theme/dark.scss';
-
-.flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+@use './css-variables/layout.scss';
+@use './css-variables/theme.scss';

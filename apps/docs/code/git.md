@@ -74,12 +74,16 @@ git commit -m 'update .gitignore'
 ## 常用命令
 
 ```shell
-git config user.name [username]
-git config user.email [email]
+git config --local user.name [username]
+git config --local user.email [email]
 
 # --global，配置全局参数
 git config --global user.name [username]
 git config --global user.email [email]
+git config --global core.editor "vim"
+git config --global color.ui auto
+# 设置对文件名大小写敏感
+git config core.ignorecase false
 
 # show config
 git config --list
@@ -99,6 +103,10 @@ git add a.text dir/
 
 # 从暂存区提交到仓库区
 git commit -m 'commit message'
+
+# 比较
+
+git diff mybranch master -- xxx.file
 
 # 日志
 git log

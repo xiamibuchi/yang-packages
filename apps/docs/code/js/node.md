@@ -130,6 +130,8 @@ npm why [package_name]
   - pnpm 的 node_modules 布局使用符号链接来创建依赖项的嵌套结构
 
 1. set [Workspace](https://pnpm.io/workspaces)
+2. [overrides](https://pnpm.io/package_json#pnpmoverrides): enforce all your packages to use a single version of a dependency
+3. [packageExtensions](https://pnpm.io/package_json#pnpmpackageextensions): extend the existing package definitions with additional information
 
 > monorepo 的配置，一般是书写一个基础配置，每个项目再各自扩展
 
@@ -162,6 +164,13 @@ exports.start = start;
 ### pm2
 
 PM2 是 node 进程管理工具，可以利用它来简化很多 node 应用管理的繁琐任务，如性能监控、自动重启、负载均衡、日志管理等
+
+作用：
+
+- 自动重启
+- 日志管理
+- 多进程和负载均衡
+- 性能监控
 
 - 启用一个应用：`pm2 start app.js`
 - 查看应用详情：`pm2 show app_name|app_id`

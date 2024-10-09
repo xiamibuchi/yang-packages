@@ -11,7 +11,7 @@ request.onerror = (event) => {
 };
 request.onsuccess = (event) => {
   db = event.target.result;
-  const objectStore = db.createObjectStore("name", { keyPath: "myKey" });
+  const objectStore = db.createObjectStore('name', { keyPath: 'myKey' });
 };
 ```
 

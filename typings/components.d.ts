@@ -1,10 +1,14 @@
 // For this project development
-import '@vue/runtime-core';
+import { defineCustomElement } from 'vue';
+import TextSFC from '../packages/vue-components/text/src/text.vue';
 
-declare module '@vue/runtime-core' {
+// turn component into web components
+export const Text = defineCustomElement(TextSFC);
+
+declare module 'vue' {
   // GlobalComponents for Volar
   export interface GlobalComponents {
-    SyText: typeof import('../packages/xiami')['SyText'];
+    Text: typeof Text;
   }
 }
 
