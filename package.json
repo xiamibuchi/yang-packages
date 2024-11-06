@@ -12,7 +12,6 @@
     "stub": "turbo stub --parallel",
     "clean": "pnpm run clean:dist && pnpm run -r --parallel clean && find . \\( -name 'node_modules' -o -name 'dist' -o -name '.nuxt' -o -name '.output' \\) -type d -exec rm -rf {} +",
     "clean:dist": "rimraf dist",
-    "clear": "find . \\( -name 'node_modules' -o -name 'dist' -o -name '.nuxt' -o -name '.output' \\) -type d -exec rm -rf {} +",
     "docs:build": "pnpm --filter @syseven/docs build",
     "test": "pnpm run -r unit:test && vitest --config ./vitest.config.ts",
     "test:coverage": "vitest run --coverage --config ./vitest.config.ts"

@@ -125,7 +125,7 @@ export default class Danmaku {
       return this._opacity;
     }
     const items = this.container.getElementsByClassName(
-      'sy-player__danmaku-item'
+      'sy-player__danmaku-item',
     ) as HTMLCollectionOf<HTMLElement>;
     for (let i = 0; i < items.length; i++) {
       items[i].style.opacity = `${percentage}`;
@@ -267,7 +267,7 @@ export default class Danmaku {
   resize() {
     const danWidth = this.container.offsetWidth;
     const items = this.container.getElementsByClassName(
-      'sy-player__danmaku-item'
+      'sy-player__danmaku-item',
     ) as HTMLCollectionOf<HTMLElement>;
     if (!items.length) {
       return;

@@ -17,9 +17,7 @@
     "types": [],
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "@syseven/*": [
-        "packages/*"
-      ]
+      "@syseven/*": ["packages/*"]
     }
   }
 }
