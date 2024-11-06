@@ -1,10 +1,10 @@
 const HIDDEN_STYLE = `
-  height:0 !important;
+  height:2px !important;
   overflow:auto !important;
   position:absolute !important;
   z-index:-1000 !important;
   top:0 !important;
-  right:0 !important
+  right:0 !important;
 `;
 
 let hiddenTextarea: HTMLTextAreaElement;
