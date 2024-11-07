@@ -273,7 +273,7 @@ code: 'ERR_OSSL_EVP_UNSUPPORTED'
 
 原因：
 
-node17 及以后版本中支持 OpenSSL3.0, 而 OpenSSL3.0 对允许算法和秘钥大小增加了严格的限制。
+node17 及以后版本中支持 OpenSSL3.0, 而 OpenSSL3.0 对算法和秘钥大小增加了严格的限制。
 
 解决：
 
