@@ -10,12 +10,13 @@
 
 [release](https://nodejs.org/download/release/)
 
-[volta](https://volta.sh/)
+[proto](https://moonrepo.dev/docs/proto/tools)
 
 ```shell
-curl https://get.volta.sh | bash
+# Install proto
+curl -fsSL https://moonrepo.dev/install/proto.sh | bash
 # install Node
-volta install node
+proto install node
 # start using Node
 node
 

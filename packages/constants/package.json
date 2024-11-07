@@ -2,8 +2,5 @@
   "name": "@syseven/constants",
   "private": true,
   "license": "MIT",
-  "main": "index.ts",
-  "volta": {
-    "extends": "../../package.json"
-  }
+  "main": "index.ts"
 }

@@ -17,8 +17,5 @@
   "dependencies": {
     "eventemitter3": "^5.0.1",
     "hls.js": "1.5.6"
-  },
-  "volta": {
-    "extends": "../../package.json"
   }
 }

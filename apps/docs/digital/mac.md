@@ -4,6 +4,7 @@
 
 - [oh-my-zsh](https://ohmyz.sh)
 - [filetransfer](https://www.android.com/filetransfer)
+- [Homebrew](https://brew.sh)
 
 ## 应用下载
 

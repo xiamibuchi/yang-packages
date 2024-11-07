@@ -7,8 +7,5 @@
   "types": "index.d.ts",
   "peerDependencies": {
     "vue": "^3.4.21"
-  },
-  "volta": {
-    "extends": "../../package.json"
   }
 }

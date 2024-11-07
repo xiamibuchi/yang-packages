@@ -15,8 +15,5 @@
       "require": "./src/*.scss"
     }
   },
-  "devDependencies": {},
-  "volta": {
-    "extends": "../../package.json"
-  }
+  "devDependencies": {}
 }

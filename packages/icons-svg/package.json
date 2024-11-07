@@ -5,8 +5,5 @@
   "files": [
     "svg"
   ],
-  "scripts": {},
-  "volta": {
-    "extends": "../../package.json"
-  }
+  "scripts": {}
 }

@@ -5,8 +5,5 @@
   "license": "MIT",
   "main": "index.ts",
   "module": "index.ts",
-  "types": "index.d.ts",
-  "volta": {
-    "extends": "../../package.json"
-  }
+  "types": "index.d.ts"
 }
