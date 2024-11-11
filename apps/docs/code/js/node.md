@@ -53,13 +53,13 @@ corepack enable
 corepack prepare pnpm@7.30.1 --activate
 ```
 
-> 如果使用 nvm 或 volta 安装的 node 可能无 corepack 命令，可以用 `npm install -g corepack`
+> 如果使用 nvm/volta/proto 安装的 node 可能无 corepack 命令，可以用 `npm install -g corepack`
 
 ## 加密
 
-- 数学上的加密： https://nodejs.org/api/crypto.html
-- 压缩文件： https://nodejs.org/api/zlib.html
-- 文件系统交互： https://nodejs.org/api/fs.html
+- 数学上的加密：https://nodejs.org/api/crypto.html
+- 压缩文件：https://nodejs.org/api/zlib.html
+- 文件系统交互：https://nodejs.org/api/fs.html
 
 ## eventloop
 
