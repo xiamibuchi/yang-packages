@@ -6,7 +6,7 @@ export const configuration = () => ({
   port: process.env.PORT || 3000,
   redis: {
     host: process.env.REDIS_HOST || '127.0.0.1',
-    port: process.env.REDIS_PORT || 80,
+    port: process.env.REDIS_PORT || 6379,
     password: process.env.REDIS_PASSWORD || '',
   },
 });

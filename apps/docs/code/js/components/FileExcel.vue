@@ -16,7 +16,7 @@ const getRemoteData = async () => {
   const file = await (await fetch('/docs/demo.xlsx')).arrayBuffer();
   const wb = read(file);
   const remoteData: DataItem[] = utils.sheet_to_json(
-    wb.Sheets[wb.SheetNames[0]]
+    wb.Sheets[wb.SheetNames[0]],
   );
   if (Array.isArray(remoteData)) {
     data.value.push(...remoteData);
@@ -33,8 +33,8 @@ const downloadExcel = () => {
 
 <template>
   <div class="file-excel">
-    <el-button type="primary" @click="getRemoteData">获取远程数据</el-button>
-    <el-button type="primary" @click="downloadExcel">下载 excel</el-button>
+    <el-button type="primary" @click="getRemoteData"> 获取远程数据 </el-button>
+    <el-button type="primary" @click="downloadExcel"> 下载 excel </el-button>
     <el-table class="file-excel__table" :data="data">
       <el-table-column prop="number" label="序号" />
     </el-table>

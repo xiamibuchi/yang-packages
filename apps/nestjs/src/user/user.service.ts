@@ -17,4 +17,15 @@ export class UserService {
     }
     return null;
   }
+
+  async setUserById(id: string): Promise<User> {
+    const user = await this.cacheManager.set(this.getCacheKey(id), {
+      id,
+      name: 'test',
+    });
+    if (user) {
+      return user;
+    }
+    return null;
+  }
 }

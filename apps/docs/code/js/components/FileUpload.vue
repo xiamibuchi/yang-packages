@@ -47,7 +47,7 @@ const uploadFile = async (file: File) => {
           console.error(e);
         }
       }
-    })
+    }),
   );
   if (uploadedChunks.length <= totalChunks) {
     await merge(file);
