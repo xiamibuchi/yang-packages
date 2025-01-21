@@ -23,7 +23,7 @@ export const safeJsonParse = (source) => {
   const nextCharacter = (expectedCharacter) => {
     if (expectedCharacter && expectedCharacter !== character) {
       throw new Error(
-        `Expected '${expectedCharacter}' instead of '${character}'`
+        `Expected '${expectedCharacter}' instead of '${character}'`,
       );
     }
     character = source.charAt(characterIndex);

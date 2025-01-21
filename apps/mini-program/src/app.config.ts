@@ -1,5 +1,7 @@
+import { Routers } from './router/router-config';
+
 export default {
-  pages: ['pages/index/index', 'pages/webview/webview'],
+  pages: Object.values(Routers).map((router) => router.replace('/', '')),
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',

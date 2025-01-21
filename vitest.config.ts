@@ -11,8 +11,13 @@ export default defineConfig({
     clearMocks: true,
     environment: 'jsdom',
     setupFiles: ['./vitest.setup.ts'],
-    transformMode: {
-      web: [/\.[jt]sx$/],
-    },
+    exclude: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/cypress/**',
+      '**/.{idea,git,cache,output,temp}/**',
+      '**/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build}.config.*',
+      '**/nestjs/**',
+    ],
   },
 });

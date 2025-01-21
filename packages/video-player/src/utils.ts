@@ -1,6 +1,4 @@
-const formatNumber = (num: number) => {
-  return num < 10 ? `0${num}` : `${num}`;
-};
+import { padStart } from '@syseven/utils';
 
 export const timeTranslate = (time: number) => {
   if (!time || typeof time !== 'number') {
@@ -9,11 +7,11 @@ export const timeTranslate = (time: number) => {
   const t = Math.round(time);
   const hours = Math.floor(t / 3600);
   const leftSeconds = t % 3600;
-  const hoursString = hours ? formatNumber(hours) : '';
+  const hoursString = hours ? padStart(hours) : '';
   const minutes = Math.floor(leftSeconds / 60);
-  const minutesString = formatNumber(minutes);
+  const minutesString = padStart(minutes);
   const seconds = Math.floor(leftSeconds % 60);
-  const secondsString = formatNumber(seconds);
+  const secondsString = padStart(seconds);
 
   return `${hours ? `${hoursString}:` : ''}${minutesString}:${secondsString}`;
 };

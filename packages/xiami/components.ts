@@ -1,4 +1,4 @@
-import { SyText } from '@syseven/components/text';
+import { SyText } from '@syseven/vue-components/text';
 
 import type { Plugin } from 'vue';
 

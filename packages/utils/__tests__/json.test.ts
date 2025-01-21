@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { safeJsonParse } from '../src/json';
+import { safeJsonParse } from '../src/json.js';
 
 const BIG_INT_STR = '123456789114514987654321';
 
@@ -40,11 +40,11 @@ describe('json.ts', () => {
 
   test('nested_long_json should not be parsed', () => {
     expect(safeJsonParse(NESTED_LONG_JSON).nested.nested_long_json).toEqual(
-      `{id:${BIG_INT_STR}}`
+      `{id:${BIG_INT_STR}}`,
     );
     expect(safeJsonParse(NESTED_COMPLEX_JSON).str).toEqual(`${BIG_INT_STR}`);
     expect(
-      safeJsonParse(NESTED_COMPLEX_JSON).nested.nested_complex_json
+      safeJsonParse(NESTED_COMPLEX_JSON).nested.nested_complex_json,
     ).toEqual(`{"id":${BIG_INT_STR}}`);
   });
 });

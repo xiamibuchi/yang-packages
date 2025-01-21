@@ -1,11 +1,10 @@
 const HIDDEN_STYLE = `
-  height:0 !important;
-  visibility:hidden !important;
+  height:2px !important;
   overflow:auto !important;
   position:absolute !important;
   z-index:-1000 !important;
   top:0 !important;
-  right:0 !important
+  right:0 !important;
 `;
 
 let hiddenTextarea: HTMLTextAreaElement;
@@ -17,7 +16,7 @@ export function createFakeElement() {
   if (!hiddenTextarea) {
     hiddenTextarea = document.createElement('textarea');
     document.body.appendChild(hiddenTextarea);
+    hiddenTextarea.setAttribute('style', HIDDEN_STYLE);
   }
-  hiddenTextarea.setAttribute('style', HIDDEN_STYLE);
   return hiddenTextarea;
 }

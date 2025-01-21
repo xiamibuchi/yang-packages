@@ -38,6 +38,8 @@ export default class Danmaku {
   danIndex = 0;
   dan: DanmakuParam[] = [];
   paused = true;
+  private _currentReq = 0;
+  private _ended = false;
   constructor(player: VideoPlayer) {
     this.player = player;
     this.el = createElement('input', 'sy-player__danmaku-input');
@@ -70,17 +72,30 @@ export default class Danmaku {
   }
 
   _init() {
-    window.requestAnimationFrame(() => {
+    this._cancelFrame();
+    this._currentReq = window.requestAnimationFrame(() => {
       this.frame();
     });
   }
 
   _initEvent() {
+    this.player.on(VideoEvents.CANPLAY, () => {
+      this._ended = false;
+    });
     this.player.on(VideoEvents.PLAY, () => {
+      this._ended = false;
       this.play();
     });
     this.player.on(VideoEvents.PAUSE, () => {
       this.pause();
+    });
+    this.player.on(VideoEvents.ENDED, () => {
+      this._ended = true;
+      this._cancelFrame();
+    });
+    this.player.on(VideoEvents.ERROR, () => {
+      this._ended = true;
+      this._cancelFrame();
     });
   }
 
@@ -103,19 +118,26 @@ export default class Danmaku {
   }
 
   frame() {
+    if (this._ended) {
+      return;
+    }
     if (this.dan.length && !this.player.paused && this.showing) {
       let item = this.dan[this.danIndex];
       const dan = [];
       while (
         item &&
-        this.getCurrentTime() >= Number.parseFloat(`${item.time}`)
+        this.getCurrentTime() >= Number.parseFloat(`${item.time}`) &&
+        !this._ended
       ) {
         dan.push(item);
         item = this.dan[++this.danIndex];
       }
       this.draw(dan);
     }
-    window.requestAnimationFrame(() => {
+    this._currentReq = window.requestAnimationFrame(() => {
+      if (this._ended) {
+        return;
+      }
       this.frame();
     });
   }
@@ -125,7 +147,7 @@ export default class Danmaku {
       return this._opacity;
     }
     const items = this.container.getElementsByClassName(
-      'sy-player__danmaku-item'
+      'sy-player__danmaku-item',
     ) as HTMLCollectionOf<HTMLElement>;
     for (let i = 0; i < items.length; i++) {
       items[i].style.opacity = `${percentage}`;
@@ -267,7 +289,7 @@ export default class Danmaku {
   resize() {
     const danWidth = this.container.offsetWidth;
     const items = this.container.getElementsByClassName(
-      'sy-player__danmaku-item'
+      'sy-player__danmaku-item',
     ) as HTMLCollectionOf<HTMLElement>;
     if (!items.length) {
       return;
@@ -297,5 +319,9 @@ export default class Danmaku {
     const rate = 1;
     const isFullScreen = this.player.fullscreen;
     return `${(isFullScreen ? 8 : 5) / rate}s`;
+  }
+
+  _cancelFrame() {
+    window.cancelAnimationFrame(this._currentReq);
   }
 }

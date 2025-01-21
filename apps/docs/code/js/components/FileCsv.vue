@@ -5,6 +5,7 @@ import { downloadAnchor } from '@syseven/utils';
 type DataItem = {
   number: number;
   name: string;
+  [key: string]: unknown;
 };
 
 const data = ref([
@@ -19,7 +20,6 @@ const downloadCsv = () => {
   const CSV_HEADER = `${HEADERS.join(',')}\n`;
   const CSV_BODY = data.value.reduce((result, ele) => {
     const line = HEADERS.reduce((str, key, i) => {
-      // @ts-ignore
       str += ele?.[key] || '';
       if (i < HEADERS.length - 1) {
         str += ',\t';

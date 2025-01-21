@@ -10,9 +10,6 @@
   "peerDependencies": {
     "@vue/shared": "^3.3.4",
     "lodash-es": "^4.17.21",
-    "vue": "^3.3.4"
-  },
-  "devDependencies": {
-    "dependency-cruiser": "^13.0.2"
+    "vue": "^3.4.21"
   }
 }

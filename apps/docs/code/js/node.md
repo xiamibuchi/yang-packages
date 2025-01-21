@@ -10,12 +10,13 @@
 
 [release](https://nodejs.org/download/release/)
 
-[volta](https://volta.sh/)
+[proto](https://moonrepo.dev/docs/proto/tools)
 
 ```shell
-curl https://get.volta.sh | bash
+# Install proto
+curl -fsSL https://moonrepo.dev/install/proto.sh | bash
 # install Node
-volta install node
+proto install node
 # start using Node
 node
 
@@ -52,13 +53,13 @@ corepack enable
 corepack prepare pnpm@7.30.1 --activate
 ```
 
-> 如果使用 nvm 或 volta 安装的 node 可能无 corepack 命令，可以用 `npm install -g corepack`
+> 如果使用 nvm/volta/proto 安装的 node 可能无 corepack 命令，可以用 `npm install -g corepack`
 
 ## 加密
 
-- 数学上的加密： https://nodejs.org/api/crypto.html
-- 压缩文件： https://nodejs.org/api/zlib.html
-- 文件系统交互： https://nodejs.org/api/fs.html
+- 数学上的加密：https://nodejs.org/api/crypto.html
+- 压缩文件：https://nodejs.org/api/zlib.html
+- 文件系统交互：https://nodejs.org/api/fs.html
 
 ## eventloop
 
@@ -130,6 +131,8 @@ npm why [package_name]
   - pnpm 的 node_modules 布局使用符号链接来创建依赖项的嵌套结构
 
 1. set [Workspace](https://pnpm.io/workspaces)
+2. [overrides](https://pnpm.io/package_json#pnpmoverrides): enforce all your packages to use a single version of a dependency
+3. [packageExtensions](https://pnpm.io/package_json#pnpmpackageextensions): extend the existing package definitions with additional information
 
 > monorepo 的配置，一般是书写一个基础配置，每个项目再各自扩展
 
@@ -162,6 +165,13 @@ exports.start = start;
 ### pm2
 
 PM2 是 node 进程管理工具，可以利用它来简化很多 node 应用管理的繁琐任务，如性能监控、自动重启、负载均衡、日志管理等
+
+作用：
+
+- 自动重启
+- 日志管理
+- 多进程和负载均衡
+- 性能监控
 
 - 启用一个应用：`pm2 start app.js`
 - 查看应用详情：`pm2 show app_name|app_id`
@@ -263,7 +273,7 @@ code: 'ERR_OSSL_EVP_UNSUPPORTED'
 
 原因：
 
-node17 及以后版本中支持 OpenSSL3.0, 而 OpenSSL3.0 对允许算法和秘钥大小增加了严格的限制。
+node17 及以后版本中支持 OpenSSL3.0, 而 OpenSSL3.0 对算法和秘钥大小增加了严格的限制。
 
 解决：
 

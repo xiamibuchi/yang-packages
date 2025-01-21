@@ -7,11 +7,32 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "start": "pm2-runtime start ecosystem.config.cjs",
+    "server:inspect": "node --inspect --expose-gc --trace_gc --trace-sync-io ./scripts/inspect.js",
+    "server:doctor": "clinic doctor --trace-sync-io --autocannon [ -d 20 http://127.0.0.1:3000 ] -- node ./scripts/inspect.js",
+    "server:flame": "clinic flame --autocannon [ -d 20 http://127.0.0.1:3000 ] -- node ./scripts/inspect.js",
+    "typecheck": "nuxt typecheck",
+    "analyze": "nuxt analyze"
   },
   "dependencies": {
-    "nuxt": "^3.10.3",
-    "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
-  }
+    "@pinia/nuxt": "^0.5.1",
+    "nuxt": "3.12.3",
+    "pinia": "2.1.7",
+    "vue-i18n": "9.13.1",
+    "vue-router": "4.4.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-legacy": "^5.3.2",
+    "terser": "5.29.2",
+    "vite-plugin-legacy-swc": "^1.2.0"
+  },
+  "browserslist": [
+    "chrome >= 37",
+    "android >= 4.4.4",
+    "iOS >= 9.3",
+    "bb 7",
+    "not ie < 11",
+    "not ie_mob < 11"
+  ]
 }

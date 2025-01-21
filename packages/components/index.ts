@@ -1,3 +1,0 @@
-export * from './text';
-
-// plugins

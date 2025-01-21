@@ -20,3 +20,11 @@ div {
     'STKaiti', 'serif';
 }
 ```
+
+- Helvetica Neue: macOS，比`Helvetica`增加了更多不同粗细与宽度的字形
+- Helvetica: macOS
+- PingFang SC: macOS
+- Hiragino Sans GB/Heiti SC: 旧 macOS 兼容
+- Microsoft YaHei: 微软雅黑，Windows
+- Arial: Windows
+- sans-serif：无衬线字族

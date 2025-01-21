@@ -5,9 +5,15 @@
   "files": [
     "src"
   ],
-  "scripts": {
-    "clean": "rimraf dist"
+  "exports": {
+    "./src/*.css": {
+      "import": "./src/*.css",
+      "require": "./src/*.css"
+    },
+    "./src/*.scss": {
+      "import": "./src/*.scss",
+      "require": "./src/*.scss"
+    }
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

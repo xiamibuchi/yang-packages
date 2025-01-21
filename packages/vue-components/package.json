@@ -1,0 +1,12 @@
+{
+  "name": "@syseven/vue-components",
+  "version": "0.0.5",
+  "description": "all components are settled here",
+  "main": "index.ts",
+  "module": "index.ts",
+  "types": "index.ts",
+  "peerDependencies": {
+    "vue": "^3.4.21"
+  },
+  "sideEffects": false
+}

@@ -5,7 +5,7 @@ onMounted(async () => {
   const Leaflet = await import('leaflet');
   const map = Leaflet.map('game-map', { scrollWheelZoom: false }).setView(
     [-29.5, 145],
-    3.5
+    3.5,
   );
   const basemaps = {
     StreetView: Leaflet.tileLayer(
@@ -13,11 +13,11 @@ onMounted(async () => {
       {
         attribution:
           '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      }
+      },
     ),
     Topography: Leaflet.tileLayer.wms(
       'http://ows.mundialis.de/services/service?',
-      { layers: 'TOPO-WMS' }
+      { layers: 'TOPO-WMS' },
     ),
     Places: Leaflet.tileLayer.wms('http://ows.mundialis.de/services/service?', {
       layers: 'OSM-Overlay-WMS',

@@ -3,7 +3,7 @@ export function select(
     | HTMLInputElement
     | HTMLTextAreaElement
     | HTMLSelectElement
-    | HTMLElement
+    | HTMLElement,
 ): string {
   let selectedText = '';
 

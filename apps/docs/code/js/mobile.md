@@ -6,14 +6,6 @@
 
 用于定义虚拟键盘右下角按钮展示的内容
 
-- enter
-- done
-- go
-- next
-- previous
-- search
-- send
-
 ```html
 <!-- 虚拟键盘右下角按钮展示“搜索” -->
 <textarea enterkeyhint="search" />
@@ -25,11 +17,11 @@
 
 `scheme://path?query`
 
-iOS 9 前常用的方式
+iOS9 前常用的方式
 
 问题：
 
-- 当要被唤起的 app 没有安装时，这个链接无用
+- 当要被唤起的 app 没有安装时，这个链接无用，Safari 显示“打不开该网页”
 - 多个相同 scheme 无法区分
 
 ### 其他 deep linking
@@ -50,6 +42,7 @@ iOS：
 - ：[Universal Link](https://developer.apple.com/ios/universal-links/)(>=iOS 9)
   - 本身是 HTTP/HTTPS 链接，兼容 web 和 app 状态
   - app 已安装，app 就会立即启动；未安装时，默认地重定向到 App Store 的 app 页
+  - [Implement a Smart App Banner on Your Website](https://developer.apple.com/documentation/webkit/promoting_apps_with_smart_app_banners#3701576)
 
 ### Deferred deep linking
 
@@ -61,7 +54,7 @@ iOS：
 2. 通过埋点信息上报，匹配用户打开地址
 3. Google Play 上的应用可直接配置
 
-### 一些系统的特殊实现
+### 其他
 
 [vivo 直达应用服务（deep link）](https://dev.vivo.com.cn/documentCenter/doc/216#w2-77940301)
 
@@ -80,6 +73,52 @@ iOS：
   - 扫一扫：mqqapi://qrcode/scan_qrcode?version=1&src_type=app
 
 [捷径社区](https://sharecuts.cn/app/414478124)
+
+## 唤端
+
+- URL Scheme
+- iOS universal link
+- Android 专用的 App Links
+- App 提供的 sdk，如微信 sdk
+
+```js
+const clientUri = `URL Scheme`;
+const universalLink = '';
+
+let isOpenClient = false;
+const iframe = document.createElement('iframe');
+iframe.style.cssText = 'width=1px;height=1px;opacity:0;';
+iframe.src = clientUri;
+document.body.appendChild(iframe);
+const checkDate = Date.now();
+
+let _count = 0;
+const timer = setInterval(() => {
+  _count++;
+  const interval = Date.now() - checkDate;
+  if (_count > 100 || interval > 3000) {
+    clearInterval(timer);
+    if (!isOpenClient && !(document.hidden || document.webkitHidden)) {
+      const anchor = document.createElement('a');
+      anchor.href = universalLink;
+      if (typeof anchor.click === 'function') {
+        anchor.click();
+        anchor.remove();
+      } else {
+        location.href = universalLink;
+      }
+    }
+  }
+}, 20);
+document.addEventListener('visibilitychange', () => {
+  isOpenClient = true;
+  clearInterval(timer);
+});
+window.addEventListener('pagehide', () => {
+  isOpenClient = true;
+  clearInterval(timer);
+});
+```
 
 ## 折叠屏
 

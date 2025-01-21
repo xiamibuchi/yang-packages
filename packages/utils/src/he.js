@@ -2409,7 +2409,7 @@ export const decode = function (html, options) {
       } else {
         if (strict) {
           parseError(
-            'named character reference was not terminated by a semicolon'
+            'named character reference was not terminated by a semicolon',
           );
         }
         // Note: there is no need to check `has(decodeMapLegacy, reference)`.

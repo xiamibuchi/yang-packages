@@ -1,7 +1,7 @@
 import EventEmitter from 'eventemitter3';
+// @ts-ignore
 import Hls from 'hls.js/dist/hls.light.js';
 import { PlayerEvents, VideoEvents, WindowEvents } from './constants';
-// @ts-ignore
 import type { PlayerOptions } from './types';
 
 type EventListenerOptions =
@@ -18,7 +18,7 @@ interface EventListener {
       changedTouches?: TouchList;
       clientX?: number;
       clientY?: number;
-    }
+    },
   ): void;
 }
 
@@ -165,7 +165,7 @@ export class Core extends EventEmitter {
     }
     const { video } = this;
 
-    if (!video) {
+    if (!video || !this.canplay) {
       this.once(VideoEvents.CANPLAY, () => {
         this.currentTime = currentTime;
       });
@@ -184,9 +184,8 @@ export class Core extends EventEmitter {
 
     if (typeof video.fastSeek === 'function') {
       video.fastSeek(currentTime);
-    } else {
-      video.currentTime = currentTime;
     }
+    video.currentTime = currentTime;
   }
   get playsinline() {
     return this.video ? this.video.playsInline : false;
@@ -438,7 +437,7 @@ export class Core extends EventEmitter {
     dom: Element,
     type: string,
     listener: EventListener,
-    options?: EventListenerOptions
+    options?: EventListenerOptions,
   ): () => void {
     dom.addEventListener(type, listener, options);
     const removeListener = () => {
