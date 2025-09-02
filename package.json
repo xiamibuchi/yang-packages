@@ -64,7 +64,7 @@
     "@vue/tsconfig": "0.5.1",
     "@vueuse/core": "11.2.0",
     "autocannon": "^7.15.0",
-    "autoprefixer": "^10.4.19",
+    "autoprefixer": "^10.4.21",
     "chalk": "^5.3.0",
     "clinic": "^13.0.0",
     "consola": "^3.2.3",
