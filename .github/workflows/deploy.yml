@@ -21,7 +21,7 @@ jobs:
       - uses: pnpm/action-setup@v3
         with:
           # Version of pnpm to install
-          version: 9.15.4
+          version: 10.14.0
           # Where to store pnpm files
           dest: ~/setup-pnpm
           # If specified, run `pnpm install`
