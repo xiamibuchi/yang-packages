@@ -3,30 +3,23 @@ import eslint from '@antfu/eslint-config';
 export default eslint(
   {
     ignores: [
-      '.prototools',
-      'Dockerfile',
-      'LICENSE',
-      '**/LICENSE/**',
+      /* 构建产物 */
+      '**/dist/**',
+      '**/out/**',
+      '**/node_modules/**',
       '**/*.min.js',
       '**/*.min.css',
-      '*.html',
-      '**/*.html/**',
-      'node_modules',
-      '**/node_modules/**',
-      'dist',
-      '**/dist/**',
-      'out',
-      '**/out/**',
+      /* 配置和资源 */
+      '.prototools',
+      'Dockerfile',
+      '**/LICENSE/**',
       'pnpm-lock.yaml',
-      '**/pnpm-lock.yaml/**',
+      '*.html',
     ],
     unocss: true,
     vue: true,
     typescript: true,
-    stylistic: {
-      indent: 2,
-      quotes: 'single',
-    },
+    lessOpinionated: true,
 
     rules: {
       /**
@@ -211,13 +204,9 @@ export default eslint(
        *
        * @see https://eslint.vuejs.org/rules/v-on-event-hyphenation.html
        */
-      'vue/v-on-event-hyphenation': [
-        'error',
-        'never',
-        {
-          autofix: true,
-        },
-      ],
+      'vue/v-on-event-hyphenation': ['error', 'never', {
+        autofix: true,
+      }],
       /**
        * Enforce camelCase event names in Vue 3.
        *
@@ -234,6 +223,15 @@ export default eslint(
        * @see https://github.com/vuejs/eslint-plugin-vue/issues/1577
        */
       'import/first': 'off',
+    },
+  },
+  {
+    files: ['apps/chrome-extension/**/*.js'],
+    fules: {
+      /***
+       * allow console in some scripts
+       */
+      'no-console': 'off',
     },
   },
 );
