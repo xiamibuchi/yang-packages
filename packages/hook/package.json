@@ -2,9 +2,15 @@
   "name": "@syseven/hooks",
   "version": "0.0.1",
   "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./index.ts",
+      "import": "./index.ts"
+    }
+  },
   "main": "index.ts",
   "module": "index.ts",
-  "types": "index.d.ts",
+  "types": "index.ts",
   "peerDependencies": {
     "vue": "^3.4.21"
   }

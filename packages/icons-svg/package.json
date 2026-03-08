@@ -2,8 +2,10 @@
   "name": "@syseven/icons-svg",
   "private": true,
   "license": "MIT",
+  "exports": {
+    "./svg/*": "./svg/*"
+  },
   "files": [
     "svg"
-  ],
-  "scripts": {}
+  ]
 }

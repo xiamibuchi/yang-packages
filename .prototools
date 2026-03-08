@@ -1,5 +1,5 @@
-node = "22.18.0"
+node = "24.14.0"
 npm = "bundled"
-pnpm = "10.14.0"
+pnpm = "10.30.3"
 [settings]
 auto-install = true

@@ -2,5 +2,12 @@
   "name": "@syseven/constants",
   "private": true,
   "license": "MIT",
-  "main": "index.ts"
+  "exports": {
+    ".": {
+      "types": "./index.ts",
+      "import": "./index.ts"
+    }
+  },
+  "main": "index.ts",
+  "types": "index.ts"
 }

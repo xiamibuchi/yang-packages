@@ -8,6 +8,8 @@
     "typescript": true,
     "css": "sass"
   },
+  "author": "",
+  "license": "MIT",
   "scripts": {
     "build:weapp": "taro build --type weapp",
     "build:swan": "taro build --type swan",
@@ -26,8 +28,6 @@
     "dev:qq": "npm run build:qq -- --watch",
     "dev:quickapp": "npm run build:quickapp -- --watch"
   },
-  "author": "",
-  "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.22.11",
     "@tarojs/components": "3.6.28",
@@ -43,7 +43,8 @@
     "@tarojs/runtime": "3.6.28",
     "@tarojs/shared": "3.6.28",
     "@tarojs/taro": "3.6.28",
-    "pinia": "^2.1.6"
+    "pinia": "^2.1.6",
+    "qs": "6.12.1"
   },
   "devDependencies": {
     "@babel/core": "^7.22.11",
@@ -54,8 +55,6 @@
     "@vue/babel-plugin-jsx": "^1.0.6",
     "babel-preset-taro": "3.6.28",
     "css-loader": "6.10.0",
-    "eslint-config-taro": "3.6.28",
-    "eslint-plugin-vue": "^8.0.0",
     "postcss": "^8.4.18",
     "style-loader": "1.3.0",
     "stylelint": "9.3.0",

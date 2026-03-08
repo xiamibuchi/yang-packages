@@ -11,14 +11,8 @@ export default eslint(
       '**/*.min.css',
       '*.html',
       '**/*.html/**',
-      'node_modules',
-      '**/node_modules/**',
-      'dist',
-      '**/dist/**',
       'out',
       '**/out/**',
-      'pnpm-lock.yaml',
-      '**/pnpm-lock.yaml/**',
     ],
     unocss: true,
     vue: true,
@@ -69,7 +63,6 @@ export default eslint(
        * @see https://eslint.style/rules/brace-style
        */
       'style/brace-style': ['error', '1tbs'],
-      'vue/brace-style': ['error', '1tbs'],
 
       /**
        * Enforce parens around arguments in all cases.
@@ -84,7 +77,6 @@ export default eslint(
        * @see https://eslint.style/rules/quote-props
        */
       'style/quote-props': ['error', 'as-needed'],
-      'vue/quote-props': ['error', 'as-needed'],
       'jsonc/quote-props': ['error', 'always'],
 
       /**
@@ -221,7 +213,7 @@ export default eslint(
       /**
        * Enforce camelCase event names in Vue 3.
        *
-       * @https://eslint.vuejs.org/rules/custom-event-name-casing.html
+       * @see https://eslint.vuejs.org/rules/custom-event-name-casing.html
        */
       'vue/custom-event-name-casing': ['error', 'camelCase'],
     },

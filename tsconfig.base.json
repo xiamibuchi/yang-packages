@@ -1,23 +1,24 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
-    "target": "ES2020",
-    "module": "ESNext",
+    "target": "ES2024",
     "baseUrl": ".",
-    "sourceMap": false,
-    "moduleResolution": "node",
+    "rootDir": ".",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "paths": {
+      "@syseven/*": ["packages/*"]
+    },
+    "resolveJsonModule": true,
+    "types": [],
     "allowJs": true,
     "strict": true,
     "noUnusedLocals": true,
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
+    "outDir": "dist",
     "removeComments": false,
-    "rootDir": ".",
-    "types": [],
+    "sourceMap": false,
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "paths": {
-      "@syseven/*": ["packages/*"]
-    }
+    "isolatedModules": true,
+    "skipLibCheck": true
   }
 }

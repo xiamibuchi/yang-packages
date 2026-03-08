@@ -1,19 +1,13 @@
 {
   "name": "@syseven/style",
   "description": "style",
-  "style": "index.css",
+  "style": "src/index.scss",
+  "exports": {
+    ".": "./src/index.scss",
+    "./src/*.css": "./src/*.css",
+    "./src/*.scss": "./src/*.scss"
+  },
   "files": [
     "src"
-  ],
-  "exports": {
-    "./src/*.css": {
-      "import": "./src/*.css",
-      "require": "./src/*.css"
-    },
-    "./src/*.scss": {
-      "import": "./src/*.scss",
-      "require": "./src/*.scss"
-    }
-  },
-  "devDependencies": {}
+  ]
 }

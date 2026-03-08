@@ -3,10 +3,21 @@
   "version": "0.0.1",
   "description": "",
   "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./index.ts",
+      "import": "./index.ts"
+    }
+  },
   "main": "index.ts",
   "module": "index.ts",
   "types": "index.ts",
   "peerDependencies": {
     "vue": "^3.4.21"
+  },
+  "dependencies": {
+    "@syseven/constants": "workspace:*",
+    "@syseven/locale": "workspace:*",
+    "@syseven/vue-components": "workspace:*"
   }
 }

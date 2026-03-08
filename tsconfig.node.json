@@ -6,6 +6,6 @@
     "types": ["node"],
     "skipLibCheck": true
   },
-  "include": ["scripts/**/*"],
+  "include": ["scripts/**/*", "commitlint.config.ts", "eslint.config.ts"],
   "exclude": ["**/__tests__/**", "**/tests/**", "**/dist"]
 }

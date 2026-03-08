@@ -2,11 +2,23 @@
   "name": "@syseven/vue-components",
   "version": "0.0.5",
   "description": "all components are settled here",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./index.ts",
+      "import": "./index.ts"
+    },
+    "./*": "./*"
+  },
   "main": "index.ts",
   "module": "index.ts",
   "types": "index.ts",
   "peerDependencies": {
     "vue": "^3.4.21"
   },
-  "sideEffects": false
+  "dependencies": {
+    "@syseven/hooks": "workspace:*",
+    "@syseven/style": "workspace:*",
+    "@syseven/utils": "workspace:*"
+  }
 }
