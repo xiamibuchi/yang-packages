@@ -1,4 +1,3 @@
 export * from './text';
 export * from './button';
-
-// plugins
+export * from './config-provider';

@@ -1,24 +1,18 @@
-<template>
-  <button :class="buttonKls">
-    <slot />
-  </button>
-</template>
-
 <script lang="ts" setup>
 import { computed } from 'vue';
 import { useNamespace } from '@syseven/hooks';
-import { buttonPropsDefault, type buttonPropsType } from './button';
-// style
+import { buttonDefaults } from './button';
+import type { ButtonProps } from './button';
 import '../style/index';
-
-const props = withDefaults(defineProps<buttonPropsType>(), buttonPropsDefault);
-
-const ns = useNamespace('button');
-const componentName = ns.b();
 
 defineOptions({
   name: 'SyButton',
 });
+
+const props = withDefaults(defineProps<ButtonProps>(), buttonDefaults);
+
+const ns = useNamespace('button');
+const componentName = ns.b();
 
 const buttonKls = computed(() => {
   const classNames = [componentName];
@@ -31,3 +25,9 @@ const buttonKls = computed(() => {
   return classNames;
 });
 </script>
+
+<template>
+  <button :class="buttonKls">
+    <slot />
+  </button>
+</template>

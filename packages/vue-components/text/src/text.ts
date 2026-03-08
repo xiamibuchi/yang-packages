@@ -1,6 +1,6 @@
 import type Text from './text.vue';
 
-export interface textPropsType {
+export interface TextProps {
   expandText?: string;
   collapseText?: string;
   rows?: number;
@@ -15,7 +15,7 @@ export interface textPropsType {
   content?: string;
 }
 
-export const textPropsDefault: textPropsType = {
+export const textDefaults: TextProps = {
   expandText: '',
   collapseText: '',
   rows: 0,

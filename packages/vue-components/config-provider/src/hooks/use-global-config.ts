@@ -7,9 +7,10 @@ import {
 } from '@syseven/hooks';
 import { configProviderContextKey } from '../constants';
 
-import type { MaybeRef } from '@vueuse/core';
-import type { App, Ref } from 'vue';
+import type { App, InjectionKey, MaybeRef, Ref } from 'vue';
 import type { ConfigProviderContext } from '../constants';
+
+type ProvideFn = <T>(key: InjectionKey<T> | string, value: T) => void;
 
 const globalConfig = ref<ConfigProviderContext>();
 
@@ -48,6 +49,18 @@ export function useGlobalComponentSettings(block: string) {
   };
 }
 
+function mergeConfig(
+  a: ConfigProviderContext,
+  b: ConfigProviderContext,
+): ConfigProviderContext {
+  const keys = [...new Set([...keysOf(a), ...keysOf(b)])];
+  const obj: Record<string, any> = {};
+  for (const key of keys) {
+    obj[key] = b[key] ?? a[key];
+  }
+  return obj;
+}
+
 export const provideGlobalConfig = (
   config: MaybeRef<ConfigProviderContext>,
   app?: App,
@@ -56,43 +69,29 @@ export const provideGlobalConfig = (
   const inSetup = !!getCurrentInstance();
   const oldConfig = inSetup ? useGlobalConfig() : undefined;
 
-  const provideFn = app?.provide ?? (inSetup ? provide : undefined);
+  const provideFn: ProvideFn | undefined = app?.provide
+    ? (app.provide.bind(app) as ProvideFn)
+    : (inSetup ? provide : undefined);
   if (!provideFn) {
     return;
   }
 
-  const context = computed(() => {
+  const context = computed<ConfigProviderContext>(() => {
     const cfg = unref(config);
     if (!oldConfig?.value) {
       return cfg;
     }
-    // @ts-ignore
     return mergeConfig(oldConfig.value, cfg);
   });
-  // @ts-ignore
-  provideFn(configProviderContextKey, context);
-  // @ts-ignore
+
+  provideFn(configProviderContextKey, context as Ref<ConfigProviderContext>);
   provideFn(
     namespaceContextKey,
-    // @ts-ignore
     computed(() => context.value.namespace),
   );
 
   if (global || !globalConfig.value) {
-    // @ts-ignore
     globalConfig.value = context.value;
   }
   return context;
-};
-
-const mergeConfig = (
-  a: ConfigProviderContext,
-  b: ConfigProviderContext,
-): ConfigProviderContext => {
-  const keys = [...new Set([...keysOf(a), ...keysOf(b)])];
-  const obj: Record<string, any> = {};
-  for (const key of keys) {
-    obj[key] = b[key] ?? a[key];
-  }
-  return obj;
 };

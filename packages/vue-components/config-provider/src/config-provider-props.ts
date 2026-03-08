@@ -1,8 +1,8 @@
-export type ExperimentalFeatures = {
+export interface ExperimentalFeatures {
   // TO BE Defined
-};
+}
 
-export interface ConfigProviderPropsType {
+export interface ConfigProviderProps {
   /**
    * @description Controlling if the users want a11y features
    */
@@ -10,7 +10,7 @@ export interface ConfigProviderPropsType {
   namespace?: string;
 }
 
-export const configProviderDefault = {
+export const configProviderDefaults: ConfigProviderProps = {
   a11y: true,
   namespace: 'sy',
 };

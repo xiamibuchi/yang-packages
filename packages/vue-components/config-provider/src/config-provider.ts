@@ -1,17 +1,17 @@
 import { defineComponent, renderSlot } from 'vue';
 import { provideGlobalConfig } from './hooks/use-global-config';
-import { configProviderDefault } from './config-provider-props';
+import { configProviderDefaults } from './config-provider-props';
 
 const ConfigProvider = defineComponent({
   name: 'SyConfigProvider',
   props: {
     a11y: {
       type: Boolean,
-      default: configProviderDefault.a11y,
+      default: configProviderDefaults.a11y,
     },
     namespace: {
       type: String,
-      default: configProviderDefault.namespace,
+      default: configProviderDefaults.namespace,
     },
   },
 

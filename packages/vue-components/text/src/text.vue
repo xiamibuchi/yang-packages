@@ -1,35 +1,18 @@
-<template>
-  <component
-    :is="tag"
-    v-if="!isScriptCollapse"
-    ref="root"
-    :class="textKls"
-    :style="textStyle"
-  >
-    <slot>
-      {{ props.content }}
-    </slot>
-  </component>
-  <div v-else ref="root" :class="textKls">
-    {{ expanded ? props.content : text
-    }}<span v-if="hasExpand" @click="switchExpanded">{{
-      expanded ? props.collapseText : props.expandText
-    }}</span>
-  </div>
-</template>
-
 <script lang="ts" setup>
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useNamespace } from '@syseven/hooks';
-import { textPropsDefault, type textPropsType } from './text';
-// style
+import { textDefaults } from './text';
+import type { TextProps } from './text';
 import '../style/index';
 
 defineOptions({
   name: 'SyText',
 });
 
-const props = withDefaults(defineProps<textPropsType>(), textPropsDefault);
+const props = withDefaults(defineProps<TextProps>(), textDefaults);
+const emit = defineEmits<{
+  'update:expanded': [value: boolean];
+}>();
 
 const text = ref('');
 const expanded = ref(false);
@@ -39,9 +22,6 @@ const root = ref<HTMLElement>();
 const ns = useNamespace('text');
 
 const isScriptCollapse = computed(() => {
-  if (!props.rows) {
-    return false;
-  }
   if (!props.rows) {
     return false;
   }
@@ -74,10 +54,13 @@ const textKls = computed(() => {
 
 const switchExpanded = () => {
   expanded.value = !expanded.value;
+  emit('update:expanded', expanded.value);
 };
 
 const pxToNum = (value: string | null) => {
-  if (!value) return 0;
+  if (!value) {
+    return 0;
+  }
   const match = value.match(/^\d*(\.\d*)?/);
   return match ? Number(match[0]) : 0;
 };
@@ -112,7 +95,7 @@ const calcEllipsised = () => {
     container.style.minHeight = 'auto';
     container.style.maxHeight = 'auto';
 
-    container.innerText = props.content;
+    container.textContent = props.content;
     document.body.appendChild(container);
     return container;
   };
@@ -129,7 +112,7 @@ const calcEllipsised = () => {
 
     while (left <= right) {
       const mid = Math.floor((left + right) / 2);
-      container.innerText = `${content.slice(0, mid)} ${dots}${expandText}`;
+      container.textContent = `${content.slice(0, mid)} ${dots}${expandText}`;
       if (container.offsetHeight <= maxHeight) {
         left = mid + 1;
         res = mid;
@@ -146,10 +129,10 @@ const calcEllipsised = () => {
   }
 
   const { paddingBottom, paddingTop, lineHeight } = container.style;
-  const maxHeight =
-    (Number(props.rows) + 0.5) * pxToNum(lineHeight) +
-    pxToNum(paddingTop) +
-    pxToNum(paddingBottom);
+  const maxHeight
+    = (Number(props.rows) + 0.5) * pxToNum(lineHeight)
+      + pxToNum(paddingTop)
+      + pxToNum(paddingBottom);
   if (maxHeight < container.offsetHeight) {
     hasExpand.value = true;
     text.value = calcEllipsisText(container, maxHeight);
@@ -179,3 +162,23 @@ onUnmounted(() => {
   window.removeEventListener('resize', calcEllipsised);
 });
 </script>
+
+<template>
+  <component
+    :is="tag"
+    v-if="!isScriptCollapse"
+    ref="root"
+    :class="textKls"
+    :style="textStyle"
+  >
+    <slot>
+      {{ props.content }}
+    </slot>
+  </component>
+  <div v-else ref="root" :class="textKls">
+    {{ expanded ? props.content : text
+    }}<span v-if="hasExpand" @click="switchExpanded">{{
+      expanded ? props.collapseText : props.expandText
+    }}</span>
+  </div>
+</template>

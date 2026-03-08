@@ -1,9 +1,9 @@
 import { mount } from '@vue/test-utils';
-import { describe, expect, test } from 'vitest';
+import { describe, expect } from 'vitest';
 import Button from '../src/button.vue';
 
 describe('button.vue', () => {
-  test('render text & class', () => {
+  it('render text & class', () => {
     const wrapper = mount(Button, {
       props: {
         type: 'primary',

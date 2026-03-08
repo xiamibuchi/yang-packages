@@ -1,4 +1,6 @@
-const js = [
+import type { DefaultTheme } from 'vitepress';
+
+const js: DefaultTheme.SidebarItem[] = [
   {
     text: '基础',
     link: '/code/js/base',
@@ -13,7 +15,7 @@ const js = [
   },
 ];
 
-const css = [
+const css: DefaultTheme.SidebarItem[] = [
   {
     text: '常用样式',
     link: '/code/css/examples/',
@@ -36,7 +38,7 @@ const css = [
   },
 ];
 
-export default [
+export default <DefaultTheme.Sidebar>[
   {
     text: 'css',
     items: css,

@@ -1,5 +1,5 @@
-import { SyText } from '@syseven/vue-components/text';
+import { SyButton, SyText } from '@syseven/vue-components';
 
 import type { Plugin } from 'vue';
 
-export default [SyText] as Plugin[];
+export default [SyButton, SyText] as Plugin[];
